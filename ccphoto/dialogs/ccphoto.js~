@@ -125,7 +125,7 @@ CKEDITOR.dialog.add( 'ccphotoDialog', function( editor ) {
 					{
 						type: 'text',
 						id: 'credit',
-						label: 'Description/Credit',
+						label: 'Credit',
 						setup: function(element) {
 							this.setValue(element.getAttribute('alt'));
 						},
