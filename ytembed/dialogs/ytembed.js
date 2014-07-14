@@ -1,17 +1,28 @@
+(function() {
+// get /oxpoints paths
+var h = CKEDITOR.plugins.get('ytembed');
+var path = h.path;
+
+// load css and javascript files
+CKEDITOR.document.appendStyleSheet(CKEDITOR.getUrl(h.path + "css/ytembed.css"));
+CKEDITOR.scriptLoader.load(path + '/js/key.js');
+CKEDITOR.scriptLoader.load(path + '/js/ytsearch.js');
+CKEDITOR.scriptLoader.load(path + '/js/ytembed.js');
+
 CKEDITOR.dialog.add('ytembedDialog', function(editor) {
-	return {
-		title:     'YouTube Video Search',
-		minWidth:  500,
-		minHeight: 200,
-		resizable: CKEDITOR.DIALOG_RESIZE_NONE,
-		
-		contents: [
-		  {
-		    // Definition of 'Search Youtube' tab
-		    id: 'tab-search',
-		    label: 'Search YouTube',
-		    elements : [
-		      {
+  return {
+    title:     'YouTube Video Search',
+    minWidth:  500,
+    minHeight: 200,
+    resizable: CKEDITOR.DIALOG_RESIZE_NONE,
+  
+    contents: [
+      {
+        // Definition of 'Search Youtube' tab
+        id: 'tab-search',
+        label: 'Search YouTube',
+        elements : [
+          {
             type: 'html',
             id: 'searchpage',
             // below defines the basic markup for the dialog.
@@ -19,15 +30,15 @@ CKEDITOR.dialog.add('ytembedDialog', function(editor) {
             // hitting enter to perform the search query, we define an iframe
             // to hold the form, then use jQuery to bind the events between
             // the frame and the dialog.
-            html: '<iframe id="searchiframe" src="about:blank"></iframe>' + 
-                  '<div id="searchiframecont">' + 
-                    '<form id="searchform">' + 
+            html: '<iframe id="searchiframe" src="about:blank"></iframe>' +
+                  '<div id="searchiframecont">' +
+                    '<form id="searchform">' +
                       '<h2>Embed a video</h2>' +
-                      '<p>Type a search term or YouTube URL below, hit the search button, then select a result to embed that video.</p>' +  
+                      '<p>Type a search term or YouTube URL below, hit the search button, then select a result to embed that video.</p>' + 
                         '<div id="searchwrap">' + 
-                          '<input id="searchid" type="hidden"/>' + 
-                          '<input id="searchquery" class="cke_dialog_ui_input_text" type="text" placeholder="Search here..."/>' + 
-                          '<a id="searchbutton" class="cke_dialog_ui_button cke_dialog_ui_button_ok">&#xf002;</a>' + 
+                          '<input id="searchid" type="hidden"/>' +
+                          '<input id="searchquery" class="cke_dialog_ui_input_text" type="text" placeholder="Search here..."/>' +
+                          '<a id="searchbutton" class="cke_dialog_ui_button cke_dialog_ui_button_ok">&#xf002;</a>' +
                         '</div>' +
                     '</form>' + 
                   '</div>' +
@@ -36,7 +47,7 @@ CKEDITOR.dialog.add('ytembedDialog', function(editor) {
               // select the frame content
               var content = $('#searchiframecont').show();
               var searchiframe = $('#searchiframe').contents();
-              
+
               // dump the frame content into the iframe, putting in any header scripts and css
               // also reset the body's css
               searchiframe.find('body').append('<div id="searchiframecont">' + content.html() + '</div>');
@@ -95,13 +106,13 @@ CKEDITOR.dialog.add('ytembedDialog', function(editor) {
                 ckOk.click();
                 return false;
               });
-              
+
             },
             setup: function(element) {
               // if we are editing a video, its src should populate the query
               var frameForm = $('#searchiframe').contents().find('#searchiframecont');
               frameForm.find('#searchquery').val(element.data('src'));
-              
+
               // simulate search so that first result is the edited video
               frameForm.find('form').submit();
             },
@@ -110,50 +121,51 @@ CKEDITOR.dialog.add('ytembedDialog', function(editor) {
               var framecontent = $('#searchiframe').contents().find('#searchiframecont');
 
               // use the searchid if it has been set
-							var value = framecontent.find('#searchid').val();
-							if (!value)
-							  value = framecontent.find('#searchquery').val();
-							
-							if (value) 
-								element.setAttribute('data-src', value);
-							else if (!this.insertMode)
-								element.removeAttribute('data-src');
-						}
+              var value = framecontent.find('#searchid').val();
+              if (!value)
+                value = framecontent.find('#searchquery').val();
+            
+              if (value) 
+                element.setAttribute('data-src', value);
+              else if (!this.insertMode)
+                element.removeAttribute('data-src');
+            }
           },
-		    ]
-		  }
-		],
-		
+        ]
+      }
+    ],
+    
     onShow: function() {
-			var selection = editor.getSelection();
+      var selection = editor.getSelection();
       var element = selection.getStartElement();
       if (element)
-				element = element.getAscendant('div', true);
+        element = element.getAscendant('div', true);
 
-			// create new div if it doesn't exist
-			if (
-			  !element || 
-			  !element.hasAttribute('data-youtube-embed')
-			) {
-				element = editor.document.createElement('div');
+      // create new div if it doesn't exist
+      if (
+        !element || 
+        !element.hasAttribute('data-youtube-embed')
+      ) {
+        element = editor.document.createElement('div');
         element.data('youtube-embed', true);
         this.insertMode = true;
-			}
-			else
-				this.insertMode = false;
+      }
+      else
+        this.insertMode = false;
 
-			this.element = element;
+      this.element = element;
 
-			if (!this.insertMode)
-				this.setupContent(this.element);
-		},
-		
+      if (!this.insertMode)
+        this.setupContent(this.element);
+    },
+    
     onOk: function() {
-			var dialog = this;
+      var dialog = this;
       var ytembed = this.element;
       this.commitContent(ytembed);
       if (this.insertMode)
-				editor.insertElement(ytembed);
-		}
-	};
+        editor.insertElement(ytembed);
+    }
+  };
 });
+})();
