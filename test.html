@@ -9,7 +9,7 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
     <title>Weblearn CKEditor Widgets Sample</title>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="lib/ckeditor/ckeditor.js"></script>
-    <script src="ytembed/js/ytembed.js"></script>
+    <script src="youtube/js/ytembed.js"></script>
     <link rel="stylesheet" href="lib/ckeditor/samples/sample.css">
     <script>
 
@@ -32,12 +32,12 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
         editor.config.allowedContent = true;  // without this, all the 'data=' attributes get stripped
 
         // add the resource, then enabled it by adding it to extraPlugins
-        CKEDITOR.plugins.addExternal('ytembed', src + '/ytembed/', 'plugin.js');
-        editor.config.extraPlugins += 'ytembed,';
+        CKEDITOR.plugins.addExternal('youtube', src + '/youtube/', 'plugin.js');
+        editor.config.extraPlugins += 'youtube,';
 
         // internal css (in the editor)
         editor.config.contentsCss = [
-          src + '/ytembed/css/contents.css',
+          src + '/youtube/css/contents.css',
           'http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css',
         ];
       }
