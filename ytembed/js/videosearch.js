@@ -6,6 +6,9 @@
     /**
       * PROPERTIES 
       */
+    // internal reference to this
+    var _this = this;
+      
     // initialize the settings
     var settings = $.extend({
       baseUrl: 'http://youtu.be/',
@@ -23,5 +26,8 @@
         return '<p><a href="' settings.baseUrl + result.id + '">' + item.title + '</p>';
       },
     }, options);
+    
+    // initialize the query
+    var query = settings.params;
   };
 })(jQuery);
