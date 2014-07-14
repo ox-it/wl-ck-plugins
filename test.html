@@ -9,6 +9,7 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
     <title>Weblearn CKEditor Widgets Sample</title>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="lib/ckeditor/ckeditor.js"></script>
+    <script src="ytembed/js/ytembed.js"></script>
     <link rel="stylesheet" href="lib/ckeditor/samples/sample.css">
     <script>
 
@@ -28,6 +29,7 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
         var config = {};
         var path = CKEDITOR.basePath;
         editor = CKEDITOR.appendTo( 'editor', config, html );
+        editor.config.allowedContent = true;  // without this, all the 'data=' attributes get stripped
 
         // add the resource, then enabled it by adding it to extraPlugins
         CKEDITOR.plugins.addExternal('ytembed', src + '/ytembed/', 'plugin.js');
@@ -52,6 +54,9 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
         // Destroy the editor.
         editor.destroy();
         editor = null;
+
+        // call ytembed on the youtube-embed divs
+        $('[data-youtube-embed]').ytembed();
       }
 
     </script>
