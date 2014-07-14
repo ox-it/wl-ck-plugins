@@ -1,42 +1,42 @@
 /**
-  * Title:        YouTubeEmbed (ytEmbed)
+  * Title:        YouTubeEmbed
   * Description:  Search for and embed YouTube videos from within CKEditor
   * Author:       Lawrence Okoth-Odida
   * Version:      0.1
   * Date:         04/06/2014
   * Notes:        Created using the abbr sample plugin on CKEditor Documentation
  */
-CKEDITOR.plugins.add('ytembed', {
+CKEDITOR.plugins.add('youtube', {
   icons: 'youtube',
 
 	init: function(editor) {
-		editor.addCommand('ytembed', new CKEDITOR.dialogCommand('ytembedDialog'));
+		editor.addCommand('youtube', new CKEDITOR.dialogCommand('youtubeDialog'));
     editor.ui.addButton( 'Youtube', {
       label: 'Embed Youtube Video',
-      command: 'ytembed',
+      command: 'youtube',
       toolbar: 'insert'
 		});
 
     // add context menu for editing a video link
 		if (editor.contextMenu) {
-			editor.addMenuGroup('ytembedGroup');
+			editor.addMenuGroup('youtubeGroup');
 			
-			editor.addMenuItem( 'ytembedItem', {
+			editor.addMenuItem( 'youtubeItem', {
 				label: 'Edit Video',
 				icon: this.path + 'icons/youtube.png',
-				command: 'ytembed',
-				group: 'ytembedGroup'
+				command: 'youtube',
+				group: 'youtubeGroup'
 			});
 
 			editor.contextMenu.addListener(function(element) {
 			  if (element.getAscendant('div', true) && element.hasAttribute('data-youtube-embed')) {
-					return { ytembedItem: CKEDITOR.TRISTATE_OFF };
+					return { youtubeItem: CKEDITOR.TRISTATE_OFF };
 				}
 			});
 		}
 
 		// register dialog
-		CKEDITOR.dialog.add( 'ytembedDialog', this.path + 'dialogs/ytembed.js' );
+		CKEDITOR.dialog.add( 'youtubeDialog', this.path + 'dialogs/youtube.js' );
 	}
 });
 

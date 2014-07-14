@@ -1,16 +1,16 @@
 (function() {
 // get absolute plugin path
-var h = CKEDITOR.plugins.get('ytembed');
+var h = CKEDITOR.plugins.get('youtube');
 var path = h.path;
 
 // load css and javascript files
 CKEDITOR.document.appendStyleSheet("http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css");
-CKEDITOR.document.appendStyleSheet(CKEDITOR.getUrl(path + "css/ytembed.css"));
+CKEDITOR.document.appendStyleSheet(CKEDITOR.getUrl(path + "css/youtube.css"));
 CKEDITOR.scriptLoader.load(path + '/js/key.js');
 CKEDITOR.scriptLoader.load(path + '/js/ytsearch.js');
 CKEDITOR.scriptLoader.load(path + '/js/ytembed.js');
 
-CKEDITOR.dialog.add('ytembedDialog', function(editor) {
+CKEDITOR.dialog.add('youtubeDialog', function(editor) {
   return {
     title:     'YouTube Video Search',
     minWidth:  500,
@@ -161,10 +161,10 @@ CKEDITOR.dialog.add('ytembedDialog', function(editor) {
     
     onOk: function() {
       var dialog = this;
-      var ytembed = this.element;
-      this.commitContent(ytembed);
+      var youtube = this.element;
+      this.commitContent(youtube);
       if (this.insertMode)
-        editor.insertElement(ytembed);
+        editor.insertElement(youtube);
     }
   };
 });
