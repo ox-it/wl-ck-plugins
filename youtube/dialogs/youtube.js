@@ -5,7 +5,7 @@ var path = h.path;
 
 // load css and javascript files
 CKEDITOR.document.appendStyleSheet("http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css");
-CKEDITOR.document.appendStyleSheet(CKEDITOR.getUrl(path + "css/youtube.css"));
+CKEDITOR.document.appendStyleSheet(CKEDITOR.getUrl(path + "css/ytembed.css"));
 CKEDITOR.scriptLoader.load(path + '/js/key.js');
 CKEDITOR.scriptLoader.load(path + '/js/ytsearch.js');
 CKEDITOR.scriptLoader.load(path + '/js/ytembed.js');
