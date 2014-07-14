@@ -1,9 +1,10 @@
 (function() {
-// get /oxpoints paths
+// get absolute plugin path
 var h = CKEDITOR.plugins.get('ytembed');
 var path = h.path;
 
 // load css and javascript files
+CKEDITOR.document.appendStyleSheet("http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css");
 CKEDITOR.document.appendStyleSheet(CKEDITOR.getUrl(h.path + "css/ytembed.css"));
 CKEDITOR.scriptLoader.load(path + '/js/key.js');
 CKEDITOR.scriptLoader.load(path + '/js/ytsearch.js');
@@ -106,7 +107,6 @@ CKEDITOR.dialog.add('ytembedDialog', function(editor) {
                 ckOk.click();
                 return false;
               });
-
             },
             setup: function(element) {
               // if we are editing a video, its src should populate the query
