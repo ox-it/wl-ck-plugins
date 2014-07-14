@@ -26,7 +26,7 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
 
         // Create a new editor inside the <div id="editor">, setting its value to html
         var config = {};
-        var path = CKEDITOR.basePath + CKEDITOR.plugins.basePath;
+        var path = CKEDITOR.basePath;
         editor = CKEDITOR.appendTo( 'editor', config, html );
 
         // add the resource, then enabled it by adding it to extraPlugins
@@ -34,7 +34,10 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
         editor.config.extraPlugins += 'ytembed,';
 
         // internal css (in the editor)
-        editor.config.contentsCss = [path + 'ytembed/css/contents.css'];
+        editor.config.contentsCss = [
+          src + '/ytembed/css/contents.css',
+          'http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css',
+        ];
       }
 
       function removeEditor() {
