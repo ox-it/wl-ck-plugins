@@ -31,7 +31,7 @@ $.fn.videosearch = function(options) {
     var html = '';
 
     if (results) {
-      $.each(results, function(result)  {
+      $.each(results, function(key, result)  {
         html += settings.displayResult(result);
       });
     }

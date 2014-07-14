@@ -42,7 +42,7 @@ var YouTubeSearch = function(options) {
     success: function(json) {
       if (json.items.length > 0) {
         // go through each result, formatting them for VideoSearch
-        $.each(json.items, function(item) {
+        $.each(json.items, function(key, item) {
           results.push({
             url: 'http://youtu.be/' + item.id.videoId,
             title: item.snippet.title,
