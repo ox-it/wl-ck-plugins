@@ -38,7 +38,7 @@ var YouTubeSearch = function(options) {
   $.ajax({
     url: url,
     dataType: 'json',
-    async: false;
+    async: false,
     success: function(json) {
       if (json.items.length > 0) {
         // go through each result, formatting them for VideoSearch
