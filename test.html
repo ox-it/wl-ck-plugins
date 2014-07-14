@@ -6,12 +6,19 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Ajax &mdash; CKEditor Sample</title>
+	<title>Weblearn CKEditor Widgets Sample</title>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script src="lib/ckeditor/ckeditor.js"></script>
-	<link rel="stylesheet" href="sample.css">
+	<link rel="stylesheet" href="lib/ckeditor/samples/sample.css">
 	<script>
 
 		var editor, html = '';
+		var scripts = document.getElementsByTagName("script");
+
+    // getting absolute url of current file
+    var src = scripts[scripts.length-1].baseURI.split('/');
+        src.pop();
+        src = src.join('/');
 
 		function createEditor() {
 			if ( editor )
@@ -19,8 +26,15 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
 
 			// Create a new editor inside the <div id="editor">, setting its value to html
 			var config = {};
+			var path = CKEDITOR.basePath + CKEDITOR.plugins.basePath;
 			editor = CKEDITOR.appendTo( 'editor', config, html );
 
+			// add the resource, then enabled it by adding it to extraPlugins
+			CKEDITOR.plugins.addExternal('ytembed', src + '/ytembed/', 'plugin.js');
+      editor.config.extraPlugins += 'ytembed,';
+
+      // internal css (in the editor)
+      editor.config.contentsCss = [path + 'ytembed/css/contents.css'];
 		}
 
 		function removeEditor() {
@@ -45,12 +59,8 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
 	</h1>
 	<div class="description">
 		<p>
-			This sample shows how to create and destroy CKEditor instances on the fly. After the removal of CKEditor the content created inside the editing
-			area will be displayed in a <code>&lt;div&gt;</code> element.
-		</p>
-		<p>
-			For details of how to create this setup check the source code of this sample page
-			for JavaScript code responsible for the creation and destruction of a CKEditor instance.
+		  Note that occasionally the Youtube dialog iframe will fail to load and the following error will be logged to the console:
+		  <code>Synchronous XMLHttpRequest on the main thread is deprecated because of its detrimental effects to the end user's experience. For more help http://xhr.spec.whatwg.org/</code>
 		</p>
 	</div>
 	<p>Click the buttons to create and remove a CKEditor instance.</p>
