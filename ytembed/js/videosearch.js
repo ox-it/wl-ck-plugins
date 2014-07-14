@@ -16,7 +16,7 @@ $.fn.videosearch = function(options) {
       query: '#query',
       button: '#button'
     },
-    displayResult: function() {
+    displayResult: function(result) {
       return '<li><a href="' + result.url + '">' + result.title + '</li>';
     },
     noResult: '<p>Sorry, no results!</p>'
