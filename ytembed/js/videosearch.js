@@ -15,10 +15,10 @@ $.fn.videosearch = function(options) {
       results: '#results',
       query: '#query',
       button: '#button'
-    }
-    displayResult(result): function() {
+    },
+    displayResult: function() {
       return '<li><a href="' + result.url + '">' + result.title + '</li>';
-    }
+    },
     noResult: '<p>Sorry, no results!</p>'
   }, options);
   
