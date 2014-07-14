@@ -10,11 +10,12 @@
   <body>
     <script>
       $(document).ready(function() {
-        var callback = YouTubeSearch({
-          key: 'AIzaSyDov_EJkjxi_Qqu8oS4YFoH8TFp9eGKXBY',
-        });
         $('#youtube').videosearch({
-          callback: callback,
+          callback: function() {
+            return YouTubeSearch({
+              key: 'AIzaSyDov_EJkjxi_Qqu8oS4YFoH8TFp9eGKXBY',
+            });
+          },
         });
       });
     </script>
