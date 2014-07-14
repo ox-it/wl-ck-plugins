@@ -38,13 +38,19 @@ var YouTubeSearch = function(options) {
   $.ajax({
     url: url,
     dataType: 'json',
+    async: false;
     success: function(json) {
       if (json.items.length > 0) {
-        // format the results ...
+        // go through each result, formatting them for VideoSearch
+        $.each(json.items, function(item) {
+          results.push({
+            url: 'http://youtu.be/' + item.id.videoId,
+            title: item.snippet.title,
+            description: item.snippet.description,
+            meta: item.snippet
+          });
+        });
       }
-    },
-    error: function () {
-      return results;
     }
   });
 
