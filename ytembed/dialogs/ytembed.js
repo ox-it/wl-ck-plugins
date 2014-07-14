@@ -5,7 +5,7 @@ var path = h.path;
 
 // load css and javascript files
 CKEDITOR.document.appendStyleSheet("http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css");
-CKEDITOR.document.appendStyleSheet(CKEDITOR.getUrl(h.path + "css/ytembed.css"));
+CKEDITOR.document.appendStyleSheet(CKEDITOR.getUrl(path + "css/ytembed.css"));
 CKEDITOR.scriptLoader.load(path + '/js/key.js');
 CKEDITOR.scriptLoader.load(path + '/js/ytsearch.js');
 CKEDITOR.scriptLoader.load(path + '/js/ytembed.js');
@@ -54,8 +54,8 @@ CKEDITOR.dialog.add('ytembedDialog', function(editor) {
               searchiframe.find('body').append('<div id="searchiframecont">' + content.html() + '</div>');
               searchiframe.find('head').append($('head script, head link').clone());
               searchiframe.find('head').append(
-                '<script src="' + CKEDITOR.basePath + CKEDITOR.plugins.basePath + 'ytembed/js/ytsearch.js"></script>' +
-                '<script src="' + CKEDITOR.basePath + CKEDITOR.plugins.basePath + 'ytembed/js/ytembed.js"></script>'
+                '<script src="' + path + '/js/ytsearch.js"></script>' +
+                '<script src="' + path + '/js/ytembed.js"></script>'
               );
               
               // reset the frame body's css and hide the original form
