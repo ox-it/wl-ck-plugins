@@ -28,7 +28,7 @@
       The videosearch method takes an object literal as a parameter, and that literal
       defines the options. These options affect the functionality thus:
 
-      @param callback      {function}
+      @param callback {function}
         A function that actually provides the search results, returning an array of
         objects of the following form:
 
@@ -45,7 +45,7 @@
           
           If this method is not defined, an empty array will be returned.
 
-      @param classes       {object}
+      @param classes {object}
         Literal to define the classes of important interactive elements. Namely:
 
           {
@@ -59,7 +59,7 @@
         formatted output for the result. Takes a result from callback as a parameter,
         thus all of the properties referred to in the callback are available.
 
-      @param noResult      {string}
+      @param noResult {string}
         Message to show if there are no results found.
   */
 (function($) {
