@@ -19,7 +19,24 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
         id: 'selection-criteria',
         label: 'Selection Criteria',
         elements: [
-          // fields
+          {
+            // provided by
+          },
+          {
+            // starting after
+          },
+          {
+            // starting before
+          },
+          {
+            // skills
+          },
+          {
+            // research method
+          },
+          {
+            // eligibility
+          }
         ]
       },
       {
