@@ -153,7 +153,7 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
               ['Eligibility', 'eligibility'],
             ],
             setup: function(element) {
-              setValues(this, element.getAttribute('data-displayColumns').split(' '));
+              setValues(this, element.getAttribute('data-displayColumns').trim().split(' '));
             },
             commit: function(element) {
               var values = getValues(this);
