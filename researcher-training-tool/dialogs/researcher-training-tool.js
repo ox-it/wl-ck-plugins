@@ -10,13 +10,13 @@ CKEDITOR.scriptLoader.load(path + '/js/skills.js');
 // method for getting values from a multi-select field
 var getValues = function(dialog) {
   // get the options from the dialog's input element
-  var select = element.getInputElement();
+  var select = dialog.getInputElement();
   var selectedOptions = select.$.selectedOptions;
   var values = [];
 
   // add values to array
   for (i = 0; i < selectedOptions.length; i++) {
-    values.push(selectedOptions[i]);
+    values.push(selectedOptions[i].value);
   }
 
   return values;
@@ -110,7 +110,8 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
               this.setValue(element.getAttribute('data-eligibility'));
             },
             commit: function(element) {
-              element.setAttribute('data-eligibility', this.getValue());
+              var values = getValues(this);
+              element.setAttribute('data-displayColumns', this.getValue());
             }
           }
         ]
@@ -133,7 +134,7 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
               ['Provider', 'provider'],
               ['Description', 'description'],
               ['Venue', 'venue'],
-              ['Eligibility', 'venue'],
+              ['Eligibility', 'eligibility'],
             ],
             setup: function(element) {
               this.setValue(element.getAttribute('data-displayColumns'));
