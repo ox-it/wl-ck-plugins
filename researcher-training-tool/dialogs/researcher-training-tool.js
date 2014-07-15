@@ -123,11 +123,11 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
               ['Public', 'PU'],
             ],
             setup: function(element) {
-              this.setValue(element.getAttribute('data-eligibility'));
+              setValues(this, element.getAttribute('data-eligibility').trim().split(' '));
             },
             commit: function(element) {
               var values = getValues(this);
-              element.setAttribute('data-displayColumns', this.getValue());
+              element.setAttribute('data-eligibility', values.join(' '));
             }
           }
         ]
