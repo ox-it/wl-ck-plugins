@@ -31,7 +31,15 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
             }
           },
           {
-            // starting after
+            type: 'text',
+            id: 'starting-after',
+            label: 'Starting After',
+            setup: function(element) {
+              this.setValue(element.getAttribute('data-startingAfter'));
+            },
+            commit: function(element) {
+              element.setAttribute('data-startingAfter', this.getValue());
+            }
           },
           {
             // starting before
