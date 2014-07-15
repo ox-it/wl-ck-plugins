@@ -124,7 +124,19 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
               this.setValue(element.getAttribute('data-displayColumns'));
             },
             commit: function(element) {
-              element.setAttribute('data-displayColumns', this.getValue());
+              // get the options from the input element
+              var select = this.getInputElement();
+              var selectedOptions = select.$.selectedOptions;
+              var value = '';
+
+              // build up options into space-separated string
+              for (i = 0; i < selectedOptions.length; i++) {
+                value += selectedOptions[i].value + ' ';
+              }
+
+              // remove extra whitespace and set the attribute
+              value = value.trim();
+              element.setAttribute('data-displayColumns', value);
             }
           },
           {
