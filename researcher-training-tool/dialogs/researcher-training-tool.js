@@ -104,7 +104,25 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
         label: 'Display Settings',
         elements: [
           {
-            // display columns
+            type: 'select',
+            id: 'display-columns',
+            label: 'Columns to display',
+            multiple: true,
+            items: [
+              ['Start', 'start'],
+              ['Title', 'title'],
+              ['Subject', 'subject'],
+              ['Provider', 'provider'],
+              ['Description', 'description'],
+              ['Venue', 'venue'],
+              ['Eligibility', 'venue'],
+            ],
+            setup: function(element) {
+              this.setValue(element.getAttribute('data-displayColumns'));
+            },
+            commit: function(element) {
+              element.setAttribute('data-displayColumns', this.getValue());
+            }
           },
           {
             // title
