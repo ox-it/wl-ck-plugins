@@ -125,7 +125,15 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
             }
           },
           {
-            // title
+            type: 'text',
+            id: 'title',
+            label: 'Title',
+            setup: function(element) {
+              this.setValue(element.getAttribute('data-title'));
+            },
+            commit: function(element) {
+              element.setAttribute('data-title', this.getValue());
+            }
           },
           {
             // show without dates link
