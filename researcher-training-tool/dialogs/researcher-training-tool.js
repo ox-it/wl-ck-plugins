@@ -65,7 +65,19 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
             }
           },
           {
-            // research method
+            type: 'select',
+            id: 'research-method',
+            label: 'Research Method',
+            items: [
+              ['Qualitative', 'qualitative'],
+              ['Quantitative', 'quantitative'],
+            ],
+            setup: function(element) {
+              this.setValue(element.getAttribute('data-researchMethod'));
+            },
+            commit: function(element) {
+              element.setAttribute('data-researchMethod', this.getValue());
+            }
           },
           {
             // eligibility
