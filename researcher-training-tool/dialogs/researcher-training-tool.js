@@ -26,7 +26,13 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
     },
 
     onOk: function() {
-      // fired when OK is clicked
+      var dialog = this;
+      var div = this.element;
+
+      this.commitContent(div);
+
+      if (this.insertMode)
+        editor.insertElement(div);
     }
   };
 });
