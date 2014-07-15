@@ -42,7 +42,15 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
             }
           },
           {
-            // starting before
+            type: 'text',
+            id: 'starting-before',
+            label: 'Starting Before',
+            setup: function(element) {
+              this.setValue(element.getAttribute('data-startingBefore'));
+            },
+            commit: function(element) {
+              element.setAttribute('data-startingBefore', this.getValue());
+            }
           },
           {
             // skills
