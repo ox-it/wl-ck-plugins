@@ -22,7 +22,24 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
     },
 
     onShow: function() {
-      // fired whenever dialog is shown
+      var selection = editor.getSelection();
+      var element = selection.getStartElement();
+      if (element)
+        element = element.getAscendant('div', true);
+
+      if (!element || element.getName() != 'div' || !element.hasClass('courses-widget-container')) {
+        element = editor.document.createElement('div');
+        element.addClass('courses-widget-container');
+
+        this.insertMode = true;
+      }
+      else
+        this.insertMode = false;
+
+      this.element = element;
+
+      if (!this.insertMode)
+        this.setupContent(this.element);
     },
 
     onOk: function() {
