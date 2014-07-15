@@ -4,7 +4,7 @@ var h = CKEDITOR.plugins.get('researcher-training-tool');
 var path = h.path;
 
 // load css and javascript files
-// ...
+CKEDITOR.scriptLoader.load(path + '/js/skills.js');
 
 // register dialog
 CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
@@ -53,7 +53,16 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
             }
           },
           {
-            // skills
+            type: 'select',
+            id: 'skill',
+            label: 'Skill',
+            items: skillCodes,
+            setup: function(element) {
+              this.setValue(element.getAttribute('data-skill'));
+            },
+            commit: function(element) {
+              element.setAttribute('data-skill', this.getValue());
+            }
           },
           {
             // research method
