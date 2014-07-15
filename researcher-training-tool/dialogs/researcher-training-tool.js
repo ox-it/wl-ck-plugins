@@ -136,7 +136,15 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
             }
           },
           {
-            // show without dates link
+            type: 'checkbox',
+            id: 'show-without-dates-link',
+            label: 'Show without dates link?',
+            setup: function(element) {
+              this.setValue(element.getAttribute('data-showWithoutDatesLink') == 'true');
+            },
+            commit: function(element) {
+              element.setAttribute('data-showWithoutDatesLink', this.getValue());
+            }
           },
           {
             // default dates view
