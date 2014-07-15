@@ -20,7 +20,23 @@ var getValues = function(dialog) {
   }
 
   return values;
-}
+};
+
+// method for setting values for a multi-select field
+var setValues = function(dialog, values) {
+  var select = dialog.getInputElement();
+
+  // go through options; if that option is in the values array, set it
+  for (i = 0; i < select.$.length; i++) {
+    // first reset the option, otherwise if the dialog has been used
+    // multiple times, the options for various rtt embeds may bleed together
+    select.$[i].selected = false;
+
+    if (values.indexOf(select.$[i].value) > -1) {
+      select.$[i].selected = true;
+    }
+  }
+};
 
 // register dialog
 CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
@@ -137,15 +153,7 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
               ['Eligibility', 'eligibility'],
             ],
             setup: function(element) {
-              var values = element.getAttribute('data-displayColumns');
-              var select = this.getInputElement();
-              values = values.split(' ');
-
-              for (i = 0; i < select.$.length; i++) {
-                if (values.indexOf(select.$[i].value) > -1) {
-                  select.$[i].selected = true;
-                }
-              }
+              setValues(this, element.getAttribute('data-displayColumns').split(' '));
             },
             commit: function(element) {
               var values = getValues(this);
