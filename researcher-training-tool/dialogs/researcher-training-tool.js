@@ -14,7 +14,14 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
     minHeight: 200,
 
     contents: [
-      // tabs
+      {
+        // settings tab
+        id: 'settings',
+        label: 'Configure Courses',
+        elements: [
+          // fields
+        ]
+      }
     ],
 
     onLoad: function() {
