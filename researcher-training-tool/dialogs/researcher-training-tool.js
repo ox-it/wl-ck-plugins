@@ -15,9 +15,25 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
 
     contents: [
       {
-        // settings tab
-        id: 'settings',
-        label: 'Configure Courses',
+        // selection criteria
+        id: 'selection-criteria',
+        label: 'Selection Criteria',
+        elements: [
+          // fields
+        ]
+      },
+      {
+        // display settings
+        id: 'display-settings',
+        label: 'Display Settings',
+        elements: [
+          // fields
+        ]
+      },
+      {
+        // preview
+        id: 'preview',
+        label: 'Preview',
         elements: [
           // fields
         ]
