@@ -7,6 +7,21 @@ var path = h.path;
 CKEDITOR.document.appendStyleSheet(CKEDITOR.getUrl(h.path + 'css/dialog.css'));
 CKEDITOR.scriptLoader.load(path + '/js/skills.js');
 
+// method for getting values from a multi-select field
+var getValues = function(dialog) {
+  // get the options from the dialog's input element
+  var select = element.getInputElement();
+  var selectedOptions = select.$.selectedOptions;
+  var values = [];
+
+  // add values to array
+  for (i = 0; i < selectedOptions.length; i++) {
+    values.push(selectedOptions[i]);
+  }
+
+  return values;
+}
+
 // register dialog
 CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
   return {
