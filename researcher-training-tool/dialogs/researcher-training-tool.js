@@ -103,7 +103,18 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
         id: 'display-settings',
         label: 'Display Settings',
         elements: [
-          // fields
+          {
+            // display columns
+          },
+          {
+            // title
+          },
+          {
+            // show without dates link
+          },
+          {
+            // default dates view
+          }
         ]
       },
       {
