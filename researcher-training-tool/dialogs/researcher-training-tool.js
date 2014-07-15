@@ -4,6 +4,7 @@ var h = CKEDITOR.plugins.get('researcher-training-tool');
 var path = h.path;
 
 // load css and javascript files
+CKEDITOR.document.appendStyleSheet(CKEDITOR.getUrl(h.path + 'css/dialog.css'));
 CKEDITOR.scriptLoader.load(path + '/js/skills.js');
 
 // register dialog
@@ -83,6 +84,7 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
             type: 'select',
             id: 'eligibility',
             label: 'Eligibility',
+            className: 'select_multiple',
             multiple: true,
             items: [
               ['Staff', 'ST'],
@@ -107,6 +109,7 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
             type: 'select',
             id: 'display-columns',
             label: 'Columns to display',
+            className: 'select_multiple',
             multiple: true,
             items: [
               ['Start', 'start'],
