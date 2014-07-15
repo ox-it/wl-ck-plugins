@@ -83,6 +83,7 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
             type: 'select',
             id: 'eligibility',
             label: 'Eligibility',
+            multiple: true,
             items: [
               ['Staff', 'ST'],
               ['Members of the University', 'OX'],
