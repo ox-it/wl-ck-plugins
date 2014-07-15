@@ -147,7 +147,19 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
             }
           },
           {
-            // default dates view
+            type: 'select',
+            id: 'default-dates-view',
+            label: 'Default dates view',
+            items: [
+              ['With Dates', 'withDates'],
+              ['Wihout Dates', 'withoutDates'],
+            ],
+            setup: function(element) {
+              this.setValue(element.getAttribute('data-defaultDatesView'));
+            },
+            commit: function(element) {
+              element.setAttribute('data-defaultDatesView', this.getValue());
+            }
           }
         ]
       },
