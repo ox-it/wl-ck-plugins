@@ -20,7 +20,15 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
         label: 'Selection Criteria',
         elements: [
           {
-            // provided by
+            type: 'text',
+            id: 'provided-by',
+            label: 'Provided By',
+            setup: function(element) {
+              this.setValue(element.getAttribute('data-providedBy'));
+            },
+            commit: function(element) {
+              element.setAttribute('data-providedBy', this.getValue());
+            }
           },
           {
             // starting after
