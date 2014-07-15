@@ -9,7 +9,25 @@ var path = h.path;
 // register dialog
 CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
   return {
-    // dialog definition
+    title: 'Embed Researcher Training Tool Listing',
+    minWidth: 350,
+    minHeight: 200,
+
+    contents: [
+      // tabs
+    ],
+
+    onLoad: function() {
+      // fired when dialog loads for first time
+    },
+
+    onShow: function() {
+      // fired whenever dialog is shown
+    },
+
+    onOk: function() {
+      // fired when OK is clicked
+    }
   };
 });
 })();
