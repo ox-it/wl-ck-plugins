@@ -80,7 +80,20 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
             }
           },
           {
-            // eligibility
+            type: 'select',
+            id: 'eligibility',
+            label: 'Eligibility',
+            items: [
+              ['Staff', 'ST'],
+              ['Members of the University', 'OX'],
+              ['Public', 'PU'],
+            ],
+            setup: function(element) {
+              this.setValue(element.getAttribute('data-eligibility'));
+            },
+            commit: function(element) {
+              element.setAttribute('data-eligibility', this.getValue());
+            }
           }
         ]
       },
