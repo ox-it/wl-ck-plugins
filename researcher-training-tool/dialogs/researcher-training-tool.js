@@ -226,9 +226,26 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
             id: 'preview',
             html: '<div class="rttpreview"></div>',
             onShow: function() {
+              // get the dialog so we can access the element values
+              var dialog = this.getDialog();
+
               // make clicking the tab trigger the preview
               $('#researcherTrainingToolDialog').on('click', "[id*='cke_preview_']", function() {
-                // ...
+                var previewWindow = $('.rttpreview');
+                var div = $('<div/>');
+
+                // get data from the fields
+                var attributes = {
+                  'providedBy': $('.oxpoint_autocomplete input').data('uri'),
+                  // more to add...
+                };
+
+                // go through the attributes, putting the data into the div
+                for (attr in attributes)
+                  div.attr('data-' + attr, attributes[attr]);
+
+                // empty the preview window and put the new div in
+                previewWindow.empty().append(div);
               });
             },
           }
