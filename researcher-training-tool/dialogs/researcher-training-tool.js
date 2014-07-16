@@ -154,13 +154,33 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
             commit: function(element) {
               element.setAttribute('data-title', this.getValue());
             }
-          },{
+          },
+          {
             type: 'hbox',
             widths: ['50%', '25%', '25%'],
             children: [
               {
-                type: 'text',
-                id: 'test1',
+                type: 'select',
+                id: 'display-columns',
+                label: 'Columns to display',
+                className: 'select_multiple',
+                multiple: true,
+                items: [
+                  ['Start', 'start'],
+                  ['Title', 'title'],
+                  ['Subject', 'subject'],
+                  ['Provider', 'provider'],
+                  ['Description', 'description'],
+                  ['Venue', 'venue'],
+                  ['Eligibility', 'eligibility'],
+                ],
+                setup: function(element) {
+                  this.setValues(element.getAttribute('data-displayColumns').trim().split(' '));
+                },
+                commit: function(element) {
+                  var values = this.getValues();
+                  element.setAttribute('data-displayColumns', values.join(' '));
+                }
               },
               {
                 type: 'text',
@@ -171,29 +191,6 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
                 id: 'test3',
               }
             ]
-          },
-          {
-            type: 'select',
-            id: 'display-columns',
-            label: 'Columns to display',
-            className: 'select_multiple',
-            multiple: true,
-            items: [
-              ['Start', 'start'],
-              ['Title', 'title'],
-              ['Subject', 'subject'],
-              ['Provider', 'provider'],
-              ['Description', 'description'],
-              ['Venue', 'venue'],
-              ['Eligibility', 'eligibility'],
-            ],
-            setup: function(element) {
-              this.setValues(element.getAttribute('data-displayColumns').trim().split(' '));
-            },
-            commit: function(element) {
-              var values = this.getValues();
-              element.setAttribute('data-displayColumns', values.join(' '));
-            }
           },
           {
             type: 'checkbox',
