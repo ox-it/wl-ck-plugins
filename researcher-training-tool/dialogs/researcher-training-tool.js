@@ -136,7 +136,9 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
                   ['Public', 'PU'],
                 ],
                 setup: function(element) {
-                  this.setValues(element.getAttribute('data-eligibility').trim().split(' '));
+                  var values = element.getAttribute('data-eligibility');
+                  if (values)
+                    this.setValues(values.trim().split(' '));
                 },
                 commit: function(element) {
                   var values = this.getValues();
@@ -282,8 +284,10 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
                   delete attributes.startingBefore;
 
                 // go through the attributes, putting the data into the div
-                for (attr in attributes)
-                  div.attr('data-' + attr, attributes[attr]);
+                for (attr in attributes) {
+                  if (attributes[attr])
+                    div.attr('data-' + attr, attributes[attr]);
+                }
 
                 // empty the preview window and put the new div in
                 previewWindow.empty().append(div);
