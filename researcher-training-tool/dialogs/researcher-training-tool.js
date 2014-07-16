@@ -136,6 +136,20 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
               var values = this.getValues();
               element.setAttribute('data-eligibility', values.join(' '));
             }
+          },
+          {
+            type: 'hbox',
+            widths: ['50%', '50%'],
+            children: [
+              {
+                type: 'text',
+                id: 'id1',
+              },
+              {
+                type: 'text',
+                id: 'id2',
+              }
+            ]
           }
         ]
       },
