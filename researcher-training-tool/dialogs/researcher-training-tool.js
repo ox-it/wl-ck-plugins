@@ -145,6 +145,24 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
         label: 'Display Settings',
         elements: [
           {
+            type: 'hbox',
+            widths: ['50%', '25%', '25%'],
+            children: [
+              {
+                type: 'text',
+                id: 'test1',
+              },
+              {
+                type: 'text',
+                id: 'test2',
+              },
+              {
+                type: 'text',
+                id: 'test3',
+              }
+            ]
+          },
+          {
             type: 'text',
             id: 'title',
             label: 'Title',
