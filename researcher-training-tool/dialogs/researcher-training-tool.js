@@ -106,8 +106,10 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
             type: 'text',
             id: 'starting-before',
             label: 'Starting Before',
+            className: 'starting_before',
             onLoad: function() {
-              // ...
+              var input = $('.starting_before input');
+              input.datepicker();
             },
             setup: function(element) {
               this.setValue(element.getAttribute('data-startingBefore'));
