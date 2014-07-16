@@ -227,6 +227,9 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
     ],
 
     onLoad: function() {
+      // give dialog a class for easier styling
+      $(this.getElement()).attr('id', 'researcherTrainingToolDialog');
+
       // put datepicker functionality on appropriate fields
       $('.cke_datepicker input').datepicker({ dateFormat: 'yy-mm-dd' });
     },

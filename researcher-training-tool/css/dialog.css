@@ -1,3 +1,16 @@
-.select_multiple {
+/* fix height for select-multiple fields */
+#researcherTrainingToolDialog .select_multiple {
   height: auto !important;
+}
+
+.ui-autocomplete .ui-menu-item {
+  margin: 0;
+  padding: 2px;
+}
+.ui-autocomplete .ui-menu-item a {
+  display: block;
+  padding: 4px;
+}
+.ui-autocomplete .ui-menu-item a:hover {
+  padding: 3px;
 }
