@@ -221,7 +221,11 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
         id: 'preview',
         label: 'Preview',
         elements: [
-          // fields
+          {
+            type: 'html',
+            id: 'preview',
+            html: '<div class="rttpreview"></div>',
+          }
         ]
       }
     ],
