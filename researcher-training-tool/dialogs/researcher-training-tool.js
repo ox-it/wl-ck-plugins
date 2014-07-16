@@ -183,6 +183,21 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
                 }
               },
               {
+                type: 'select',
+                id: 'default-dates-view',
+                label: 'Default dates view',
+                items: [
+                  ['With Dates', 'withDates'],
+                  ['Wihout Dates', 'withoutDates'],
+                ],
+                setup: function(element) {
+                  this.setValue(element.getAttribute('data-defaultDatesView'));
+                },
+                commit: function(element) {
+                  element.setAttribute('data-defaultDatesView', this.getValue());
+                }
+              },
+              {
                 type: 'checkbox',
                 id: 'show-without-dates-link',
                 label: 'Show without dates link?',
@@ -192,27 +207,8 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
                 commit: function(element) {
                   element.setAttribute('data-showWithoutDatesLink', this.getValue());
                 }
-              },
-              {
-                type: 'text',
-                id: 'test3',
               }
             ]
-          },
-          {
-            type: 'select',
-            id: 'default-dates-view',
-            label: 'Default dates view',
-            items: [
-              ['With Dates', 'withDates'],
-              ['Wihout Dates', 'withoutDates'],
-            ],
-            setup: function(element) {
-              this.setValue(element.getAttribute('data-defaultDatesView'));
-            },
-            commit: function(element) {
-              element.setAttribute('data-defaultDatesView', this.getValue());
-            }
           }
         ]
       },
