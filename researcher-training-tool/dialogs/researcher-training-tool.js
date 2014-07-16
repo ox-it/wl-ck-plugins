@@ -12,37 +12,7 @@ if (!$.fn.autocomplete) // fix in case the ui library hasn't loaded yet
 CKEDITOR.document.appendStyleSheet(CKEDITOR.getUrl(h.path + 'css/dialog.css'));
 CKEDITOR.scriptLoader.load(path + '/js/oxpoints-autocomplete.js');
 CKEDITOR.scriptLoader.load(path + '/js/skills.js');
-
-// method for getting values from a multi-select field
-var getValues = function(dialog) {
-  // get the options from the dialog's input element
-  var select = dialog.getInputElement();
-  var selectedOptions = select.$.selectedOptions;
-  var values = [];
-
-  // add values to array
-  for (i = 0; i < selectedOptions.length; i++) {
-    values.push(selectedOptions[i].value);
-  }
-
-  return values;
-};
-
-// method for setting values for a multi-select field
-var setValues = function(dialog, values) {
-  var select = dialog.getInputElement();
-
-  // go through options; if that option is in the values array, set it
-  for (i = 0; i < select.$.length; i++) {
-    // first reset the option, otherwise if the dialog has been used
-    // multiple times, the options for various rtt embeds may bleed together
-    select.$[i].selected = false;
-
-    if (values.indexOf(select.$[i].value) > -1) {
-      select.$[i].selected = true;
-    }
-  }
-};
+CKEDITOR.scriptLoader.load(path + '/js/select-multiple-values.js');
 
 // register dialog
 CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
@@ -160,10 +130,10 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
               ['Public', 'PU'],
             ],
             setup: function(element) {
-              setValues(this, element.getAttribute('data-eligibility').trim().split(' '));
+              this.setValues(element.getAttribute('data-eligibility').trim().split(' '));
             },
             commit: function(element) {
-              var values = getValues(this);
+              var values = this.getValues();
               element.setAttribute('data-eligibility', values.join(' '));
             }
           }
@@ -190,10 +160,10 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
               ['Eligibility', 'eligibility'],
             ],
             setup: function(element) {
-              setValues(this, element.getAttribute('data-displayColumns').trim().split(' '));
+              this.setValues(element.getAttribute('data-displayColumns').trim().split(' '));
             },
             commit: function(element) {
-              var values = getValues(this);
+              var values = this.getValues();
               element.setAttribute('data-displayColumns', values.join(' '));
             }
           },
