@@ -236,7 +236,12 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
 
                 // get data from the fields
                 var attributes = {
-                  'providedBy': $('.oxpoint_autocomplete input').data('uri'),
+                  'providedBy':     $('.oxpoint_autocomplete input').data('uri'),
+                  'startingBefore': dialog.getValueOf('selection-criteria', 'starting-before') + 'T00:00:00',
+                  'startingAfter':  dialog.getValueOf('selection-criteria', 'starting-after') + 'T00:00:00',
+                  'skill':          dialog.getValueOf('selection-criteria', 'skill'),
+                  'eligibility':    dialog.getContentElement('selection-criteria', 'eligibility').getValues().join(' '),
+                  'researchMethod': dialog.getValueOf('selection-criteria', 'research-method'),
                   // more to add...
                 };
 
