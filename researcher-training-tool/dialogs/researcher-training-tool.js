@@ -4,8 +4,10 @@ var h = CKEDITOR.plugins.get('researcher-training-tool');
 var path = h.path;
 
 // load css and javascript files
-if (!$.fn.autocomplete)
-  CKEDITOR.scriptLoader.load('http://static.data.ox.ac.uk/lib/jquery-ui/jquery-ui.min.js');
+if (!$.browser)         // fix for $.browser being undefined in jQuery 1.9+
+  CKEDITOR.scriptLoader.load('http://code.jquery.com/jquery-migrate-1.2.1.js');
+if (!$.fn.autocomplete) // fix in case the ui library hasn't loaded yet
+  CKEDITOR.scriptLoader.load('https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.22/jquery-ui.min.js');
 
 CKEDITOR.document.appendStyleSheet(CKEDITOR.getUrl(h.path + 'css/dialog.css'));
 CKEDITOR.scriptLoader.load(path + '/js/oxpoints-autocomplete.js');
@@ -88,8 +90,10 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
             type: 'text',
             id: 'starting-after',
             label: 'Starting After',
+            className: 'starting_after',
             onLoad: function() {
-              // ...
+              var input = $('.starting_after input');
+              input.datepicker();
             },
             setup: function(element) {
               this.setValue(element.getAttribute('data-startingAfter'));
