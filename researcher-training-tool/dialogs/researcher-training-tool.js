@@ -93,7 +93,7 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
             className: 'starting_after',
             onLoad: function() {
               var input = $('.starting_after input');
-              input.datepicker();
+              input.datepicker({ dateFormat: 'yy-mm-dd' });
             },
             setup: function(element) {
               this.setValue(element.getAttribute('data-startingAfter'));
@@ -109,7 +109,7 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
             className: 'starting_before',
             onLoad: function() {
               var input = $('.starting_before input');
-              input.datepicker();
+              input.datepicker({ dateFormat: 'yy-mm-dd' });
             },
             setup: function(element) {
               this.setValue(element.getAttribute('data-startingBefore'));
