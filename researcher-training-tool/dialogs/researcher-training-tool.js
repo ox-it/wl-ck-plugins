@@ -4,7 +4,11 @@ var h = CKEDITOR.plugins.get('researcher-training-tool');
 var path = h.path;
 
 // load css and javascript files
+if (!$.fn.autocomplete)
+  CKEDITOR.scriptLoader.load('http://static.data.ox.ac.uk/lib/jquery-ui/jquery-ui.min.js');
+
 CKEDITOR.document.appendStyleSheet(CKEDITOR.getUrl(h.path + 'css/dialog.css'));
+CKEDITOR.scriptLoader.load(path + '/js/oxpoints-autocomplete.js');
 CKEDITOR.scriptLoader.load(path + '/js/skills.js');
 
 // method for getting values from a multi-select field
@@ -55,11 +59,29 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
             type: 'text',
             id: 'provided-by',
             label: 'Provided By',
+            className: 'oxpoint_autocomplete',
+            onLoad: function() {
+              var input = $('.oxpoint_autocomplete input');
+              input.oxPointsAutoComplete({
+                select: function(event, ui) {
+                  input.attr('data-uri', ui.item.uri);
+                  input.attr('data-name', input.val());
+                }
+              });
+            },
             setup: function(element) {
               this.setValue(element.getAttribute('data-providedBy'));
             },
             commit: function(element) {
-              element.setAttribute('data-providedBy', this.getValue());
+              var value = '';
+              var uri = $('.oxpoint_autocomplete input').data('uri');
+
+              if (uri)
+                value = uri;
+              else
+                value = this.getValue();
+
+              element.setAttribute('data-providedBy', value);
             }
           },
           {
