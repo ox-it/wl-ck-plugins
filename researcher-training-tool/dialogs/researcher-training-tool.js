@@ -80,26 +80,22 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
               },
               {
                 type: 'text',
-                id: 'id2',
+                id: 'starting-before',
+                label: 'Starting Before',
+                className: 'starting_before',
+                onLoad: function() {
+                  var input = $('.starting_before input');
+                  input.datepicker({ dateFormat: 'yy-mm-dd' });
+                },
+                setup: function(element) {
+                  var date = element.getAttribute('data-startingBefore').split('T')[0];
+                  this.setValue(date);
+                },
+                commit: function(element) {
+                  element.setAttribute('data-startingBefore', this.getValue() + 'T00:00:00');
+                }
               }
             ]
-          },
-          {
-            type: 'text',
-            id: 'starting-before',
-            label: 'Starting Before',
-            className: 'starting_before',
-            onLoad: function() {
-              var input = $('.starting_before input');
-              input.datepicker({ dateFormat: 'yy-mm-dd' });
-            },
-            setup: function(element) {
-              var date = element.getAttribute('data-startingBefore').split('T')[0];
-              this.setValue(date);
-            },
-            commit: function(element) {
-              element.setAttribute('data-startingBefore', this.getValue() + 'T00:00:00');
-            }
           },
           {
             type: 'select',
