@@ -225,6 +225,12 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
             type: 'html',
             id: 'preview',
             html: '<div class="rttpreview"></div>',
+            onShow: function() {
+              // make clicking the tab trigger the preview
+              $('#researcherTrainingToolDialog').on('click', "[id*='cke_preview_']", function() {
+                // ...
+              });
+            },
           }
         ]
       }
