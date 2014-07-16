@@ -104,21 +104,6 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
             }
           },
           {
-            type: 'select',
-            id: 'research-method',
-            label: 'Research Method',
-            items: [
-              ['Qualitative', 'qualitative'],
-              ['Quantitative', 'quantitative'],
-            ],
-            setup: function(element) {
-              this.setValue(element.getAttribute('data-researchMethod'));
-            },
-            commit: function(element) {
-              element.setAttribute('data-researchMethod', this.getValue());
-            }
-          },
-          {
             type: 'hbox',
             widths: ['50%', '50%'],
             children: [
@@ -142,8 +127,19 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
                 }
               },
               {
-                type: 'text',
-                id: 'id2',
+                type: 'select',
+                id: 'research-method',
+                label: 'Research Method',
+                items: [
+                  ['Qualitative', 'qualitative'],
+                  ['Quantitative', 'quantitative'],
+                ],
+                setup: function(element) {
+                  this.setValue(element.getAttribute('data-researchMethod'));
+                },
+                commit: function(element) {
+                  element.setAttribute('data-researchMethod', this.getValue());
+                }
               }
             ]
           }
