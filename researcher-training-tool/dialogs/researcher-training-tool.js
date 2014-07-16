@@ -62,31 +62,27 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
             children: [
               {
                 type: 'text',
-                id: 'id1',
+                id: 'starting-after',
+                label: 'Starting After',
+                className: 'starting_after',
+                onLoad: function() {
+                  var input = $('.starting_after input');
+                  input.datepicker({ dateFormat: 'yy-mm-dd' });
+                },
+                setup: function(element) {
+                  // parse date from the full string (everything prior to the T)
+                  var date = element.getAttribute('data-startingAfter').split('T')[0];
+                  this.setValue(date);
+                },
+                commit: function(element) {
+                  element.setAttribute('data-startingAfter', this.getValue() + 'T00:00:00');
+                }
               },
               {
                 type: 'text',
                 id: 'id2',
               }
             ]
-          },
-          {
-            type: 'text',
-            id: 'starting-after',
-            label: 'Starting After',
-            className: 'starting_after',
-            onLoad: function() {
-              var input = $('.starting_after input');
-              input.datepicker({ dateFormat: 'yy-mm-dd' });
-            },
-            setup: function(element) {
-              // parse date from the full string (everything prior to the T)
-              var date = element.getAttribute('data-startingAfter').split('T')[0];
-              this.setValue(date);
-            },
-            commit: function(element) {
-              element.setAttribute('data-startingAfter', this.getValue() + 'T00:00:00');
-            }
           },
           {
             type: 'text',
