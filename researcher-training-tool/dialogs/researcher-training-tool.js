@@ -96,10 +96,12 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
               input.datepicker({ dateFormat: 'yy-mm-dd' });
             },
             setup: function(element) {
-              this.setValue(element.getAttribute('data-startingAfter'));
+              // parse date from the full string (everything prior to the T)
+              var date = element.getAttribute('data-startingAfter').split('T')[0];
+              this.setValue(date);
             },
             commit: function(element) {
-              element.setAttribute('data-startingAfter', this.getValue());
+              element.setAttribute('data-startingAfter', this.getValue() + 'T00:00:00');
             }
           },
           {
@@ -112,10 +114,11 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
               input.datepicker({ dateFormat: 'yy-mm-dd' });
             },
             setup: function(element) {
-              this.setValue(element.getAttribute('data-startingBefore'));
+              var date = element.getAttribute('data-startingBefore').split('T')[0];
+              this.setValue(date);
             },
             commit: function(element) {
-              element.setAttribute('data-startingBefore', this.getValue());
+              element.setAttribute('data-startingBefore', this.getValue() + 'T00:00:00');
             }
           },
           {
