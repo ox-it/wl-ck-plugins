@@ -232,7 +232,7 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
               // make clicking the tab trigger the preview
               $('#researcherTrainingToolDialog').on('click', "[id*='cke_preview_']", function() {
                 var previewWindow = $('.rttpreview');
-                var div = $('<div/>');
+                var div = $('<div class="courses-widget-container"/>');
 
                 // get data from the fields
                 var attributes = {
@@ -257,6 +257,9 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
 
                 // empty the preview window and put the new div in
                 previewWindow.empty().append(div);
+
+                // bind functionality to the container
+                // e.g. previewWindow.find('.courses-widget-container').oxfordCoursesWidget();
               });
             },
           }
