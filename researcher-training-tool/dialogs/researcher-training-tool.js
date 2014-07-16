@@ -88,6 +88,9 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
             type: 'text',
             id: 'starting-after',
             label: 'Starting After',
+            onLoad: function() {
+              // ...
+            },
             setup: function(element) {
               this.setValue(element.getAttribute('data-startingAfter'));
             },
@@ -99,6 +102,9 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
             type: 'text',
             id: 'starting-before',
             label: 'Starting Before',
+            onLoad: function() {
+              // ...
+            },
             setup: function(element) {
               this.setValue(element.getAttribute('data-startingBefore'));
             },
