@@ -108,12 +108,16 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
             type: 'select',
             id: 'skill',
             label: 'Skill',
-            items: getSkillCodes(),
+            items: [['', '']].concat(getSkillCodes()),
             setup: function(element) {
               this.setValue(element.getAttribute('data-skill'));
             },
             commit: function(element) {
-              element.setAttribute('data-skill', this.getValue());
+              var skill = this.getValue();
+              if (skill)
+                element.setAttribute('data-skill', skill);
+              else if (!this.insertMode)
+                element.removeAttribute('data-skill');
             }
           },
           {
@@ -144,6 +148,7 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
                 id: 'research-method',
                 label: 'Research Method',
                 items: [
+                  ['', ''],
                   ['Qualitative', 'qualitative'],
                   ['Quantitative', 'quantitative'],
                 ],
@@ -151,7 +156,11 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
                   this.setValue(element.getAttribute('data-researchMethod'));
                 },
                 commit: function(element) {
-                  element.setAttribute('data-researchMethod', this.getValue());
+                  var method = this.getValue();
+                  if (method)
+                    element.setAttribute('data-researchMethod', this.getValue());
+                  else if (!this.insertMode)
+                    element.removeAttribute('data-researchMethod');
                 }
               }
             ]
