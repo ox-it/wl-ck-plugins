@@ -259,7 +259,7 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
                 previewWindow.empty().append(div);
 
                 // bind functionality to the container
-                // e.g. previewWindow.find('.courses-widget-container').oxfordCoursesWidget();
+                previewWindow.find('.courses-widget-container').oxfordCoursesWidget();
               });
             },
           }
