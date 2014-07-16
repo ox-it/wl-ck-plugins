@@ -64,11 +64,7 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
                 type: 'text',
                 id: 'starting-after',
                 label: 'Starting After',
-                className: 'starting_after',
-                onLoad: function() {
-                  var input = $('.starting_after input');
-                  input.datepicker({ dateFormat: 'yy-mm-dd' });
-                },
+                className: 'cke_datepicker',
                 setup: function(element) {
                   // parse date from the full string (everything prior to the T)
                   var date = element.getAttribute('data-startingAfter').split('T')[0];
@@ -82,11 +78,7 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
                 type: 'text',
                 id: 'starting-before',
                 label: 'Starting Before',
-                className: 'starting_before',
-                onLoad: function() {
-                  var input = $('.starting_before input');
-                  input.datepicker({ dateFormat: 'yy-mm-dd' });
-                },
+                className: 'cke_datepicker',
                 setup: function(element) {
                   var date = element.getAttribute('data-startingBefore').split('T')[0];
                   this.setValue(date);
@@ -235,7 +227,8 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
     ],
 
     onLoad: function() {
-      // fired when dialog loads for first time
+      // put datepicker functionality on appropriate fields
+      $('.cke_datepicker input').datepicker({ dateFormat: 'yy-mm-dd' });
     },
 
     onShow: function() {
