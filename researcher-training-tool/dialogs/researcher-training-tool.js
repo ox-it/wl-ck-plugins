@@ -14,6 +14,11 @@ CKEDITOR.scriptLoader.load(path + '/js/oxpoints-autocomplete.js');
 CKEDITOR.scriptLoader.load(path + '/js/skills.js');
 CKEDITOR.scriptLoader.load(path + '/js/select-multiple-values.js');
 
+// method for getting starting before/after date from string
+var getCourseDate = function(date) {
+  return (date && date.split('T')[0]) ? date.split('T')[0] : null;
+};
+
 // register dialog
 CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
   return {
@@ -67,11 +72,16 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
                 className: 'cke_datepicker',
                 setup: function(element) {
                   // parse date from the full string (everything prior to the T)
-                  var date = element.getAttribute('data-startingAfter').split('T')[0];
+                  var date = getCourseDate(element.getAttribute('data-startingAfter'));
                   this.setValue(date);
                 },
                 commit: function(element) {
-                  element.setAttribute('data-startingAfter', this.getValue() + 'T00:00:00');
+                  var date = this.getValue();
+
+                  if (date)
+                    element.setAttribute('data-startingAfter', date + 'T00:00:00');
+                  else if (!this.insertMode)
+                    element.removeAttribute('data-startingAfter');
                 }
               },
               {
@@ -80,11 +90,16 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
                 label: 'Starting Before',
                 className: 'cke_datepicker',
                 setup: function(element) {
-                  var date = element.getAttribute('data-startingBefore').split('T')[0];
+                  var date = getCourseDate(element.getAttribute('data-startingBefore'));
                   this.setValue(date);
                 },
                 commit: function(element) {
-                  element.setAttribute('data-startingBefore', this.getValue() + 'T00:00:00');
+                  var date = this.getValue();
+
+                  if (date)
+                    element.setAttribute('data-startingBefore', date + 'T00:00:00');
+                  else if (!this.insertMode)
+                    element.removeAttribute('data-startingBefore');
                 }
               }
             ]
