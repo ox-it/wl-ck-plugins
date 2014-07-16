@@ -183,25 +183,21 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
                 }
               },
               {
-                type: 'text',
-                id: 'test2',
+                type: 'checkbox',
+                id: 'show-without-dates-link',
+                label: 'Show without dates link?',
+                setup: function(element) {
+                  this.setValue(element.getAttribute('data-showWithoutDatesLink') == 'true');
+                },
+                commit: function(element) {
+                  element.setAttribute('data-showWithoutDatesLink', this.getValue());
+                }
               },
               {
                 type: 'text',
                 id: 'test3',
               }
             ]
-          },
-          {
-            type: 'checkbox',
-            id: 'show-without-dates-link',
-            label: 'Show without dates link?',
-            setup: function(element) {
-              this.setValue(element.getAttribute('data-showWithoutDatesLink') == 'true');
-            },
-            commit: function(element) {
-              element.setAttribute('data-showWithoutDatesLink', this.getValue());
-            }
           },
           {
             type: 'select',
