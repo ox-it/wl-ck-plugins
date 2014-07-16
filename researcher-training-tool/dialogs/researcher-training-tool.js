@@ -57,6 +57,20 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
             }
           },
           {
+            type: 'hbox',
+            widths: ['50%', '50%'],
+            children: [
+              {
+                type: 'text',
+                id: 'id1',
+              },
+              {
+                type: 'text',
+                id: 'id2',
+              }
+            ]
+          },
+          {
             type: 'text',
             id: 'starting-after',
             label: 'Starting After',
