@@ -119,31 +119,27 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
             }
           },
           {
-            type: 'select',
-            id: 'eligibility',
-            label: 'Eligibility',
-            className: 'select_multiple',
-            multiple: true,
-            items: [
-              ['Staff', 'ST'],
-              ['Members of the University', 'OX'],
-              ['Public', 'PU'],
-            ],
-            setup: function(element) {
-              this.setValues(element.getAttribute('data-eligibility').trim().split(' '));
-            },
-            commit: function(element) {
-              var values = this.getValues();
-              element.setAttribute('data-eligibility', values.join(' '));
-            }
-          },
-          {
             type: 'hbox',
             widths: ['50%', '50%'],
             children: [
               {
-                type: 'text',
-                id: 'id1',
+                type: 'select',
+                id: 'eligibility',
+                label: 'Eligibility',
+                className: 'select_multiple',
+                multiple: true,
+                items: [
+                  ['Staff', 'ST'],
+                  ['Members of the University', 'OX'],
+                  ['Public', 'PU'],
+                ],
+                setup: function(element) {
+                  this.setValues(element.getAttribute('data-eligibility').trim().split(' '));
+                },
+                commit: function(element) {
+                  var values = this.getValues();
+                  element.setAttribute('data-eligibility', values.join(' '));
+                }
               },
               {
                 type: 'text',
