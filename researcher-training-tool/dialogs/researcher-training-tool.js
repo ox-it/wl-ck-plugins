@@ -145,6 +145,16 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
         label: 'Display Settings',
         elements: [
           {
+            type: 'text',
+            id: 'title',
+            label: 'Title',
+            setup: function(element) {
+              this.setValue(element.getAttribute('data-title'));
+            },
+            commit: function(element) {
+              element.setAttribute('data-title', this.getValue());
+            }
+          },{
             type: 'hbox',
             widths: ['50%', '25%', '25%'],
             children: [
@@ -161,17 +171,6 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
                 id: 'test3',
               }
             ]
-          },
-          {
-            type: 'text',
-            id: 'title',
-            label: 'Title',
-            setup: function(element) {
-              this.setValue(element.getAttribute('data-title'));
-            },
-            commit: function(element) {
-              element.setAttribute('data-title', this.getValue());
-            }
           },
           {
             type: 'select',
