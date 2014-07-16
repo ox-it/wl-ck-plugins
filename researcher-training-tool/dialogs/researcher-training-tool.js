@@ -248,13 +248,14 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
               $('#researcherTrainingToolDialog').on('click', "[id*='cke_preview_']", function() {
                 var previewWindow = $('.rttpreview');
                 var div = $('<div class="courses-widget-container"/>');
+                var dateSuffix = 'T00:00:00';
 
                 // get data from the fields
                 var attributes = {
                   // selection criteria
                   'providedBy':     $('.oxpoint_autocomplete input').data('uri'),
-                  'startingBefore': dialog.getValueOf('selection-criteria', 'starting-before') + 'T00:00:00',
-                  'startingAfter':  dialog.getValueOf('selection-criteria', 'starting-after') + 'T00:00:00',
+                  'startingBefore': dialog.getValueOf('selection-criteria', 'starting-before') + dateSuffix,
+                  'startingAfter':  dialog.getValueOf('selection-criteria', 'starting-after') + dateSuffix,
                   'skill':          dialog.getValueOf('selection-criteria', 'skill'),
                   'eligibility':    dialog.getContentElement('selection-criteria', 'eligibility').getValues().join(' '),
                   'researchMethod': dialog.getValueOf('selection-criteria', 'research-method'),
@@ -265,6 +266,11 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
                   'defaultDatesView':     dialog.getValueOf('display-settings', 'default-dates-view'),
                   'showWithoutDatesLink': dialog.getValueOf('display-settings', 'show-without-dates-link')
                 };
+
+                if (attributes.startingAfter == dateSuffix)
+                  delete attributes.startingAfter;
+                if (attributes.startingBefore == dateSuffix)
+                  delete attributes.startingBefore;
 
                 // go through the attributes, putting the data into the div
                 for (attr in attributes)
