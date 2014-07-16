@@ -145,6 +145,17 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
         label: 'Display Settings',
         elements: [
           {
+            type: 'text',
+            id: 'title',
+            label: 'Title',
+            setup: function(element) {
+              this.setValue(element.getAttribute('data-title'));
+            },
+            commit: function(element) {
+              element.setAttribute('data-title', this.getValue());
+            }
+          },
+          {
             type: 'select',
             id: 'display-columns',
             label: 'Columns to display',
@@ -165,17 +176,6 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
             commit: function(element) {
               var values = this.getValues();
               element.setAttribute('data-displayColumns', values.join(' '));
-            }
-          },
-          {
-            type: 'text',
-            id: 'title',
-            label: 'Title',
-            setup: function(element) {
-              this.setValue(element.getAttribute('data-title'));
-            },
-            commit: function(element) {
-              element.setAttribute('data-title', this.getValue());
             }
           },
           {
