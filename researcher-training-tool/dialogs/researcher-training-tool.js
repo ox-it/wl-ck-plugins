@@ -136,10 +136,10 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
               {
                 type: 'select',
                 id: 'skill',
-                label: 'Skill',
+                label: 'Skills',
                 className: 'select_multiple',
                 multiple: true,
-                items: [['', '']].concat(getSkillCodes()),
+                items: getSkillCodes(),
                 setup: function(element) {
                   var skills = element.getAttribute('data-skill');
                   if (skills)
