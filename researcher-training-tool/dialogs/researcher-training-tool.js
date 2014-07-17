@@ -208,6 +208,7 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
                   ['Venue', 'venue'],
                   ['Eligibility', 'eligibility'],
                 ],
+                'default': 'title',
                 setup: function(element) {
                   this.setValues(element.getAttribute('data-displayColumns').trim().split(' '));
                 },
