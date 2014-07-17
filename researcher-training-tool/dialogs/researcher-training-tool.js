@@ -109,24 +109,8 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
             ]
           },
           {
-            type: 'select',
-            id: 'skill',
-            label: 'Skill',
-            items: [['', '']].concat(getSkillCodes()),
-            setup: function(element) {
-              this.setValue(element.getAttribute('data-skill'));
-            },
-            commit: function(element) {
-              var skill = this.getValue();
-              if (skill)
-                element.setAttribute('data-skill', skill);
-              else if (!this.insertMode)
-                element.removeAttribute('data-skill');
-            }
-          },
-          {
             type: 'hbox',
-            widths: ['50%', '50%'],
+            widths: ['50%', '30%', '20%'],
             children: [
               {
                 type: 'select',
@@ -147,6 +131,22 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
                 commit: function(element) {
                   var values = this.getValues();
                   element.setAttribute('data-eligibility', values.join(' '));
+                }
+              },
+              {
+                type: 'select',
+                id: 'skill',
+                label: 'Skill',
+                items: [['', '']].concat(getSkillCodes()),
+                setup: function(element) {
+                  this.setValue(element.getAttribute('data-skill'));
+                },
+                commit: function(element) {
+                  var skill = this.getValue();
+                  if (skill)
+                    element.setAttribute('data-skill', skill);
+                  else if (!this.insertMode)
+                    element.removeAttribute('data-skill');
                 }
               },
               {
