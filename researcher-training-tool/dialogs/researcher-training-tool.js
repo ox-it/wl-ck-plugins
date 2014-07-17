@@ -137,14 +137,18 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
                 type: 'select',
                 id: 'skill',
                 label: 'Skill',
+                className: 'select_multiple',
+                multiple: true,
                 items: [['', '']].concat(getSkillCodes()),
                 setup: function(element) {
-                  this.setValue(element.getAttribute('data-skill'));
+                  var skills = element.getAttribute('data-skill');
+                  if (skills)
+                    this.setValues(values.trim().split(' '));
                 },
                 commit: function(element) {
-                  var skill = this.getValue();
-                  if (skill)
-                    element.setAttribute('data-skill', skill);
+                  var skills = this.getValues();
+                  if (skills)
+                    element.setAttribute('data-skill', skills.join(' '));
                   else if (!this.insertMode)
                     element.removeAttribute('data-skill');
                 }
@@ -273,7 +277,7 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
                   'providedBy':     $('.oxpoint_autocomplete input').data('uri'),
                   'startingBefore': dialog.getValueOf('selection-criteria', 'starting-before') + dateSuffix,
                   'startingAfter':  dialog.getValueOf('selection-criteria', 'starting-after') + dateSuffix,
-                  'skill':          dialog.getValueOf('selection-criteria', 'skill'),
+                  'skill':          dialog.getContentElement('selection-criteria', 'skill').getValues().join(' '),
                   'eligibility':    dialog.getContentElement('selection-criteria', 'eligibility').getValues().join(' '),
                   'researchMethod': dialog.getValueOf('selection-criteria', 'research-method'),
 
@@ -286,7 +290,7 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
 
                 // go through the attributes, putting the data into the div
                 for (attr in attributes) {
-                  if (attributes[attr] == '' || attributes[attr] == dateSuffix)
+                  if (attributes[attr] == '' || attributes[attr] === "undefined" || attributes[attr] == dateSuffix)
                     delete attributes[attr];
 
                   if (attributes[attr])
