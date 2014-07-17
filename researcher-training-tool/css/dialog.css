@@ -3,6 +3,7 @@
   height: auto !important;
 }
 
+/* results in 'Provided By' auto-complete field */
 .ui-autocomplete .ui-menu-item {
   margin: 0;
   padding: 2px;
@@ -13,4 +14,19 @@
 }
 .ui-autocomplete .ui-menu-item a:hover {
   padding: 3px;
+}
+
+/* preview window table */
+#researcherTrainingToolDialog .courses-widget-container {
+  width: 500px;
+  height: 300px;
+  overflow: auto;
+}
+#researcherTrainingToolDialog .courses-widget-container * {
+  white-space: normal !important;
+}
+
+#researcherTrainingToolDialog .courses-widget-container tbody {
+  border: 1px solid #000;
+  border-left: none; border-right: none;
 }
