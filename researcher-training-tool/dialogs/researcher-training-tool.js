@@ -317,23 +317,24 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
                   // empty the preview window and put the new div in
                   previewWindow.empty().append(div);
 
+                  var anchorToCKButton = function(i, button) {
+                    $(this).addClass('cke_dialog_ui_button cke_dialog_ui_button_ok');
+                  };
+
+                  var table = previewWindow.find('.courses-widget-container');
+
                   // bind functionality to the container
-                  previewWindow.find('.courses-widget-container').oxfordCoursesWidget({
+                  table.oxfordCoursesWidget({
                     callbacks: {
                       fnInitComplete: function(settings, json) {
                         // add CKEditor classes for uniform styling
-                        var table = previewWindow.find('.courses-widget-container');
-
                         table.find('input').addClass('cke_dialog_ui_input_text');
                         table.find('select').addClass('cke_dialog_ui_input_select');
-
-                        // buttons
-                        table.find('.dataTables_paginate a').each(function(i, button) {
-                          var $this = $(this);
-                          var inner = $this.html();
-                          $this.html($('<span class="cke_dialog_ui_button"/>').html(inner));
-                          $this.addClass('cke_dialog_ui_button cke_dialog_ui_button_ok');
-                        });
+                      },
+                      fnInfoCallback : function(oSettings, iStart, iEnd, iMax, iTotal, sPre) {
+                        // button classes get removed whenever page changes, so this ensures
+                        // that they stay
+                        table.find('.dataTables_paginate a').each(anchorToCKButton);
                       }
                     }
                   });
