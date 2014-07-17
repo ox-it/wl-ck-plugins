@@ -299,8 +299,20 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
                   // bind functionality to the container
                   previewWindow.find('.courses-widget-container').oxfordCoursesWidget({
                     callbacks: {
-                      "drawCallback": function(settings) {
-                        alert('DataTables has redrawn the table');
+                      fnInitComplete: function(settings, json) {
+                        // add CKEditor classes for uniform styling
+                        var table = previewWindow.find('.courses-widget-container');
+
+                        table.find('input').addClass('cke_dialog_ui_input_text');
+                        table.find('select').addClass('cke_dialog_ui_input_select');
+
+                        // buttons
+                        table.find('.dataTables_paginate a').each(function(i, button) {
+                          var $this = $(this);
+                          var inner = $this.html();
+                          $this.html($('<span class="cke_dialog_ui_button"/>').html(inner));
+                          $this.addClass('cke_dialog_ui_button cke_dialog_ui_button_ok');
+                        });
                       }
                     }
                   });
