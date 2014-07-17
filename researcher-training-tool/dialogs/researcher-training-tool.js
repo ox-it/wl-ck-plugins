@@ -51,7 +51,9 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
               });
             },
             setup: function(element) {
-              this.setValue(element.getAttribute('data-providedBy'));
+              var uri = element.getAttribute('data-providedBy');
+              this.setValue(uri);
+              $('.oxpoint_autocomplete input').attr('data-uri', uri);
             },
             commit: function(element) {
               var value = '';
