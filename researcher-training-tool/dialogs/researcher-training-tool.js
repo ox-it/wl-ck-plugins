@@ -257,6 +257,7 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
 
               // make clicking the tab trigger the preview
               $('#researcherTrainingToolDialog').on('click', "[id*='cke_preview_']", function() {
+
                 var previewWindow = $('.rttpreview');
                 var div = $('<div class="courses-widget-container"/>');
                 var dateSuffix = 'T00:00:00';
@@ -278,13 +279,11 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
                   'showWithoutDatesLink': dialog.getValueOf('display-settings', 'show-without-dates-link')
                 };
 
-                if (attributes.startingAfter == dateSuffix)
-                  delete attributes.startingAfter;
-                if (attributes.startingBefore == dateSuffix)
-                  delete attributes.startingBefore;
-
                 // go through the attributes, putting the data into the div
                 for (attr in attributes) {
+                  if (attributes[attr] == '' || attributes[attr] == dateSuffix)
+                    delete attributes[attr];
+
                   if (attributes[attr])
                     div.attr('data-' + attr, attributes[attr]);
                 }
