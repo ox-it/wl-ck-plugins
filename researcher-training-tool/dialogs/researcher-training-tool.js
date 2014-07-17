@@ -19,12 +19,16 @@ var getCourseDate = function(date) {
   return (date && date.split('T')[0]) ? date.split('T')[0] : null;
 };
 
+// keeps track of attributes in preview (so preview doesn't refresh if attributes stay the same)
+var previewAttributes = {};
+
 // register dialog
 CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
   return {
     title: 'Embed Researcher Training Tool Listing',
-    minWidth: 350,
+    minWidth: 500,
     minHeight: 200,
+    resizable: CKEDITOR.DIALOG_RESIZE_NONE,
 
     contents: [
       {
@@ -288,11 +292,22 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
                     div.attr('data-' + attr, attributes[attr]);
                 }
 
-                // empty the preview window and put the new div in
-                previewWindow.empty().append(div);
+                if (JSON.stringify(previewAttributes) !== JSON.stringify(attributes)) {
+                  // empty the preview window and put the new div in
+                  previewWindow.empty().append(div);
 
-                // bind functionality to the container
-                previewWindow.find('.courses-widget-container').oxfordCoursesWidget();
+                  // bind functionality to the container
+                  previewWindow.find('.courses-widget-container').oxfordCoursesWidget({
+                    callbacks: {
+                      "drawCallback": function(settings) {
+                        alert('DataTables has redrawn the table');
+                      }
+                    }
+                  });
+
+                  // add classes for easier styling of the table
+                  previewAttributes = attributes;
+                }
               });
             },
           }
