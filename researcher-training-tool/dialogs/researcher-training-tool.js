@@ -64,7 +64,10 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
               else
                 value = this.getValue();
 
-              element.setAttribute('data-providedBy', value);
+              if (value)
+                element.setAttribute('data-providedBy', value);
+              else if (!this.insertMode)
+                element.removeAttribute('data-providedBy');
             }
           },
           {
@@ -87,7 +90,7 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
                   if (date)
                     element.setAttribute('data-startingAfter', date + 'T00:00:00');
                   else if (!this.insertMode)
-                    element.removeAttribute('data-startingAfter');
+                    element.setAttribute('data-startingAfter', '')
                 }
               },
               {
@@ -132,7 +135,10 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
                 },
                 commit: function(element) {
                   var values = this.getValues();
-                  element.setAttribute('data-eligibility', values.join(' '));
+                  if (values.length)
+                    element.setAttribute('data-eligibility', values.join(' '));
+                  else if (!this.insertMode)
+                    element.removeAttribute('data-eligibility');
                 }
               },
               {
@@ -149,7 +155,7 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
                 },
                 commit: function(element) {
                   var skills = this.getValues();
-                  if (skills)
+                  if (skills.length)
                     element.setAttribute('data-skill', skills.join(' '));
                   else if (!this.insertMode)
                     element.removeAttribute('data-skill');
@@ -220,7 +226,11 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
                 },
                 commit: function(element) {
                   var values = this.getValues();
-                  element.setAttribute('data-displayColumns', values.join(' '));
+
+                  if (values.length)
+                    element.setAttribute('data-displayColumns', values.join(' '));
+                  else if (!this.insertMode)
+                    element.removeAttribute('data-displayColumns');
                 }
               },
               {
@@ -298,6 +308,10 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
                   if (attributes[attr])
                     div.attr('data-' + attr, attributes[attr]);
                 }
+
+                // fix to provide a correct frame of reference for the date
+                if (!attributes.startingBefore && !attributes.startingAfter)
+                  div.attr('data-startingAfter' , '');
 
                 if (JSON.stringify(previewAttributes) !== JSON.stringify(attributes)) {
                   // empty the preview window and put the new div in
