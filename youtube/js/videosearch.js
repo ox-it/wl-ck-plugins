@@ -105,14 +105,14 @@ $.fn.videosearch = function(options) {
 
   // now bind the functionality to the form
   return this.each(function() {
-    // prodecure to run
-    var runProcedures = function() {
-      displayResults(); return false;
+    var runDisplayResults = function(e) {
+      displayResults();
+      e.preventDefault();
     }
 
     // if the button is clicked or search form submitted, run the procedures
-    $(this).on('click', settings.classes.button, runProcedures);
-    $(this).on('submit', runProcedures);
+    $(this).on('click', settings.classes.button, runDisplayResults);
+    $(this).on('submit', runDisplayResults);
   });
 };
 })(jQuery);
