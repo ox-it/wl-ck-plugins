@@ -62,32 +62,42 @@
       @param noResult {string}
         Message to show if there are no results found.
   */
+  
+/*
 (function($) {
 $.fn.videosearch = function(options) {
   // this
   var _this = this;
 
+  // css selectors for the form
+  var selectors = {
+    form: 'video-search-form',
+    query: 'video-search-query',
+    button: 'video-search-button'
+  };
+
   // settings
   var settings = $.extend({
-    callback: function() { // provides array of objects (the search results)
-      return [];
+    // provides array of objects (the search results)
+    service: function() {
+      var performQuery = function() {
+        return [];
+      };
     },
-    classes: {
-      results: '#results',
-      query: '#query',
-      button: '#button'
-    },
+    resultsContainer: '#results',
+    // formats each result for html output
     displayResult: function(result) {
       return '<li><a href="' + result.url + '">' + result.title + '</li>';
     },
+    // shown if there are no results
     noResult: 'Sorry, no results!'
   }, options);
   
   // builds the form
   var buildSearchForm = function() {
-    var form = $('<form/>').addClass('video-search-form');
-    var input = $('<input/>').addClass('video-search-query');
-    var button = $('<a/>').addClass('video-search-button').html('Search');
+    var form = $('<form/>').addClass(selectors.form);
+    var input = $('<input/>').addClass(selectors.query);
+    var button = $('<a/>').addClass(selectors.button).html('Search');
 
     form.append(input).append(button);
 
@@ -95,10 +105,7 @@ $.fn.videosearch = function(options) {
   };
 
   // uses json data to display results
-  var displayResults = function() {
-    // get the results
-    var results = settings.callback();
-
+  var displayResults = function(results) {
     // loop through results and build an html string
     var html = '';
 
@@ -106,24 +113,31 @@ $.fn.videosearch = function(options) {
       $.each(results, function(key, result)  {
         html += settings.displayResult(result);
       });
-    }
-    else
+    } else {
       html = noResult;
+    }
 
-    // set the results block to the html string
-    $(settings.classes.results).html(html);
+    return html;
   };
 
   // now bind the functionality to the form
   return this.each(function() {
-    var runDisplayResults = function(e) {
-      displayResults();
-      e.preventDefault();
-    }
+    var $this = $(this);
+    var form = buildSearchForm();
 
-    // if the button is clicked or search form submitted, run the procedures
-    $(this).on('click', settings.classes.button, runDisplayResults);
-    $(this).on('submit', runDisplayResults);
+    form.on('submit', function(e) {
+      var searchTerm = $(this).find('input').val();
+      var service = new settings.service();
+
+      var results = service.performQuery(searchTerm);
+
+      $(settings.resultsContainer).html(displayResults(results));
+
+      return false;
+    });
+    
+    $this.append(form);
   });
 };
 })(jQuery);
+*/

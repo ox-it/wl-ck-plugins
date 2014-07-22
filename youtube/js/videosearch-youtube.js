@@ -13,33 +13,40 @@
   * PARAMETERS
 
   */
+  
+  
+/*
 var YouTubeSearchService = function(options) {
-  // initialize settings
-  var settings = $.extend({
-    key: 'YOURAPIKEY',
-    params: {
+
+  this.key    = options.key;
+  this.params = options.params || {};
+  this.url = 'https://www.googleapis.com/youtube/v3/search';
+  
+  this.prepareQueryParams = function(settings) {
+    
+    if (!this.key) {
+      throw 'NoYouTubeApiKeySpecified';
+    }
+  
+    return $.extend({
+      key: this.key,
+      part: 'snippet',
+      q: searchTerm,
       order: 'relevance',
       maxResults: '5',
-    },
-  }, options);
+    }, settings)
+  }
 
   // takes a string and returns array of objects representing each search
   // result (i.e. {title, url, etc...})
-  var performQuery = function(searchTerm) {
+  this.performQuery = function(searchTerm) {
+
     var results = [];
-    var query = settings.query;
-    var url = 'https://www.googleapis.com/youtube/v3/search?key=' + settings.key + ' &part=snippet';
-
-    // build the string using the query property defined at the start
-    $.each(query, function(key, value) {
-      url = url + '&' + key + '=' + value;
-    });
-
-    url += '&q=' + searchTerm;
 
     // now perform the JSON call to get the results and format them
     $.ajax({
       url: url,
+      data: this.prepareQueryParams(this.params),
       dataType: 'json',
       async: false,
       success: function(json) {
@@ -58,5 +65,7 @@ var YouTubeSearchService = function(options) {
     });
 
     return results;
-  }
-};
+
+  };
+
+};*/
