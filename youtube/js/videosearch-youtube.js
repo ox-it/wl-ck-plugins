@@ -70,4 +70,6 @@ var YouTubeSearchService = function(options) {
     return results;
   };
 }
+
+// alias for prototype to make setting the key a bit shorter
 YouTubeSearchService.pt = YouTubeSearchService.prototype;
