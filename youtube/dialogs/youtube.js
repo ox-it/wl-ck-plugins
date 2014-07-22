@@ -16,7 +16,7 @@ CKEDITOR.dialog.add('youtubeDialog', function(editor) {
     minWidth:  500,
     minHeight: 200,
     resizable: CKEDITOR.DIALOG_RESIZE_NONE,
-  
+
     contents: [
       {
         // Definition of 'Search Youtube' tab
@@ -91,13 +91,13 @@ CKEDITOR.dialog.add('youtubeDialog', function(editor) {
                          '</li>';
                 }
               });
-              
+
               // when enter key is hit, simulate clicking the search button
               searchiframe.on('submit', '#searchform', function() {
                 $(this).find('#searchbutton').click();
                 return false;
               });
-                            
+
               // if you click on a search result, its id should populate the
               // search field and the OK button should be clicked
               $('#searchresults').on('click', '.result', function() {
@@ -124,7 +124,7 @@ CKEDITOR.dialog.add('youtubeDialog', function(editor) {
               var value = framecontent.find('#searchid').val();
               if (!value)
                 value = framecontent.find('#searchquery').val();
-            
+
               if (value) 
                 element.setAttribute('data-src', value);
               else if (!this.insertMode)
@@ -134,7 +134,7 @@ CKEDITOR.dialog.add('youtubeDialog', function(editor) {
         ]
       }
     ],
-    
+
     onShow: function() {
       var selection = editor.getSelection();
       var element = selection.getStartElement();
@@ -158,7 +158,7 @@ CKEDITOR.dialog.add('youtubeDialog', function(editor) {
       if (!this.insertMode)
         this.setupContent(this.element);
     },
-    
+
     onOk: function() {
       var dialog = this;
       var youtube = this.element;
