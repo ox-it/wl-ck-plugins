@@ -10,21 +10,11 @@
   <body>
     <script>
       $(document).ready(function() {
-        $('#youtube').videosearch({
-          callback: function() {
-            return YouTubeSearch({
-              key: 'AIzaSyDov_EJkjxi_Qqu8oS4YFoH8TFp9eGKXBY',
-            });
-          },
-        });
+        $('#youtube').videosearch({ service: YouTubeSearchService });
       });
     </script>
     <h1>Testing videosearch.js and videosearch-youtube.js</h1>
     <div id="youtube">
-      <form>
-        <input id="query" placeholder="Search...">
-        <button id="button">Search</button>
-      </form>
       <div id="results"/>
     </div>
   </body>
