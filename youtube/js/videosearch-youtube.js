@@ -8,64 +8,66 @@
   * Version:      0.2
   * Date:         22/07/2014
 
-  * USAGE
+  * BASIC USAGE
 
-  * PARAMETERS
+  * ADVANCED USAGE
 
   */
-  
-  
-/*
-var YouTubeSearchService = function(options) {
 
-  this.key    = options.key;
-  this.params = options.params || {};
-  this.url = 'https://www.googleapis.com/youtube/v3/search';
-  
-  this.prepareQueryParams = function(settings) {
-    
-    if (!this.key) {
-      throw 'NoYouTubeApiKeySpecified';
-    }
-  
+var YouTubeSearchService = function(options) {
+  // ensure options is defined
+  if (!options) {
+    var options = {};
+  }
+  var key    = this.key;
+  var params = options.params || {};
+  var url    = 'https://www.googleapis.com/youtube/v3/search';
+
+  // fills in default settings for search query parameters
+  var prepareQueryParams = function(settings) {
     return $.extend({
-      key: this.key,
+      key: key,
       part: 'snippet',
-      q: searchTerm,
       order: 'relevance',
       maxResults: '5',
     }, settings)
   }
 
-  // takes a string and returns array of objects representing each search
-  // result (i.e. {title, url, etc...})
+  // format an individual result's object and add it to the results array
+  var formatResult = function(result, results) {
+    results.push({
+      url: 'http://youtu.be/' + result.id.videoId,
+      title: result.snippet.title,
+      description: result.snippet.description,
+      meta: result.snippet
+    });
+  }
+
+  // takes search term (string) and returns array of objects representing the
+  // search results from YouTube
   this.performQuery = function(searchTerm) {
+    if (!key) {
+      throw 'NoYouTubeApiKeySpecified';
+    }
 
     var results = [];
 
-    // now perform the JSON call to get the results and format them
     $.ajax({
       url: url,
-      data: this.prepareQueryParams(this.params),
+      data: prepareQueryParams({q: searchTerm}),
       dataType: 'json',
       async: false,
       success: function(json) {
         if (json.items.length > 0) {
           // go through each result, formatting them for VideoSearch
           $.each(json.items, function(key, item) {
-            results.push({
-              url: 'http://youtu.be/' + item.id.videoId,
-              title: item.snippet.title,
-              description: item.snippet.description,
-              meta: item.snippet
-            });
+            formatResult(item, results);
           });
         }
       }
     });
 
     return results;
-
   };
-
-};*/
+}
+YouTubeSearchService.pt = YouTubeSearchService.prototype;
