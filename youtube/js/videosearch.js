@@ -80,7 +80,7 @@ $.fn.videosearch = function(options) {
     displayResult: function(result) {
       return '<li><a href="' + result.url + '">' + result.title + '</li>';
     },
-    noResult: '<p>Sorry, no results!</p>'
+    noResult: 'Sorry, no results!'
   }, options);
   
   // uses json data to display results
