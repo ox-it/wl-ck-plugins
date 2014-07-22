@@ -3,7 +3,7 @@
   * Description:  Search for and embed YouTube videos from within CKEditor
   * Author:       Lawrence Okoth-Odida
   * Version:      0.1
-  * Date:         04/06/2014
+  * Date:         04/07/2014
   * Notes:        Created using the abbr sample plugin on CKEditor Documentation
  */
 CKEDITOR.plugins.add('youtube', {
@@ -11,10 +11,10 @@ CKEDITOR.plugins.add('youtube', {
 
   init: function(editor) {
     editor.addCommand('youtube', new CKEDITOR.dialogCommand('youtubeDialog'));
-  editor.ui.addButton( 'Youtube', {
-    label: 'Embed Youtube Video',
-    command: 'youtube',
-    toolbar: 'insert'
+    editor.ui.addButton( 'Youtube', {
+      label: 'Embed Youtube Video',
+      command: 'youtube',
+      toolbar: 'insert'
     });
 
   // add context menu for editing a video link
