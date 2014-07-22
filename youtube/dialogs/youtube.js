@@ -45,6 +45,26 @@ CKEDITOR.dialog.add('youtubeDialog', function(editor) {
                   '</div>' +
                   '<ul id="searchresults"></ul>',
             onLoad: function() {
+              /**
+                * pseudocode for cleaned up version
+                */
+              var iframe = $('#youTubeDialog iframe');
+              var content = iframe.contents();
+              var form = $('#youTubeDialog form');
+              var div = $('#youTubeSearchForm');
+
+              // bind search functionality to div
+              div.videosearch({
+                service: YouTubeSearchService,
+                resultsContainer: $('#youTubeSearchResults')
+              });
+
+              content.find('body').html(div);
+              });
+
+
+
+
               // select the frame content
               var content = $('#searchiframecont').show();
               var searchiframe = $('#searchiframe').contents();
