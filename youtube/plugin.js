@@ -17,7 +17,7 @@ CKEDITOR.plugins.add('youtube', {
       toolbar: 'insert'
     });
 
-  // add context menu for editing a video link
+    // add context menu for editing a video link
     if (editor.contextMenu) {
       editor.addMenuGroup('youtubeGroup');
 
