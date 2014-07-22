@@ -83,6 +83,17 @@ $.fn.videosearch = function(options) {
     noResult: 'Sorry, no results!'
   }, options);
   
+  // builds the form
+  var buildSearchForm = function() {
+    var form = $('<form/>').addClass('video-search-form');
+    var input = $('<input/>').addClass('video-search-query');
+    var button = $('<a/>').addClass('video-search-button').html('Search');
+
+    form.append(input).append(button);
+
+    return form;
+  };
+
   // uses json data to display results
   var displayResults = function() {
     // get the results
