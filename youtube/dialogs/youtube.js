@@ -54,13 +54,11 @@ CKEDITOR.dialog.add('youtubeDialog', function(editor) {
               bindVideoSearchToContainer(container, searchResults, result);
             },
             setup: function(element) {
-              var iframe = $('#youTubeSearchIframe').contents();
-              var id = $('#searchResultId').val();
-
-              // populate the search field with existing video's id then submit
-              // the form so that the video is the first result
-              iframe.find('input').val(id);
-              iframe.find('form').submit();
+              $('#youTubeSearchIframe').load(function() {
+                var contents = $(this).contents();
+                contents.find('input').val(element.getAttribute('data-src') || $('#searchResultId').val());
+                contents.find('form').submit();
+              });
             },
             commit: function (element) {
               // use the search result id if it has been set
