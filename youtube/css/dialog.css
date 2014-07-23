@@ -11,7 +11,7 @@
   white-space: normal !important;
 }
 #youTubeDialog iframe {
-  height: 60px;
+  height: 40px;
   width: 500px;
 }
 .searchquery {
@@ -21,6 +21,7 @@
   border-right: none;
   position: absolute;
   top: 0; left: 0;
+  line-height: 30px;
 }
 .searchquery, .searchbutton {
   box-sizing: border-box;
@@ -28,17 +29,17 @@
   padding: 0;
   margin: 0;
   height: 30px;
-  line-height: 30px;
 }
 
 .searchbutton {
   font-family: FontAwesome;
   width: 32px;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
   position: absolute;
   top: 0; right: 0;
   padding: 8px;
+  line-height: 21px;
 }
 .searchbutton:focus, .searchbutton:active {
   padding: 7px !important;
