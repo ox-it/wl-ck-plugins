@@ -2,8 +2,8 @@
   * Title:        YoutubeEmbed (ytEmbed)
   * Description:  Turn any element into an embedded Youtube video
   * Author:       Lawrence Okoth-Odida
-  * Version:      0.1
-  * Date:         04/06/2014
+  * Version:      0.2
+  * Date:         23/07/2014
   
   * BASIC USE
       1. Create a div with a class (e.g. 'youtube-embed') and give it the pseudo
@@ -46,12 +46,12 @@
       */
     var getParams = function(embed) {
       return {
-        width:           getParam(embed, 'width', settings.width),
-        height:          getParam(embed, 'height', settings.height),
-        src:             'http://www.youtube.com/embed/' + getParam(embed, 'src', settings.src) + '?t=' + getParam(embed, 'startfrom', settings.startfrom),
-        frameborder:     getParam(embed, 'frameborder', settings.frameborder),
-        allowfullscreen: getParam(embed, 'allowfullscreen', settings.allowfullscreen),
-        autoplay:        getParam(embed, 'autoplay', settings.autoplay),
+        width:           getParam(embed, 'width') || settings.width,
+        height:          getParam(embed, 'height') || settings.height,
+        src:             'http://www.youtube.com/embed/' + (getParam(embed, 'src') || settings.src) + '?t=' + (getParam(embed, 'startfrom') || settings.startfrom),
+        frameborder:     getParam(embed, 'frameborder') || settings.frameborder,
+        allowfullscreen: getParam(embed, 'allowfullscreen') || settings.allowfullscreen,
+        autoplay:        getParam(embed, 'autoplay') || settings.autoplay,
       }
     }
 
@@ -61,15 +61,8 @@
       * @param {string} param is the name of the parameter being searched for
       * @param {string} def is the default value for the parameter
       */
-    var getParam = function(embed, param, def) {
-      var value = def;
-      // if embed has the attribute 'param'
-      if (embed.is('[' + param + ']'))
-        value = embed.attr(param);
-      // if embed uses the 'data-' prefix 
-      else if (embed.is('[data-' + param + ']'))
-        value = embed.data(param);
-      return value;
+    var getParam = function($element, param) {
+      return $element.attr(param) || $element.attr('data-' + param);
     }
     
     /**
