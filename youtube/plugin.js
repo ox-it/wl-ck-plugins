@@ -10,7 +10,6 @@ CKEDITOR.plugins.add('youtube', {
       toolbar: 'insert'
     });
 
-    // add context menu for editing a video link
     if (editor.contextMenu) {
       editor.addMenuGroup('youtubeGroup');
 
@@ -28,9 +27,9 @@ CKEDITOR.plugins.add('youtube', {
       });
     }
 
-    // register dialog
     CKEDITOR.dialog.add( 'youtubeDialog', this.path + 'dialogs/youtube.js' );
   },
+
   afterInit: function(editor) {
     var dataProcessor = editor.dataProcessor;
     var dataFilter = dataProcessor && dataProcessor.dataFilter;
