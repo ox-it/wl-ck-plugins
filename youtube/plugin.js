@@ -27,6 +27,23 @@ CKEDITOR.plugins.add('youtube', {
       });
     }
 
+    // ensure the contents css is an array
+    if (!Array.isArray(CKEDITOR.config.contentsCss)) {
+      CKEDITOR.config.contentsCss = [CKEDITOR.config.contentsCss];
+    }
+
+    var css = [
+      this.path + 'css/contents.css',
+      'http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css',
+    ];
+
+    // only load css if they aren't already in the array
+    for (i in css) {
+      if (CKEDITOR.config.contentsCss.indexOf(css[i]) < 0) {
+        CKEDITOR.config.contentsCss.push(css[i]);
+      }
+    }
+
     CKEDITOR.dialog.add( 'youtubeDialog', this.path + 'dialogs/youtube.js' );
   },
 
