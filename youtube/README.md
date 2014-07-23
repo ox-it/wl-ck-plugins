@@ -12,15 +12,22 @@ Ensure that you have jQuery v1.11.1+ running on your pages.
    `youtube` as an extra plugin (and if need be, load it externally)
 
 ```
-CKEDITOR.plugins.addExternal('youtube', 'path/to/youtube/');
+CKEDITOR.plugins.addExternal('youtube', 'path/to/youtube/'); // if you are loading it externally
 editor.config.extraPlugins += 'youtube';
 ```
 
 ## For your pages
-1. On the pages that display the YouTube videos, have the following script run:
+1. On the pages that display the YouTube videos, have the following script loaded:
+
+```
+<script src="youtube/js/ytembed.js"></script>
+```
+
+2. Then invoke the `.ytembed()` method on the correct divs to replace them with the embed code:
 
 ```
 $('[data-youtube-embed]').ytembed();
 ```
 
-   This replaces all div placeholders for the YouTube videos with the actual embed code.
+   The editor will create divs with a data attribute 'youtube-embed', hence the method should target
+   those divs (as shown above).
