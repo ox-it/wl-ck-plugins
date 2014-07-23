@@ -30,6 +30,7 @@ var YouTubeSearchService = function(options) {
       part: 'snippet',
       order: 'relevance',
       maxResults: '5',
+      type: 'video',
     }, settings)
   }
 
