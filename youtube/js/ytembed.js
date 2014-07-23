@@ -48,7 +48,7 @@
       return {
         width:           getParam(embed, 'width') || settings.width,
         height:          getParam(embed, 'height') || settings.height,
-        src:             'http://www.youtube.com/embed/' + (getParam(embed, 'src') || settings.src) + '?t=' + (getParam(embed, 'startfrom') || settings.startfrom),
+        src:             getUrl(embed),
         frameborder:     getParam(embed, 'frameborder') || settings.frameborder,
         allowfullscreen: getParam(embed, 'allowfullscreen') || settings.allowfullscreen,
         autoplay:        getParam(embed, 'autoplay') || settings.autoplay,
@@ -64,7 +64,20 @@
     var getParam = function($element, param) {
       return $element.attr(param) || $element.attr('data-' + param);
     }
-    
+
+    /**
+      * This gets a full youtube-embed url
+      */
+    var getUrl = function($element) {
+      var url = 'http://www.youtube.com/embed/';
+
+      url += getParam($element, 'src') || settings.src;
+      url += '?t=';
+      url += getParam($element, 'startfrom') || settings.startfrom;
+
+      return url;
+    }
+
     /**
       * Build the correct Youtube Embed markup
       * @param {object} params is a literal of all of the parameter keys and values
@@ -76,10 +89,10 @@
       $.each(params, function(key, value) {
         iframe.attr(key, value);
       });
-      
+
       return iframe;
     }
-    
+
     return this.each(function() {
       $item = $(this);
       $item.replaceWith(embedVideo(getParams($item)));
