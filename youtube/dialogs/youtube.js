@@ -54,11 +54,15 @@ CKEDITOR.dialog.add('youtubeDialog', function(editor) {
               bindVideoSearchToContainer(container, searchResults, result);
             },
             setup: function(element) {
-              $('#youTubeSearchIframe').load(function() {
-                var contents = $(this).contents();
+              var $frame = $('#youTubeSearchIframe');
+              var setUpElement = function() {
+                var contents = $frame.contents();
                 contents.find('input').val(element.getAttribute('data-src') || $('#searchResultId').val());
                 contents.find('form').submit();
-              });
+              };
+
+              setUpElement();
+              $frame.load(setUpElement);
             },
             commit: function (element) {
               // use the search result id if it has been set
@@ -85,37 +89,31 @@ CKEDITOR.dialog.add('youtubeDialog', function(editor) {
     },
 
     onShow: function() {
-      var selection = editor.getSelection();
-      var element = selection.getStartElement();
-      if (element) {
-        element = element.getAscendant('div', true);
-      }
+      this.fakeImage = this.youTubeNode = null;
+      var  fakeImage = this.getSelectedElement();
 
-      // create new div if it doesn't exist
-      if (
-        !element || 
-        !element.hasAttribute('data-youtube-embed')
-      ) {
-        element = editor.document.createElement('div');
-        element.data('youtube-embed', true);
-        this.insertMode = true;
-      } else {
+      if (fakeImage && fakeImage.data('cke-real-element-type') && fakeImage.data('cke-real-element-type') == 'div') {
+        this.fakeImage = fakeImage;
+        this.youTubeNode = editor.restoreRealElement(fakeImage);
         this.insertMode = false;
-      }
-
-      this.element = element;
-
-      if (!this.insertMode) {
-        this.setupContent(this.element);
+        this.setupContent(this.youTubeNode);
+      } else {
+        this.insertMode = true;
       }
     },
 
     onOk: function() {
-      var dialog = this;
-      var youtube = this.element;
-      this.commitContent(youtube);
-      if (this.insertMode) {
-        editor.insertElement(youtube);
+      var youTubeNode = (!this.fakeImage)? new CKEDITOR.dom.element('div') : this.youTubeNode;
+      youTubeNode.setAttribute('data-youtube-embed', 'true');
+
+      this.commitContent(youTubeNode);
+      var newFakeImage = editor.createFakeElement(youTubeNode, 'cke_youtube', 'div', false);
+
+      if (this.fakeImage) {
+        newFakeImage.replace(this.fakeImage);
+        editor.getSelection().selectElement(newFakeImage);
+      } else {
+        editor.insertElement(newFakeImage);
       }
     }
   };

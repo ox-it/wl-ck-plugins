@@ -1,12 +1,5 @@
-/**
-  * Title:        YouTubeEmbed
-  * Description:  Search for and embed YouTube videos from within CKEditor
-  * Author:       Lawrence Okoth-Odida
-  * Version:      0.1
-  * Date:         04/07/2014
-  * Notes:        Created using the abbr sample plugin on CKEditor Documentation
- */
 CKEDITOR.plugins.add('youtube', {
+  requires: 'dialog,fakeobjects',
   icons: 'youtube',
 
   init: function(editor) {
@@ -29,7 +22,7 @@ CKEDITOR.plugins.add('youtube', {
       });
 
       editor.contextMenu.addListener(function(element) {
-        if (element.getAscendant('div', true) && element.hasAttribute('data-youtube-embed')) {
+        if (element && element.is('img') && element.data('cke-real-element-type') == 'div' && element.hasClass('cke_youtube')) {
           return { youtubeItem: CKEDITOR.TRISTATE_OFF };
         }
       });
@@ -45,8 +38,13 @@ CKEDITOR.plugins.add('youtube', {
     if (dataFilter) {
       dataFilter.addRules({
         elements: {
-          youtube: function(element) {
-            return editor.createFakeParserElement(element, 'youtube_iframe', 'iframe', false);
+          div: function(element) {
+            var returnedElement = element;
+
+            if (element.attributes['data-youtube-embed']) {
+              returnedElement = editor.createFakeParserElement(element, 'cke_youtube', 'div', false);
+            }
+            return returnedElement;
           }
         }
       });
