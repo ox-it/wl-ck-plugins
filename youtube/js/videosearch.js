@@ -51,7 +51,7 @@ $.fn.videosearch = function(options) {
         html += settings.displayResult(result);
       });
     } else {
-      html = settings.noResult;
+      html = $('<div/>').append($('<p/>').append(settings.noResult)).html();
     }
 
     return html;
