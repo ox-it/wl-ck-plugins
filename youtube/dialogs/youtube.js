@@ -10,6 +10,15 @@ CKEDITOR.scriptLoader.load(path + '/js/key.js');
 CKEDITOR.scriptLoader.load(path + '/js/ytsearch.js');
 CKEDITOR.scriptLoader.load(path + '/js/ytembed.js');
 
+var displaySearchPage = function() {
+  var h2 = $('<h2/>').html('Embed a video');
+  var p  = $('<p>').html('Type a search term or YouTube URL below, hit the search button, then select a result to embed that video.');
+  var form = $('<div/>').attr('id', 'youTubeSearchForm');
+  var results = $('<div/>').attr('id', 'youTubeSearchResults');
+
+  return $('<div/>').append(h2).append(p).append(form).append(results);
+};
+
 CKEDITOR.dialog.add('youtubeDialog', function(editor) {
   return {
     title:     'YouTube Video Search',
