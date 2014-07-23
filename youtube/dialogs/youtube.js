@@ -89,8 +89,9 @@ CKEDITOR.dialog.add('youtubeDialog', function(editor) {
     onShow: function() {
       var selection = editor.getSelection();
       var element = selection.getStartElement();
-      if (element)
+      if (element) {
         element = element.getAscendant('div', true);
+      }
 
       // create new div if it doesn't exist
       if (
