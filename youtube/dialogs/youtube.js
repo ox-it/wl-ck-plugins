@@ -4,8 +4,8 @@ var h = CKEDITOR.plugins.get('youtube');
 var path = h.path;
 
 // load css and javascript files
-CKEDITOR.document.appendStyleSheet("http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css");
-CKEDITOR.document.appendStyleSheet(CKEDITOR.getUrl(path + "css/ytembed.css"));
+CKEDITOR.document.appendStyleSheet('http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css');
+CKEDITOR.document.appendStyleSheet(CKEDITOR.getUrl(path + 'css/dialog.css'));
 
 CKEDITOR.scriptLoader.load(path + '/js/videosearch.js');
 CKEDITOR.scriptLoader.load(path + '/js/service.js');
@@ -65,7 +65,7 @@ CKEDITOR.dialog.add('youtubeDialog', function(editor) {
               container.videosearch({
                 service: YouTubeSearchService,
                 resultsContainer: searchResults,
-                displayResult: displaySearchResult
+                displayResult: displaySearchResult,
               });
 
               var iframe = $('<iframe src="about:blank"></iframe>').attr('id', 'youTubeSearchIframe');
@@ -80,6 +80,10 @@ CKEDITOR.dialog.add('youtubeDialog', function(editor) {
                   padding: 0,
                   width: '100%',
                 });
+                contents.find('input').addClass('searchQuery cke_dialog_ui_input_text')
+                                      .attr('placeholder', 'Search here...');
+                contents.find('a').addClass('searchButton cke_dialog_ui_button cke_dialog_ui_button_ok')
+                                  .html('&#xf002;');
               });
 
               // if you click on a search result, its id should populate the
@@ -117,6 +121,11 @@ CKEDITOR.dialog.add('youtubeDialog', function(editor) {
         ]
       }
     ],
+
+    onLoad: function() {
+      // give dialog a class for easier styling
+      $(this.getElement()).attr('id', 'youTubeDialog');
+    },
 
     onShow: function() {
       var selection = editor.getSelection();
