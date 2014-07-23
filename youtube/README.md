@@ -1,32 +1,22 @@
-HOW TO USE
+# USAGE
 
-1. Ensure that you have jQuery v1.11.1+ running on your pages.
+Ensure that you have jQuery v1.11.1+ running on your pages.
 
-2. Copy /ytembed folder to /plugins directory of CKEditor installation
+## For the Editor
+1. Copy `/youtube` your CKEDITOR `/plugins` directory
 
-3. Go to /ytembed/js/key.js. It contains a variable for setting the correct
-   Google API key. Modify it to be your corresponding key.
+2. Go to `/youtube/js/key.js`. Set the variable in that file to your valid
+   YouTube Search API V3 Key.
    
-4. On any page that loads the output content from the editor, ensure that the 
-   ytembed/css/ytembed.css file is loaded, and that you have the following
-   in your header:
-   
-     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+3. When instantiating the editor with JavaScript, ensure that you enable
+   `youtube` as an extra plugin (and if need be, load it externally)
 
-   This loads icons that will be used in the dialog and editor area.
+    CKEDITOR.plugins.addExternal('youtube', 'path/to/youtube/');
+    editor.config.extraPlugins += 'youtube';
 
-5. On the pages that display the YouTube videos, have the following script run:
-    
-     $('[data-youtube-embed]').ytembed();
-    
+## For your pages
+1. On the pages that display the YouTube videos, have the following script run:
+
+    $('[data-youtube-embed]').ytembed();
+
    This replaces all div placeholders for the YouTube videos with the actual embed code.
-
-6. In the script tags where you define your editor, have the following code below:
-
-     editor.config.extraPlugins = 'ytembed';
-		 editor.config.contentsCss = [CKEDITOR.basePath + CKEDITOR.plugins.basePath + 'ytembed/css/contents.css', 'http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css'];
-	   CKEDITOR.scriptLoader.load(CKEDITOR.basePath + CKEDITOR.plugins.basePath + 'ytembed/js/key.js' );
-	   CKEDITOR.scriptLoader.load(CKEDITOR.basePath + CKEDITOR.plugins.basePath + 'ytembed/js/ytsearch.js' );
-	   CKEDITOR.scriptLoader.load(CKEDITOR.basePath + CKEDITOR.plugins.basePath + 'ytembed/js/ytembed.js' );
-
-   This loads the plugin into the editor, along with its required dependencies for the editor.
