@@ -57,7 +57,8 @@ CKEDITOR.dialog.add('youtubeDialog', function(editor) {
               var $frame = $('#youTubeSearchIframe');
               var setUpElement = function() {
                 var contents = $frame.contents();
-                contents.find('input').val(element.getAttribute('data-src') || $('#searchResultId').val());
+                var value = element.getAttribute('data-src') || $('#searchResultId').val();
+                contents.find('input').val(value);
                 contents.find('form').submit();
               };
 
