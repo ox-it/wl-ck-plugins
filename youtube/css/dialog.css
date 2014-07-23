@@ -1,6 +1,8 @@
+/* main dialog */
 #youTubeDialog {
 }
 
+/* heading, description and search form (input/button) */
 #youTubeDialog h2 {
   font-size: 120%;
   font-weight: bold;
@@ -30,7 +32,6 @@
   margin: 0;
   height: 30px;
 }
-
 .searchbutton {
   font-family: FontAwesome;
   width: 32px;
@@ -44,6 +45,8 @@
 .searchbutton:focus, .searchbutton:active {
   padding: 7px !important;
 }
+
+/* search results */
 #youTubeSearchResults {
   margin-top: 0px;
   list-style-type: none;
