@@ -39,7 +39,13 @@ var YouTubeSearchService = function(options) {
       url: 'http://youtu.be/' + result.id.videoId,
       title: result.snippet.title,
       description: result.snippet.description,
-      meta: result.snippet
+      meta: {
+        id: result.id.videoId,
+        thumbnails : {
+          m: result.snippet.thumbnails.medium.url
+        },
+        more: result.snippet
+      }
     });
   }
 
