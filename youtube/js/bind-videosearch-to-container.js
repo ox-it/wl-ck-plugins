@@ -1,4 +1,4 @@
-var bindVideoSearchToContainer = function(container, searchResults, result) {
+var BindVideoSearchToContainer = function(container, searchResults, result) {
   // initialization
   var init = function() {
     bindToContainer();

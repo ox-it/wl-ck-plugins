@@ -51,7 +51,7 @@ CKEDITOR.dialog.add('youtubeDialog', function(editor) {
               var searchResults = $('#youTubeSearchResults');
               var result = new YouTubeSearchResult(path);
 
-              bindVideoSearchToContainer(container, searchResults, result);
+              BindVideoSearchToContainer(container, searchResults, result);
             },
             setup: function(element) {
               var $frame = $('#youTubeSearchIframe');
