@@ -28,7 +28,7 @@
 .searchquery, .searchbutton {
   box-sizing: border-box;
   font-size: 130%;
-  padding: 0;
+  padding: 1px;
   margin: 0;
   height: 30px;
 }
@@ -43,7 +43,7 @@
   line-height: 21px;
 }
 .searchbutton:focus, .searchbutton:active {
-  padding: 7px !important;
+  padding: 2px !important;
 }
 
 /* search results */
