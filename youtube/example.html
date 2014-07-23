@@ -22,11 +22,9 @@
         }
 
         var config = {};
-        var path = CKEDITOR.basePath;
         editor = CKEDITOR.appendTo( 'editor', config, html );
-        editor.config.allowedContent = true;  // without this, all the 'data=' attributes get stripped
+        editor.config.allowedContent = true;
 
-        // add the resource, then enabled it by adding it to extraPlugins
         CKEDITOR.plugins.addExternal('youtube', src + '/youtube/', 'plugin.js');
         editor.config.extraPlugins += 'youtube,';
       }
@@ -39,14 +37,11 @@
         document.getElementById('editorcontents').innerHTML = html = editor.getData();
         document.getElementById('contents').style.display = '';
 
-        // Destroy the editor.
         editor.destroy();
         editor = null;
 
-        // call ytembed on the youtube-embed divs
         $('[data-youtube-embed]').ytembed();
       }
-
     </script>
   </head>
   <body>
@@ -55,25 +50,16 @@
       <input onclick="createEditor();" type="button" value="Create Editor">
       <input onclick="removeEditor();" type="button" value="Remove Editor">
     </p>
-
     <div id="editor">
     </div>
     <div id="contents" style="display: none">
-      <p>
-          Edited Contents:
-      </p>
-
-      <div id="editorcontents">
-      </div>
+      <p>Edited Contents:</p>
+      <div id="editorcontents"></div>
     </div>
     <div id="footer">
       <hr>
-      <p>
-        CKEditor - The text editor for the Internet - <a class="samples" href="http://ckeditor.com/">http://ckeditor.com</a>
-      </p>
-      <p id="copy">
-        All rights reserved. File adapted from ajax.html example from CKEditor site.
-      </p>
+      <p> CKEditor - The text editor for the Internet - <a class="samples" href="http://ckeditor.com/">http://ckeditor.com</a></p>
+      <p id="copy">All rights reserved. File adapted from ajax.html example from CKEditor site.</p>
     </div>
   </body>
 </html>
