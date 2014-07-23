@@ -7,7 +7,7 @@ Ensure that you have jQuery v1.11.1+ running on your pages.
 
 2. Edit `/youtube/js/key.js`. Set the variable in that file to your valid
    YouTube Search API V3 Key.
-   
+
 3. When instantiating the editor with JavaScript, ensure that you enable
    `youtube` as an extra plugin (and if need be, load it externally)
 
@@ -19,16 +19,12 @@ editor.config.allowedContent = true;                         // else the 'data='
 
 ## For your pages
 1. On the pages that display the YouTube videos, have the following script loaded:
-
 ```
 <script src="youtube/js/ytembed.js"></script>
 ```
-
 2. Then invoke the `.ytembed()` method on the correct divs to replace them with the embed code:
-
 ```
 $('[data-youtube-embed]').ytembed();
 ```
-
    The editor will create divs with a data attribute 'youtube-embed', hence the method should target
    those divs (as shown above).
