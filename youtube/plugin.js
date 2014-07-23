@@ -37,5 +37,19 @@ CKEDITOR.plugins.add('youtube', {
 
     // register dialog
     CKEDITOR.dialog.add( 'youtubeDialog', this.path + 'dialogs/youtube.js' );
+  },
+  afterInit: function(editor) {
+    var dataProcessor = editor.dataProcessor;
+    var dataFilter = dataProcessor && dataProcessor.dataFilter;
+
+    if (dataFilter) {
+      dataFilter.addRules({
+        elements: {
+          youtube: function(element) {
+            return editor.createFakeParserElement(element, 'youtube_iframe', 'iframe', false);
+          }
+        }
+      });
+    }
   }
 });
