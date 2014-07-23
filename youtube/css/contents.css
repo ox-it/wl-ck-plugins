@@ -31,3 +31,13 @@
 [data-youtube-embed]:hover:before {
   color: #BFBFBF;
 }
+
+img.cke_youtube {
+  background: #000;
+  background-image: url('../icons/player.png');
+  background-position: center center;
+  background-repeat: no-repeat;
+  border: 1px solid #a9a9a9;
+  width: 130px;
+  height: 80px;
+}
