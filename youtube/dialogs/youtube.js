@@ -10,6 +10,7 @@ CKEDITOR.document.appendStyleSheet(CKEDITOR.getUrl(path + 'css/dialog.css'));
 CKEDITOR.scriptLoader.load(path + '/js/videosearch.js');
 CKEDITOR.scriptLoader.load(path + '/js/service.js');
 CKEDITOR.scriptLoader.load(path + '/js/key.js');
+CKEDITOR.scriptLoader.load(path + '/js/result.js');
 
 var displaySearchPage = function() {
   var div = $('<div/>');
@@ -24,22 +25,6 @@ var displaySearchPage = function() {
   });
 
   return div.html();
-};
-
-// object for handling the html display of search results
-var YouTubeSearchResult = function() {
-  var resultTemplate = $('<div/>').load(path + 'html/result.html');
-
-  this.display = function(result) {
-    var template = resultTemplate.clone();
-
-    template.find('h2').html(result.title);
-    template.find('p').html(result.description);
-    template.find('.result').attr('data-src', result.meta.id);
-    template.find('.thumbnail').attr('src', result.meta.thumbnails.m);
-
-    return template.html();
-  };
 };
 
 var bindVideoSearchToContainer = function(container, searchResults, result) {
@@ -105,7 +90,7 @@ CKEDITOR.dialog.add('youtubeDialog', function(editor) {
 
               var container = $('#youTubeSearchForm');
               var searchResults = $('#youTubeSearchResults');
-              var result = new YouTubeSearchResult;
+              var result = new YouTubeSearchResult(path);
 
               bindVideoSearchToContainer(container, searchResults, result);
             },
