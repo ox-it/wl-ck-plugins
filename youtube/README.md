@@ -14,6 +14,7 @@ Ensure that you have jQuery v1.11.1+ running on your pages.
 ```
 CKEDITOR.plugins.addExternal('youtube', 'path/to/youtube/'); // if you are loading it externally
 editor.config.extraPlugins += 'youtube';
+editor.config.allowedContent = true;                         // else the 'data=' attributes get stripped
 ```
 
 ## For your pages
