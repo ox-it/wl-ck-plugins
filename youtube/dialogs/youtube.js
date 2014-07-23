@@ -12,18 +12,18 @@ CKEDITOR.scriptLoader.load(path + '/js/service.js');
 CKEDITOR.scriptLoader.load(path + '/js/key.js');
 
 var displaySearchPage = function() {
-  var header = $('<h2/>').html('Embed a video');
-  var explanation  = $('<p>').html('Type a search term or YouTube URL below, hit the search button, then select a result to embed that video.');
-  var searchResultId = $('<input/>').attr('type', 'hidden').attr('id', 'searchResultId');
-  var searchForm = $('<div/>').attr('id', 'youTubeSearchForm');
-  var searchResults = $('<div/>').attr('id', 'youTubeSearchResults');
+  var div = $('<div/>');
 
-  return $('<div/>').append(header)
-                    .append(explanation)
-                    .append(searchResultId)
-                    .append(searchForm)
-                    .append(searchResults)
-                    .html();
+  $.ajax({
+    url: path + 'html/search-form.html',
+    dataType: 'html',
+    async: false,
+    success: function(html) {
+      div.html(html);
+    }
+  });
+
+  return div.html();
 };
 
 // object for handling the html display of search results
