@@ -26,14 +26,23 @@ var displaySearchPage = function() {
                     .html();
 };
 
-var displaySearchResult = function(result) {
-  return '<li class="result" data-src="' + result.meta.id + '">' +
-            '<img class="thumbnail" src="' + result.meta.thumbnails.m + '">' +
-            '<h2>' + result.title + '</h2>' +
-            '<p>' + result.description + '</p>' +
-         '</li>';
+// object for handling the html display of search results
+var YouTubeSearchResult = function() {
+  var resultTemplate = $('<div/>').load(path + 'html/result.html');
+
+  this.display = function(result) {
+    var template = resultTemplate.clone();
+
+    template.find('h2').html(result.title);
+    template.find('p').html(result.description);
+    template.find('.result').attr('data-src', result.meta.id);
+    template.find('.thumbnail').attr('src', result.meta.thumbnails.m);
+
+    return template.html();
+  };
 };
 
+// method for easily confirming the dialog
 var clickDialogOK = function() {
   var ckDialog = window.CKEDITOR.dialog.getCurrent();
   var ckOk = ckDialog._.buttons['ok'];
@@ -61,11 +70,12 @@ CKEDITOR.dialog.add('youtubeDialog', function(editor) {
 
               var container = $('#youTubeSearchForm');
               var searchResults = $('#youTubeSearchResults');
+              var result = new YouTubeSearchResult;
 
               container.videosearch({
                 service: YouTubeSearchService,
                 resultsContainer: searchResults,
-                displayResult: displaySearchResult,
+                displayResult: result.display,
               });
 
               var iframe = $('<iframe src="about:blank"></iframe>').attr('id', 'youTubeSearchIframe');
