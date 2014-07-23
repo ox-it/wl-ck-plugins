@@ -34,12 +34,6 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
         // add the resource, then enabled it by adding it to extraPlugins
         CKEDITOR.plugins.addExternal('youtube', src + '/youtube/', 'plugin.js');
         editor.config.extraPlugins += 'youtube,';
-
-        // internal css (in the editor)
-        editor.config.contentsCss = [
-          src + '/youtube/css/contents.css',
-          'http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css',
-        ];
       }
 
       function removeEditor() {
