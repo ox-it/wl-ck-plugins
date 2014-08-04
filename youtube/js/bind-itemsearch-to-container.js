@@ -8,10 +8,11 @@ var BindVideoSearchToContainer = function(container, searchResults, result) {
 
   // initial binding
   var bindToContainer = function() {
-    container.videosearch({
+    container.itemSearch({
       service: YouTubeSearchService,
       resultsContainer: searchResults,
       displayResult: result.display,
+      pagination: false,
     });
   };
 
