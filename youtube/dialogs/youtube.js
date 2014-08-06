@@ -4,7 +4,6 @@ var h = CKEDITOR.plugins.get('youtube');
 var path = h.path;
 
 // load css and javascript files
-CKEDITOR.document.appendStyleSheet('http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css');
 CKEDITOR.document.appendStyleSheet(CKEDITOR.getUrl(path + 'css/dialog.css'));
 
 CKEDITOR.scriptLoader.load(path + '/js/itemsearch.js');
@@ -13,7 +12,7 @@ CKEDITOR.scriptLoader.load(path + '/js/key.js');
 CKEDITOR.scriptLoader.load(path + '/js/result.js');
 CKEDITOR.scriptLoader.load(path + '/js/bind-itemsearch-to-container.js');
 
-var displaySearchPage = function() {
+var displayYouTubeSearchPage = function() {
   var div = $('<div/>');
 
   $.ajax({
@@ -43,15 +42,15 @@ CKEDITOR.dialog.add('youtubeDialog', function(editor) {
           {
             type: 'html',
             id: 'searchpage',
-            html: displaySearchPage(),
+            html: displayYouTubeSearchPage(),
             onLoad: function() {
-              YouTubeSearchService.pt.key = googleApiKey;
+              YouTubeSearchService.pt.key = youTubeSearchV3ApiKey;
 
               var container = $('#youTubeSearchForm');
               var searchResults = $('#youTubeSearchResults');
               var result = new YouTubeSearchResult(path);
 
-              BindVideoSearchToContainer(container, searchResults, result);
+              BindYouTubeSearchToContainer(container, searchResults, result);
             },
             setup: function(element) {
               var $frame = $('#youTubeSearchIframe');
