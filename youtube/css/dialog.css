@@ -16,34 +16,51 @@
   height: 40px;
   width: 500px;
 }
-.searchquery {
-  width: 350px;
+#youTubeSearchForm .item-search-form {
+  position: relative;
+  height: 40px;
+  width: 500px;
+  overflow: hidden;
+}
+#youTubeSearchForm .item-search-query {
+  width: 468px;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
   border-right: none;
   position: absolute;
   top: 0; left: 0;
   line-height: 30px;
+  box-sizing: border-box;
+  padding: 0 0 0 5px !important;
 }
-.searchquery, .searchbutton {
+#youTubeSearchForm  .item-search-query, .item-search-button {
   box-sizing: border-box;
   font-size: 130%;
   padding: 1px;
   margin: 0;
   height: 30px;
 }
-.searchbutton {
-  font-family: FontAwesome;
+#youTubeSearchForm .item-search-button {
   width: 32px;
   border-top-left-radius: 0 !important;
   border-bottom-left-radius: 0 !important;
   position: absolute;
   top: 0; right: 0;
-  padding: 8px;
+  padding: 0;
   line-height: 21px;
+  overflow: hidden;
+  text-align: center;
 }
-.searchbutton:focus, .searchbutton:active {
-  padding: 2px !important;
+#youTubeSearchForm .item-search-button:focus,
+#youTubeSearchForm .item-search-button:active {
+  padding: 0 !important;
+  margin: 0;
+}
+#youTubeSearchForm .item-search-button .icon {
+  height: 100%;
+  width: 100%;
+  display: block;
+  background: url('../icons/search.png') no-repeat 5px 3px;
 }
 
 /* search results */
