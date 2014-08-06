@@ -11,21 +11,7 @@ CKEDITOR.scriptLoader.load(path + 'js/service.js');
 CKEDITOR.scriptLoader.load(path + 'js/key.js');
 CKEDITOR.scriptLoader.load(path + 'js/result.js');
 CKEDITOR.scriptLoader.load(path + 'js/bind-itemsearch-to-container.js');
-
-var displayYouTubeSearchPage = function() {
-  var div = $('<div/>');
-
-  $.ajax({
-    url: path + 'html/search-form.html',
-    dataType: 'html',
-    async: false,
-    success: function(html) {
-      div.html(html);
-    }
-  });
-
-  return div.html();
-};
+CKEDITOR.scriptLoader.load(path + 'js/display-youtube-search-page.js');
 
 CKEDITOR.dialog.add('youtubeDialog', function(editor) {
   return {
@@ -42,8 +28,10 @@ CKEDITOR.dialog.add('youtubeDialog', function(editor) {
           {
             type: 'html',
             id: 'searchpage',
-            html: displayYouTubeSearchPage(),
+            className: 'searchpage',
+            html: '',
             onLoad: function() {
+              $('#youTubeDialog .searchpage').html(displayYouTubeSearchPage(path));
               YouTubeSearchService.pt.key = youTubeSearchV3ApiKey;
 
               var container = $('#youTubeSearchForm');
