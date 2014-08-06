@@ -6,11 +6,11 @@ var path = h.path;
 // load css and javascript files
 CKEDITOR.document.appendStyleSheet(CKEDITOR.getUrl(path + 'css/dialog.css'));
 
-CKEDITOR.scriptLoader.load(path + '/js/itemsearch.js');
-CKEDITOR.scriptLoader.load(path + '/js/service.js');
-CKEDITOR.scriptLoader.load(path + '/js/key.js');
-CKEDITOR.scriptLoader.load(path + '/js/result.js');
-CKEDITOR.scriptLoader.load(path + '/js/bind-itemsearch-to-container.js');
+CKEDITOR.scriptLoader.load(path + 'js/itemsearch.js');
+CKEDITOR.scriptLoader.load(path + 'js/service.js');
+CKEDITOR.scriptLoader.load(path + 'js/key.js');
+CKEDITOR.scriptLoader.load(path + 'js/result.js');
+CKEDITOR.scriptLoader.load(path + 'js/bind-itemsearch-to-container.js');
 
 var displayYouTubeSearchPage = function() {
   var div = $('<div/>');
