@@ -1,4 +1,4 @@
-var BindVideoSearchToContainer = function(container, searchResults, result) {
+var BindYouTubeSearchToContainer = function(container, searchResults, result) {
   // initialization
   var init = function() {
     bindToContainer();
@@ -31,7 +31,7 @@ var BindVideoSearchToContainer = function(container, searchResults, result) {
       contents.find('input').addClass('searchQuery cke_dialog_ui_input_text')
                             .attr('placeholder', 'Search here...');
       contents.find('a').addClass('searchButton cke_dialog_ui_button cke_dialog_ui_button_ok')
-                        .html('&#xf002;');
+                        .html('<span class="icon"></span>');
     });
   };
 
