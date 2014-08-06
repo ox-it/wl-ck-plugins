@@ -4,7 +4,7 @@ CKEDITOR.plugins.add('youtube', {
 
   init: function(editor) {
     editor.addCommand('youtube', new CKEDITOR.dialogCommand('youtubeDialog'));
-    editor.ui.addButton( 'Youtube', {
+    editor.ui.addButton( 'youtube', {
       label: 'Embed Youtube Video',
       command: 'youtube',
       toolbar: 'insert'
