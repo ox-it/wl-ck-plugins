@@ -1,0 +1,90 @@
+<!-- file used for remote testing-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>CKEditor Plugins Example</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://rawgit.com/ox-it/wl-ck-plugins/master/lib/ckeditor/ckeditor.js"></script>
+    <link rel="stylesheet" href="https://rawgit.com/ox-it/wl-ck-plugins/master/lib/ckeditor/samples/sample.css">
+    <script>
+      var editor, html = '';
+
+      function createEditor() {
+        if (editor) {
+          return;
+        }
+
+        var config = {};
+        var remoteUrl = 'https://rawgit.com/ox-it/wl-ck-plugins/';
+        var plugins = {
+          general: [ 'youtube', 'twitter', 'vimeo', 'creative-commons-images' ],
+          weblearn: ['folder-listing', 'image-gallery', 'solo-citation', 'oxam', 'oxpoints', 'oxitems', 'researcher-training-tool']
+        };
+        var allPlugins = plugins.general.concat(plugins.weblearn);
+
+        editor = CKEDITOR.appendTo( 'editor', config, html );
+        editor.config.allowedContent = true;
+
+        for (i in allPlugins) {
+          var plugin = allPlugins[i];
+          var url = remoteUrl + plugin + '/' + plugin + '/';
+
+          CKEDITOR.plugins.addExternal(plugin, url, 'plugin.js');
+          editor.config.extraPlugins += plugin + ',';
+        }
+
+        editor.config.toolbar = [
+          { name: 'document', groups: [ 'mode', 'document', 'doctools' ], items: [ 'Source', '-', 'Save', 'NewPage', 'Preview', 'Print', '-', 'Templates' ] },
+          { name: 'clipboard', groups: [ 'clipboard', 'undo' ], items: [ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ] },
+          { name: 'editing', groups: [ 'find', 'selection', 'spellchecker' ], items: [ 'Find', 'Replace', '-', 'SelectAll', '-', 'Scayt' ] },
+          { name: 'forms', items: [ 'Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton', 'HiddenField' ] },
+          '/',
+          { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ], items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat' ] },
+          { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ], items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl', 'Language' ] },
+          { name: 'links', items: [ 'Link', 'Unlink', 'Anchor' ] },
+          { name: 'insert', items: [ 'Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe' ] },
+          { name: 'social', items: plugins.general },
+          { name: 'weblearn', items: plugins.weblearn },
+          '/',
+          { name: 'styles', items: [ 'Styles', 'Format', 'Font', 'FontSize' ] },
+          { name: 'colors', items: [ 'TextColor', 'BGColor' ] },
+          { name: 'tools', items: [ 'Maximize', 'ShowBlocks' ] },
+          { name: 'others', items: [ '-' ] },
+          { name: 'about', items: [ 'About' ] }
+        ];
+      }
+
+      function removeEditor() {
+        if (!editor) {
+          return;
+        }
+
+        document.getElementById('editorcontents').innerHTML = html = editor.getData();
+        document.getElementById('contents').style.display = '';
+
+        editor.destroy();
+        editor = null;
+
+        $('[data-folder-listing]').folderListing();
+      }
+    </script>
+  </head>
+  <body>
+    <h1 class="samples">CKEditor Plugins Example</h1>
+    <p>
+      <input onclick="createEditor();" type="button" value="Create Editor">
+      <input onclick="removeEditor();" type="button" value="Remove Editor">
+    </p>
+    <div id="editor">
+    </div>
+    <div id="contents" style="display: none">
+      <p>Edited Contents:</p>
+      <div id="editorcontents"></div>
+    </div>
+    <div id="footer">
+      <hr>
+      <p> CKEditor - The text editor for the Internet - <a class="samples" href="http://ckeditor.com/">http://ckeditor.com</a></p>
+      <p id="copy">All rights reserved. File adapted from ajax.html example from CKEditor site.</p>
+    </div>
+  </body>
+</html>
