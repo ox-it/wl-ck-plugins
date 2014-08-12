@@ -16,7 +16,7 @@ $(document).ready(function() {
         var $html = $('<div/ >').append($(html));
         var title = $html.find('#title').html();
         var content = $html.find('#content').html();
-        var h2 = $('<h2/>').html(title);
+        var h2 = $('<h2/>').addClass('content-subhead').html(title);
         var pageContent = $('<div/>').html(content);
         var a = $('<a/>').attr('name', $this.attr('href').replace('#', ''));
 
