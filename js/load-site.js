@@ -26,6 +26,7 @@ $(document).ready(function() {
     $.ajax({
       url: page,
       dataType: 'html',
+      async: false,
       success: function(html) {
         var $html = $('<div/ >').append($(html));
         var title = $html.find('#title').html();
