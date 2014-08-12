@@ -1,12 +1,9 @@
+/* global */
 body * {
   font-family: 'PT Sans', Arial,sans-serif;
 }
 
-.content img {
-  border: 1px solid #ccc;
-  margin: 3px;
-}
-
+/* menu */
 #menu .weblearn-icon {
   display: block;
   height: 80px;
@@ -20,6 +17,11 @@ body * {
   background: #002147;
 }
 
+/* main */
+#main {
+  padding: 0;
+  margin: 0;
+}
 #main a {
   color: #383838;
   font-weight: bold;
@@ -27,4 +29,36 @@ body * {
 }
 #main a:hover {
   color: #a52100;
+}
+
+#main .header {
+
+}
+#main .content {
+
+}
+#main .content img {
+  border: 1px solid #ccc;
+  margin: 3px;
+  max-width: 100%;
+  height: auto;
+}
+
+/* footer */
+#main .footer {
+  background: #002147;
+  color: #fff;
+  padding: 20px;
+  overflow: hidden;
+}
+#main .footer .legal-license {
+  display: block;
+  width: 50%;
+  float: right;
+  text-align: right;
+}
+#main .footer .legal-copyright {
+  display: block;
+  width: 50%;
+  float: left;
 }
