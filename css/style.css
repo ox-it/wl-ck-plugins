@@ -1,5 +1,30 @@
+body * {
+  font-family: 'PT Sans', Arial,sans-serif;
+}
+
 .content img {
   border: 1px solid #ccc;
   margin: 3px;
 }
 
+#menu .weblearn-icon {
+  display: block;
+  height: 80px;
+  width: 80px;
+  margin: 10px auto;
+  background: url('../images/weblearn-logo.png') center center no-repeat;
+}
+
+#menu .pure-menu-selected,
+#menu .pure-menu-heading {
+  background: #002147;
+}
+
+#main a {
+  color: #383838;
+  font-weight: bold;
+  text-decoration: none;
+}
+#main a:hover {
+  color: #a52100;
+}
