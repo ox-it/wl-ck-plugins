@@ -1,95 +1,133 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
-    <meta charset="utf-8"/>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weblearn CKEditor Plugins Help</title>
-    <style>
-      img {
-        border: 1px solid #ccc;
-        margin: 3px;
-      }
-    </style>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+    <!--[if lte IE 8]>
+      <link rel="stylesheet" href="/combo/1.16.12?/css/layouts/side-menu-old-ie.css">
+    <![endif]-->
+    <!--[if gt IE 8]><!-->
+      <link rel="stylesheet" href="css/side-menu.css">
+    <!--<![endif]-->
+    <!--[if lt IE 9]>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
-    <h1>Weblearn CKEditor Plugins Help</h1>
+    <!--<script src="js/ui.js"></script>-->
+    <script src="js/history.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        var pageLinks = $('#menu .pages a');
 
-    <h2>General CKEditor Plugins</h2>
-    <div id="general">
-      <div id="youtube">
-        <h3>YouTube</h3>
+        pageLinks.each(function() {
+          var $this = $(this);
+          var url = $this.attr('href');
+          var $title = $('.header h2');
+          var $content = $('.content');
+
+          $this.on('click', function() {
+            pageLinks.parent().removeClass('pure-menu-selected');
+            $this.parent().addClass('pure-menu-selected');
+
+            $content.addClass('wait');
+            $content.children().slideUp();
+
+            var set404Error = function() {
+              $title.html('404 Error');
+              $content.html('Page not found.');
+            };
+
+            $.ajax({
+              url: url,
+              dataType: 'html',
+              success: function(html) {
+                var $html = $('<div/ >').append($(html));
+                var title = $html.find('#title').html();
+                var content = $html.find('#content').html();
+
+                if (title && content) {
+                  $title.html(title);
+                  $content.html(content);
+                } else {
+                  set404Error();
+                }
+              },
+              error: function() {
+                set404Error();
+              },
+              complete: function() {
+                $content.removeClass('wait');
+                $content.slideDown();
+                history.pushState(null, null, url);
+                return false;
+                //$this.data('open', true);
+              }
+            });
+
+            return false;
+          });
+        });
+      });
+    </script>
+    <div id="layout">
+      <!-- Menu toggle -->
+      <a href="#menu" id="menuLink" class="menu-link">
+        <!-- Hamburger icon -->
+        <span></span>
+      </a>
+
+      <div id="menu">
+        <div class="pure-menu pure-menu-open">
+          <a class="pure-menu-heading" href="#">General</a>
+          <ul class="pages">
+            <li><a href="youtube.html">YouTube</a></li>
+            <li><a href="vimeo.html">Vimeo</a></li>
+            <li><a href="creative-commons-images.html">Flickr</a></li>
+            <li><a href="twitter.html">Twitter</a></li>
+          </ul>
+        </div>
+        <div class="pure-menu pure-menu-open">
+          <a class="pure-menu-heading" href="#">WebLearn</a>
+          <ul class="pages">
+            <li><a href="folder-listing.html">Folders</a></li>
+            <li><a href="image-gallery.html">Gallery</a></li>
+            <li><a href="researcher-training-tool.html">Researcher</a></li>
+            <li><a href="solo-citation.html">SOLO</a></li>
+            <li><a href="oxam.html">OXAM</a></li>
+            <li><a href="oxpoints.html">OxPoints</a></li>
+            <li><a href="oxitems.html">OxItems</a></li>
+          </ul>
+        </div>
       </div>
 
-      <div id="vimeo">
-        <h3>Vimeo</h3>
-      </div>
+      <div id="main">
+        <div class="header">
+            <h1>
+              <a href="index.html">
+                Weblearn CKEditor Plugins
+              </a>
+            </h1>
+            <h2>Documentation and Help</h2>
+        </div>
 
-      <div id="twitter">
-        <h3>Twitter</h3>
-      </div>
+        <div class="content">
+          <h2 class="content-subhead">About the project</h2>
+          <p>
+            ...
+          </p>
 
-      <div id="creative-commons-images">
-        <h3>Creative Commons Images (Flickr)</h3>
-      </div>
-    </div>
-
-    <h2>Weblearn-specific Plugins</h2>
-    <div id="weblearn">
-      <div id="folder-listing">
-        <h3>Folder Listing</h3>
-      </div>
-
-      <div id="image-gallery">
-        <h3>Image Gallery</h3>
-      </div>
-
-      <div id="solo-citation">
-        <h3>SOLO Citation</h3>
-      </div>
-
-      <div id="Researcher Training Tool">
-        <h3>Researcher Training Tool</h3>
-      </div>
-
-      <div id="oxam">
-        <h3>OXAM</h3>
-      </div>
-
-      <div id="oxpoints">
-        <h3>OxPoints</h3>
-      </div>
-
-      <div id="oxitems">
-        <h3>OxItems</h3>
+          <h2 class="content-subhead">Using the site</h2>
+          <p>
+            ...
+          </p>
+        </div>
       </div>
     </div>
   </body>
-  <script>
-    $(document).ready(function() {
-      $('#general > div h3, #weblearn > div h3').on('click', function() {
-        var $this = $(this);
-
-        if (!$this.data('open')) {
-          var url = $this.parent().attr('id') + '.html';
-
-          $.ajax({
-            url: url,
-            dataType: 'html',
-            success: function(html) {
-              $this.after($('<div/ >').hide().addClass('page').html(html).slideDown());
-            },
-            error: function() {
-              $this.after($('<div/ >').addClass('page').html('Error loading page'));
-            },
-            complete: function() {
-              $this.data('open', true);
-            }
-          });
-        } else {
-          $this.next('.page').slideUp().remove();
-          $this.data('open', false);
-        }
-      });
-    });
-  </script>
 </html>
+
