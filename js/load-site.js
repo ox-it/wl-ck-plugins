@@ -1,6 +1,6 @@
 $(document).ready(function() {
   // load all of the webpages
-  var pageLinks = $('#menu .pages a'); console.log(pageLinks);
+  var pageLinks = $('#menu .pages a');
   var $content = $('.content');
 
   pageLinks.each(function() {
