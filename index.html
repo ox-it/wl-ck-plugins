@@ -18,62 +18,9 @@
   </head>
   <body>
     <!--<script src="js/ui.js"></script>-->
-    <script src="js/history.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script>
-      $(document).ready(function() {
-        var pageLinks = $('#menu .pages a');
-
-        pageLinks.each(function() {
-          var $this = $(this);
-          var url = $this.attr('href');
-          var $title = $('.header h2');
-          var $content = $('.content');
-
-          $this.on('click', function() {
-            pageLinks.parent().removeClass('pure-menu-selected');
-            $this.parent().addClass('pure-menu-selected');
-
-            $content.addClass('wait');
-            $content.children().slideUp();
-
-            var set404Error = function() {
-              $title.html('404 Error');
-              $content.html('Page not found.');
-            };
-
-            $.ajax({
-              url: url,
-              dataType: 'html',
-              success: function(html) {
-                var $html = $('<div/ >').append($(html));
-                var title = $html.find('#title').html();
-                var content = $html.find('#content').html();
-
-                if (title && content) {
-                  $title.html(title);
-                  $content.html(content);
-                } else {
-                  set404Error();
-                }
-              },
-              error: function() {
-                set404Error();
-              },
-              complete: function() {
-                $content.removeClass('wait');
-                $content.slideDown();
-                history.pushState(null, null, url);
-                return false;
-                //$this.data('open', true);
-              }
-            });
-
-            return false;
-          });
-        });
-      });
-    </script>
+    <script src="js/history.js"></script>
+    <script src="js/load-site.js"></script>
     <div id="layout">
       <!-- Menu toggle -->
       <a href="#menu" id="menuLink" class="menu-link">
@@ -85,22 +32,22 @@
         <div class="pure-menu pure-menu-open">
           <a class="pure-menu-heading" href="#">General</a>
           <ul class="pages">
-            <li><a href="youtube.html">YouTube</a></li>
-            <li><a href="vimeo.html">Vimeo</a></li>
-            <li><a href="creative-commons-images.html">Flickr</a></li>
-            <li><a href="twitter.html">Twitter</a></li>
+            <li><a href="#youtube">YouTube</a></li>
+            <li><a href="#vimeo">Vimeo</a></li>
+            <li><a href="#creative-commons-images">Flickr</a></li>
+            <li><a href="#twitter">Twitter</a></li>
           </ul>
         </div>
         <div class="pure-menu pure-menu-open">
           <a class="pure-menu-heading" href="#">WebLearn</a>
           <ul class="pages">
-            <li><a href="folder-listing.html">Folders</a></li>
-            <li><a href="image-gallery.html">Gallery</a></li>
-            <li><a href="researcher-training-tool.html">Researcher</a></li>
-            <li><a href="solo-citation.html">SOLO</a></li>
-            <li><a href="oxam.html">OXAM</a></li>
-            <li><a href="oxpoints.html">OxPoints</a></li>
-            <li><a href="oxitems.html">OxItems</a></li>
+            <li><a href="#folder-listing">Folders</a></li>
+            <li><a href="#image-gallery">Gallery</a></li>
+            <li><a href="#researcher-training-tool">Researcher</a></li>
+            <li><a href="#solo-citation">SOLO</a></li>
+            <li><a href="#oxam">OXAM</a></li>
+            <li><a href="#oxpoints">OxPoints</a></li>
+            <li><a href="#oxitems">OxItems</a></li>
           </ul>
         </div>
       </div>
