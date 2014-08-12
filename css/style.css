@@ -22,6 +22,17 @@ body * {
   padding: 0;
   margin: 0;
 }
+#menu .active {
+  background: #a52100;
+}
+#menu .active:hover,
+#menu .active:focus {
+  background: #82655e;
+}
+#menu .active * {
+  color: #fff;
+}
+
 #main a {
   color: #383838;
   font-weight: bold;
