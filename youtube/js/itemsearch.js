@@ -177,9 +177,6 @@ $.fn.itemSearch = function(options) {
 
     container.append(pagesContainer);
 
-    var nav2 = nav.clone();
-
-
     // now move results into the correct containers
     for (i = 0; i < results.length; i++) {
       var page = Math.ceil((i+1) / settings.pagination);
@@ -200,7 +197,7 @@ $.fn.itemSearch = function(options) {
 
     // add navigational elements
     container.prepend(nav);
-    container.append(nav2);
+    container.append(nav.clone());
 
     // show the first page
     container.find('.page').hide();
