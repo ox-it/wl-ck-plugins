@@ -3,7 +3,7 @@
 Ensure that you have jQuery v1.11.1+ running on your pages.
 
 ## For the Editor
-1. Copy `/youtube` your CKEDITOR `/plugins` directory
+1. Copy `/youtube` and `/common` to your CKEDITOR `/plugins` directory
 
 2. Edit `/youtube/js/key.js`. Set the variable in that file to your valid
    YouTube Search API V3 Key.
