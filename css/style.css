@@ -43,10 +43,18 @@ body * {
 }
 
 #main .header {
-
+  padding-top: 30px;
+  padding-bottom: 15px;
+}
+#main .header a {
+  background: url('../images/weblearn-logo.png') 0 center no-repeat;
+  padding: 0 80px 0 80px;
 }
 #main .content {
 
+}
+#main .page {
+  box-sizing: border-box;
 }
 #main .content img {
   border: 1px solid #ccc;
@@ -57,19 +65,30 @@ body * {
 
 /* footer */
 #main .footer {
-  background: #002147;
+  background: #002147 url('../images/copyright-images.png') 10px center no-repeat;
   color: #fff;
-  padding: 20px;
+  padding: 10px 10px 10px 190px;
   overflow: hidden;
 }
 #main .footer .legal-license {
   display: block;
-  width: 50%;
+  width: 40%;
   float: right;
   text-align: right;
 }
 #main .footer .legal-copyright {
   display: block;
-  width: 50%;
+  width: 60%;
   float: left;
+  min-height: 80px;
+  box-sizing: border-box;
+}
+
+@media (max-width: 48em) {
+  #main .footer .legal-copyright {
+    width: 100%;
+  }
+  #main .footer .legal-license {
+    display: none;
+  }
 }
