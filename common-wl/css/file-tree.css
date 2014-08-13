@@ -78,16 +78,16 @@ ul.jqueryFileTree a:hover {
 
 /* Core Styles */
 .jqueryFileTree li.directory {
-  background-image: url(../icons/directory.png);
+  background-image: url(../images/directory.png);
 }
 .jqueryFileTree li.expanded  {
-  background-image: url(../icons/folder_open.png);
+  background-image: url(../images/folder_open.png);
 }
 .jqueryFileTree li.file  {
-  background-image: url(../icons/file.png);
+  background-image: url(../images/file.png);
 }
 .jqueryFileTree li.wait  {
-  background-image: url(../icons/spinner.gif);
+  background-image: url(../images/spinner.gif);
 }
 .jqueryFileTree li.active > a {
   font-weight: bold !important;
@@ -98,176 +98,176 @@ ul.jqueryFileTree a:hover {
 
 /* File Extensions*/
 .jqueryFileTree li.ext_3gp  {
-  background-image: url(../icons/film.png);
+  background-image: url(../images/film.png);
 }
 .jqueryFileTree li.ext_afp  {
-  background-image: url(../icons/code.png);
+  background-image: url(../images/code.png);
 }
 .jqueryFileTree li.ext_afpa  {
-  background-image: url(../icons/code.png);
+  background-image: url(../images/code.png);
 }
 .jqueryFileTree li.ext_asp  {
-  background-image: url(../icons/code.png);
+  background-image: url(../images/code.png);
 }
 .jqueryFileTree li.ext_aspx  {
-  background-image: url(../icons/code.png);
+  background-image: url(../images/code.png);
 }
 .jqueryFileTree li.ext_avi  {
-  background-image: url(../icons/film.png);
+  background-image: url(../images/film.png);
 }
 .jqueryFileTree li.ext_bat  {
-  background-image: url(../icons/application.png);
+  background-image: url(../images/application.png);
 }
 .jqueryFileTree li.ext_bmp  {
-  background-image: url(../icons/picture.png);
+  background-image: url(../images/picture.png);
 }
 .jqueryFileTree li.ext_c  {
-  background-image: url(../icons/code.png);
+  background-image: url(../images/code.png);
 }
 .jqueryFileTree li.ext_cfm  {
-  background-image: url(../icons/code.png);
+  background-image: url(../images/code.png);
 }
 .jqueryFileTree li.ext_cgi  {
-  background-image: url(../icons/code.png);
+  background-image: url(../images/code.png);
 }
 .jqueryFileTree li.ext_com  {
-  background-image: url(../icons/application.png);
+  background-image: url(../images/application.png);
 }
 .jqueryFileTree li.ext_cpp  {
-  background-image: url(../icons/code.png);
+  background-image: url(../images/code.png);
 }
 .jqueryFileTree li.ext_css  {
-  background-image: url(../icons/css.png);
+  background-image: url(../images/css.png);
 }
 .jqueryFileTree li.ext_doc  {
-  background-image: url(../icons/doc.png);
+  background-image: url(../images/doc.png);
 }
 .jqueryFileTree li.ext_exe  {
-  background-image: url(../icons/application.png);
+  background-image: url(../images/application.png);
 }
 .jqueryFileTree li.ext_gif  {
-  background-image: url(../icons/picture.png);
+  background-image: url(../images/picture.png);
 }
 .jqueryFileTree li.ext_fla  {
-  background-image: url(../icons/flash.png);
+  background-image: url(../images/flash.png);
 }
 .jqueryFileTree li.ext_h  {
-  background-image: url(../icons/code.png);
+  background-image: url(../images/code.png);
 }
 .jqueryFileTree li.ext_htm  {
-  background-image: url(../icons/html.png);
+  background-image: url(../images/html.png);
 }
 .jqueryFileTree li.ext_html  {
-  background-image: url(../icons/html.png);
+  background-image: url(../images/html.png);
 }
 .jqueryFileTree li.ext_jar  {
-  background-image: url(../icons/java.png);
+  background-image: url(../images/java.png);
 }
 .jqueryFileTree li.ext_jpg  {
-  background-image: url(../icons/picture.png);
+  background-image: url(../images/picture.png);
 }
 .jqueryFileTree li.ext_jpeg  {
-  background-image: url(../icons/picture.png);
+  background-image: url(../images/picture.png);
 }
 .jqueryFileTree li.ext_js  {
-  background-image: url(../icons/script.png);
+  background-image: url(../images/script.png);
 }
 .jqueryFileTree li.ext_lasso  {
-  background-image: url(../icons/code.png);
+  background-image: url(../images/code.png);
 }
 .jqueryFileTree li.ext_log  {
-  background-image: url(../icons/txt.png);
+  background-image: url(../images/txt.png);
 }
 .jqueryFileTree li.ext_m4p  {
-  background-image: url(../icons/music.png);
+  background-image: url(../images/music.png);
 }
 .jqueryFileTree li.ext_mov  {
-  background-image: url(../icons/film.png);
+  background-image: url(../images/film.png);
 }
 .jqueryFileTree li.ext_mp3  {
-  background-image: url(../icons/music.png);
+  background-image: url(../images/music.png);
 }
 .jqueryFileTree li.ext_mp4  {
-  background-image: url(../icons/film.png);
+  background-image: url(../images/film.png);
 }
 .jqueryFileTree li.ext_mpg  {
-  background-image: url(../icons/film.png);
+  background-image: url(../images/film.png);
 }
 .jqueryFileTree li.ext_mpeg  {
-  background-image: url(../icons/film.png);
+  background-image: url(../images/film.png);
 }
 .jqueryFileTree li.ext_ogg  {
-  background-image: url(../icons/music.png);
+  background-image: url(../images/music.png);
 }
 .jqueryFileTree li.ext_pcx  {
-  background-image: url(../icons/picture.png);
+  background-image: url(../images/picture.png);
 }
 .jqueryFileTree li.ext_pdf  {
-  background-image: url(../icons/pdf.png);
+  background-image: url(../images/pdf.png);
 }
 .jqueryFileTree li.ext_php  {
-  background-image: url(../icons/php.png);
+  background-image: url(../images/php.png);
 }
 .jqueryFileTree li.ext_png  {
-  background-image: url(../icons/picture.png);
+  background-image: url(../images/picture.png);
 }
 .jqueryFileTree li.ext_ppt  {
-  background-image: url(../icons/ppt.png);
+  background-image: url(../images/ppt.png);
 }
 .jqueryFileTree li.ext_psd  {
-  background-image: url(../icons/psd.png);
+  background-image: url(../images/psd.png);
 }
 .jqueryFileTree li.ext_pl  {
-  background-image: url(../icons/script.png);
+  background-image: url(../images/script.png);
 }
 .jqueryFileTree li.ext_py  {
-  background-image: url(../icons/script.png);
+  background-image: url(../images/script.png);
 }
 .jqueryFileTree li.ext_rb  {
-  background-image: url(../icons/ruby.png);
+  background-image: url(../images/ruby.png);
 }
 .jqueryFileTree li.ext_rbx  {
-  background-image: url(../icons/ruby.png);
+  background-image: url(../images/ruby.png);
 }
 .jqueryFileTree li.ext_rhtml  {
-  background-image: url(../icons/ruby.png);
+  background-image: url(../images/ruby.png);
 }
 .jqueryFileTree li.ext_rpm  {
-  background-image: url(../icons/linux.png);
+  background-image: url(../images/linux.png);
 }
 .jqueryFileTree li.ext_ruby  {
-  background-image: url(../icons/ruby.png);
+  background-image: url(../images/ruby.png);
 }
 .jqueryFileTree li.ext_sql  {
-  background-image: url(../icons/db.png);
+  background-image: url(../images/db.png);
 }
 .jqueryFileTree li.ext_swf  {
-  background-image: url(../icons/flash.png);
+  background-image: url(../images/flash.png);
 }
 .jqueryFileTree li.ext_tif  {
-  background-image: url(../icons/picture.png);
+  background-image: url(../images/picture.png);
 }
 .jqueryFileTree li.ext_tiff  {
-  background-image: url(../icons/picture.png);
+  background-image: url(../images/picture.png);
 }
 .jqueryFileTree li.ext_txt  {
-  background-image: url(../icons/txt.png);
+  background-image: url(../images/txt.png);
 }
 .jqueryFileTree li.ext_vb  {
-  background-image: url(../icons/code.png);
+  background-image: url(../images/code.png);
 }
 .jqueryFileTree li.ext_wav  {
-  background-image: url(../icons/music.png);
+  background-image: url(../images/music.png);
 }
 .jqueryFileTree li.ext_wmv  {
-  background-image: url(../icons/film.png);
+  background-image: url(../images/film.png);
 }
 .jqueryFileTree li.ext_xls  {
-  background-image: url(../icons/xls.png);
+  background-image: url(../images/xls.png);
 }
 .jqueryFileTree li.ext_xml  {
-  background-image: url(../icons/code.png);
+  background-image: url(../images/code.png);
 }
 .jqueryFileTree li.ext_zip  {
-  background-image: url(../icons/zip.png);
+  background-image: url(../images/zip.png);
 }
