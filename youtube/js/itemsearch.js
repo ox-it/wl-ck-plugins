@@ -186,10 +186,6 @@ $.fn.itemSearch = function(options) {
       container.find('.page[data-page="' + page + '"]').append(results[i]);
     }
 
-    $('.pageNum').on('click', function() {
-      alert('clicked');
-    });
-
     $(document).on('click', '.pageNum', function() {
       // find closest results container
       var $this = $(this);
