@@ -20,11 +20,11 @@ Ensure that you have jQuery v1.11.1+ running on your pages.
 ## For your pages
 1. On the pages that display the YouTube videos, have the following script loaded:
 
-        <script src="path/to/youtube/js/ytembed.js"></script>
+        <script src="path/to/youtube/js/youtube-embed.js"></script>
 
 2. Then invoke the `.ytembed()` method on the correct divs to replace them with the embed code:
 
-        $('[data-youtube-embed]').ytembed();
+        $('[data-youtube-embed]').youtubeEmbed();
 
    The editor will create divs with a data attribute 'youtube-embed', hence the method should target
    those divs (as shown above).
