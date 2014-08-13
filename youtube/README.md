@@ -22,7 +22,7 @@ Ensure that you have jQuery v1.11.1+ running on your pages.
 
         <script src="path/to/youtube/js/youtube-embed.js"></script>
 
-2. Then invoke the `.ytembed()` method on the correct divs to replace them with the embed code:
+2. Then invoke the `.youtubeEmbed()` method on the correct divs to replace them with the embed code:
 
         $('[data-youtube-embed]').youtubeEmbed();
 
