@@ -3,10 +3,13 @@
 var h = CKEDITOR.plugins.get('youtube');
 var path = h.path;
 
+// find /common path, replacing last instance of the plugin name with 'common'
+var pathCommon = (path + '~').replace('youtube/~', 'common/');
+
 // load css and javascript files
 CKEDITOR.document.appendStyleSheet(CKEDITOR.getUrl(path + 'css/dialog.css'));
 
-CKEDITOR.scriptLoader.load(path.replace('youtube', 'common') + 'js/itemsearch.js');
+CKEDITOR.scriptLoader.load(pathCommon + 'js/itemsearch.js');
 CKEDITOR.scriptLoader.load(path + 'js/service.js');
 CKEDITOR.scriptLoader.load(path + 'js/key.js');
 CKEDITOR.scriptLoader.load(path + 'js/result.js');
