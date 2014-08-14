@@ -114,7 +114,9 @@ $.fn.wlImageGallery = function(options) {
           addImageToGallery(image, html);
         }
 
+        console.log(html);
         if (html.children().length > 0) {
+          console.log(html.children());
           var params = getSettingsFromContainer(i, $container);
           html.find('a').colorbox(params);
 
