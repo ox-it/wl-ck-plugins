@@ -56,7 +56,6 @@ $.fn.wlImageGallery = function(options) {
       },
     };
 
-    console.log(containerSettings);
     return containerSettings;
   };
 
@@ -64,31 +63,11 @@ $.fn.wlImageGallery = function(options) {
     return array.indexOf(value) > -1;
   };
 
-  var addAutoPlaytoSlimbox = function($slimbox) {
-    console.log($slimbox);
-    $slimbox.on('click', '.thumbnail', function() {
-      slimBoxAutoplay = setInterval(function () {
-        var e = jQuery.Event('keydown');
-        e.which = 39;
-        $(document).trigger(e);
-      }, 300);
-    });
-
-    $slimbox.on('click', 'lbCloseLink', function() {
-      clearInterval(slimBoxAutoplay);
-    });
-    
-  };
-
   var addImageToGallery = function(image, gallery) {
-    var ext = image.url.split('.'); console.log(['extension:', ext]);
+    var ext = image.url.split('.');
         ext = ext[ext.length-1].toLowerCase();
 
-    console.log(image);
-    console.log([image.mimeType, image.hidden, ext, acceptedFileTypes, isInArray(ext, acceptedFileTypes)]);
-    console.log(['boolean', image.mimeType && !image.hidden && isInArray(ext, acceptedFileTypes)]);
     if (image.mimeType && !image.hidden && isInArray(ext, acceptedFileTypes)) {
-      //gallery.push([image.url, image.description]);
 
       var filename = image.url.split('/');
           filename = filename[filename.length-1];
@@ -137,8 +116,6 @@ $.fn.wlImageGallery = function(options) {
 
         if (html.children().length > 0) {
           var params = getSettingsFromContainer(i, $container);
-          //html.find('a').slimbox(params);
-          //addAutoPlaytoSlimbox(html);
           html.find('a').colorbox(params);
 
           $container.append(html);
