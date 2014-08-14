@@ -7,11 +7,19 @@
   margin: 5px 5px 15px 0;
   white-space: normal !important;
 }
+
+#imageGalleryDialog .description {
+  border: none;
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+}
+
 #imageGalleryDialog .cke_dialog_ui_input_select {
   width: 100%;
 }
 #imageGalleryDialog .folder_listing_preview {
   max-width: 350px;
-  max-height: 300px;
+  max-height: 200px;
   overflow: auto;
 }
