@@ -15,10 +15,10 @@ Ensure that you have jQuery v1.11.1+ running on your pages.
 ## For your pages
 1. On the pages that display the gallery, have the following scripts and styles loaded in the `head`:
 
-        <script src="path/to/image-gallery/js/colorbox.js"></script>
+        <script src="path/to/image-gallery/lib/colorbox/colorbox.js"></script>
         <script src="path/to/image-gallery/js/image-gallery.js"></script>
         
-        <link rel="stylesheet" href="path/to/image-gallery/css/colorbox.css"/>
+        <link rel="stylesheet" href="path/to/image-gallery/lib/colorbox/colorbox.css"/>
         <link rel="stylesheet" href="path/to/image-gallery/css/image-gallery.css"/>
 
 2. Then invoke the `.wlImageGallery()` method on the correct divs to replace them with the embed code:
