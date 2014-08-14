@@ -14,6 +14,7 @@ CKEDITOR.scriptLoader.load(pathCommonWl + 'js/file-tree.js');
 CKEDITOR.scriptLoader.load(pathCommonWl + 'js/folder-listing.js');
 CKEDITOR.scriptLoader.load(pathCommonWl + 'js/get-user-data.js');
 CKEDITOR.scriptLoader.load(pathCommonWl + 'js/get-available-sites.js');
+CKEDITOR.scriptLoader.load(pathCommonWl + 'js/bind-folder-listing-to-preview.js');
 
 // register dialog
 CKEDITOR.dialog.add('imageGalleryDialog', function(editor) {
