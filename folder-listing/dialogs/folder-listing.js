@@ -2,18 +2,19 @@
 // get plugin paths
 var h = CKEDITOR.plugins.get('folder-listing');
 var path = h.path;
-var pathCommon = path.replace('folder-listing', 'common-wl');
+var pathCommon   = (path + '~').replace('folder-listing/~', 'common/');
+var pathCommonWl = (path + '~').replace('folder-listing/~', 'common-wl/');
 
 // load css and javascript files
 CKEDITOR.document.appendStyleSheet(CKEDITOR.getUrl(path + 'css/dialog.css'));
-CKEDITOR.document.appendStyleSheet(CKEDITOR.getUrl(pathCommon + 'css/file-tree.css'));
+CKEDITOR.document.appendStyleSheet(CKEDITOR.getUrl(pathCommonWl + 'css/file-tree.css'));
 
-CKEDITOR.scriptLoader.load(pathCommon + 'js/file-tree.js');
-CKEDITOR.scriptLoader.load(pathCommon + 'js/folder-listing.js');
-CKEDITOR.scriptLoader.load(path + 'js/get-html.js');
-CKEDITOR.scriptLoader.load(path + 'js/get-paths.js');
-CKEDITOR.scriptLoader.load(path + 'js/get-user-data.js');
-CKEDITOR.scriptLoader.load(path + 'js/get-sites.js');
+CKEDITOR.scriptLoader.load(pathCommon + 'js/get-plugin-dialog-html.js');
+CKEDITOR.scriptLoader.load(pathCommonWl + 'js/file-tree.js');
+CKEDITOR.scriptLoader.load(pathCommonWl + 'js/folder-listing.js');
+CKEDITOR.scriptLoader.load(pathCommonWl + 'js/get-user-data.js');
+CKEDITOR.scriptLoader.load(pathCommonWl + 'js/get-available-sites.js');
+CKEDITOR.scriptLoader.load(pathCommonWl + 'js/bind-folder-listing-to-preview.js');
 
 // register dialog
 CKEDITOR.dialog.add('folderListingDialog', function(editor) {
@@ -34,7 +35,7 @@ CKEDITOR.dialog.add('folderListingDialog', function(editor) {
             className: 'description',
             html: '',
             onLoad: function() {
-              $('#folderListingDialog .description').html(getFolderListingDialogHtml(path, 'description.html'));
+              $('#folderListingDialog .description').html(getPluginDialogHtml(path, 'description.html'));
             },
           },
           {
@@ -86,7 +87,7 @@ CKEDITOR.dialog.add('folderListingDialog', function(editor) {
             className: 'preview',
             html: '',
             onLoad: function() {
-              $('#folderListingDialog .preview').html(getFolderListingDialogHtml(path, 'preview.html'));
+              $('#folderListingDialog .preview').html(getPluginDialogHtml(path, 'preview.html'));
             },
           },
           {
