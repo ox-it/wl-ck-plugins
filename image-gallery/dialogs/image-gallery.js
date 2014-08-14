@@ -1,21 +1,19 @@
 (function() {
 // get plugin paths
-var folderListingPath = CKEDITOR.plugins.get('folder-listing');
-    folderListingPath = folderListingPath.path;
-
 var h = CKEDITOR.plugins.get('image-gallery');
 var path = h.path;
-var pathCommon = path.replace('image-gallery', 'common-wl');
+var pathCommon   = (path + '~').replace('image-gallery/~', 'common/');
+var pathCommonWl = (path + '~').replace('image-gallery/~', 'common-wl/');
 
 // load css and javascript files
 CKEDITOR.document.appendStyleSheet(CKEDITOR.getUrl(path + 'css/dialog.css'));
-CKEDITOR.document.appendStyleSheet(CKEDITOR.getUrl(pathCommon + 'css/file-tree.css'));
-CKEDITOR.scriptLoader.load(pathCommon + 'js/file-tree.js');
-CKEDITOR.scriptLoader.load(pathCommon + 'js/folder-listing.js');
-CKEDITOR.scriptLoader.load(folderListingPath + 'js/get-html.js');
-CKEDITOR.scriptLoader.load(path + 'js/get-html.js');
-CKEDITOR.scriptLoader.load(folderListingPath + 'js/get-user-data.js');
-CKEDITOR.scriptLoader.load(folderListingPath + 'js/get-sites.js');
+CKEDITOR.document.appendStyleSheet(CKEDITOR.getUrl(pathCommonWl + 'css/file-tree.css'));
+
+CKEDITOR.scriptLoader.load(pathCommon + 'js/get-plugin-dialog-html.js');
+CKEDITOR.scriptLoader.load(pathCommonWl + 'js/file-tree.js');
+CKEDITOR.scriptLoader.load(pathCommonWl + 'js/folder-listing.js');
+CKEDITOR.scriptLoader.load(pathCommonWl + 'js/get-user-data.js');
+CKEDITOR.scriptLoader.load(pathCommonWl + 'js/get-available-sites.js');
 
 // register dialog
 CKEDITOR.dialog.add('imageGalleryDialog', function(editor) {
@@ -36,7 +34,7 @@ CKEDITOR.dialog.add('imageGalleryDialog', function(editor) {
             className: 'description',
             html: '',
             onLoad: function() {
-              $('#imageGalleryDialog .description').html(getImageGalleryDialogtHtml(path, 'description.html'));
+              $('#imageGalleryDialog .description').html(getPluginDialogHtml(path, 'description.html'));
             },
           },
           {
@@ -88,7 +86,7 @@ CKEDITOR.dialog.add('imageGalleryDialog', function(editor) {
             className: 'preview',
             html: '',
             onLoad: function() {
-              $('#imageGalleryDialog .preview').html(getImageGalleryDialogtHtml(path, 'preview.html'));
+              $('#imageGalleryDialog .preview').html(getPluginDialogHtml(path, 'preview.html'));
             },
           },
           {
