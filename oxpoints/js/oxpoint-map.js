@@ -22,7 +22,7 @@ $.fn.oxPointMap = function(options) {
     var wrapper = $('<div class="oxpointmap"/>');
     var explodedurl = settings.uri.split('/');
     var id = explodedurl[explodedurl.length-1];
-    var url = 'http://api.m.ox.ac.uk/places/oxpoints:' + id;
+    var url = '//api.m.ox.ac.uk/places/oxpoints:' + id;
 
     // perform ajax call and display the map if successful
     $.ajax({
