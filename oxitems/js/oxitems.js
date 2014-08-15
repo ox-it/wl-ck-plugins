@@ -22,11 +22,20 @@
          loading the feed (by default the path is oxitems/html/iframe.html
   */
 (function(){
-// scriptpath found with answer from StackOverflow
-// http://stackoverflow.com/questions/2161159/get-script-path
-var scriptPath = $("script[src]").last().attr("src").split('?')[0].split('/').slice(0, -1).join('/')+'/';
-var iframePath = (scriptPath + '~').replace('js/~', 'html/iframe.html');
-console.log(iframePath);
+// Credit to Crescent Fresh @ StackOverflow
+// http://stackoverflow.com/questions/984510/what-is-my-script-src-url
+var scriptSource = (function(scripts) {
+  var scripts = document.getElementsByTagName('script'),
+      script = scripts[scripts.length - 1];
+
+  if (script.getAttribute.length !== undefined) {
+    return script.src;
+  }
+
+  return script.getAttribute('src', -1)
+}());
+
+var iframePath = scriptSource.replace('js/oxitems.js', 'html/iframe.html');
 
 $.fn.oxItems = function() {
   // get settings from a particular feed div
