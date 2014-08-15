@@ -25,6 +25,7 @@ $(document).ready(function() {
     var pageContent = $('<div/>').html(content);
     var a = $('<a/>').attr('name', pageId);
 
+    fixPlaceHolder(pageContent);
     $page.append(a).append(h2).append(pageContent);
   };
 
@@ -71,6 +72,17 @@ $(document).ready(function() {
       return false;
     });
   }
+
+  var fixPlaceHolder = function($page) {
+    var placeholder = $page.find('.placeholder');
+    var img = placeholder.find('img').attr('src');
+    placeholder.css({
+      'background': 'url(' + img + ') center center no-repeat',
+    });
+    placeholder.empty();
+
+    return $page;
+  };
 
   /**
     * PROCEDURES
