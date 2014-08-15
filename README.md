@@ -1,16 +1,15 @@
-# WebLearn CKEditor plugins
+# WebLearn CKEditor Plugins
 
-Each CKEditor plugin has their own folder.
+Each CKEditor plugin has their own folder. Before installing a plugin, read the
+README.md file provided in that plugin's folder.
+
+Further documentation is provided at the [WebLearn CKEditor Plugin's
+Documentation](http://ox-it.github.io/wl-ck-plugins/).
 
 ## Testing
 
-All the plugins can be tested by opening `test.html`.
+Each plugin can be tested by opening the `example.html` file in their folder.
+The WebLearn plugins will only work in the Oxford WebLearn environment.
 
-Extra plugins can be added with the following:
-
-    CKEDITOR.plugins.addExternal('pluginname', src + '/pluginname/', 'plugin.js');
-    editor.config.extraPlugins += 'pluginname,';
-
-If CSS needs to be loaded into the editor's frame then add to the `editor.config.contentsCss` array:
-
-    editor.config.contentsCss.push('path/to/stylesheet.css');
+## Credit
+Fugue Icon set by [Yusuke Kamiyamane](http://p.yusukekamiyamane.com/). Licensed under a [Creative Commons Attribution 3.0 License](http://creativecommons.org/licenses/by/3.0/).
