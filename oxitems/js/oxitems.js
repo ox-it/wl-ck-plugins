@@ -71,7 +71,7 @@ $.fn.oxItems = function() {
       url += setting + '=' + feedSettings[setting] + '&';
 
     // isolate output in an iframe content and get its html
-    console.log(iframePath + '?' + url +);
+    console.log(iframePath + '?' + url);
     var iframe = $('<iframe src="' + iframePath + '?' + url + '" />');
     div.append(iframe.hide());
 
