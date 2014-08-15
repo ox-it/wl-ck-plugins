@@ -21,18 +21,24 @@
          is @path, which dictates the path of the iframe.html necessary for
          loading the feed (by default the path is oxitems/html/iframe.html
   */
-(function(){
+(function($){
 // Credit to Crescent Fresh @ StackOverflow
 // http://stackoverflow.com/questions/984510/what-is-my-script-src-url
+// Answer modified for this plugin
 var scriptSource = (function(scripts) {
-  var scripts = document.getElementsByTagName('script'),
-      script = scripts[scripts.length - 1];
+  var scripts = $(document.getElementsByTagName('script'));
 
-  if (script.getAttribute.length !== undefined) {
-    return script.src;
-  }
+  // match the script by the name
+  scripts = scripts.filter(function(i, script) {
+    var path = $(script).attr('src').split('/');
+    var filename = path[path.length-1];
 
-  return script.getAttribute('src', -1)
+    return filename == 'oxitems.js';
+  });
+
+  script = $(scripts[0]);
+
+  return script.attr('src');
 }());
 
 var iframePath = scriptSource.replace('js/oxitems.js', 'html/iframe.html');
