@@ -36,6 +36,7 @@ var scriptSource = (function(scripts) {
 }());
 
 var iframePath = scriptSource.replace('js/oxitems.js', 'html/iframe.html');
+console.log(iframePath);
 
 $.fn.oxItems = function() {
   // get settings from a particular feed div
@@ -70,6 +71,7 @@ $.fn.oxItems = function() {
       url += setting + '=' + feedSettings[setting] + '&';
 
     // isolate output in an iframe content and get its html
+    console.log(iframePath + '?' + url +);
     var iframe = $('<iframe src="' + iframePath + '?' + url + '" />');
     div.append(iframe.hide());
 
