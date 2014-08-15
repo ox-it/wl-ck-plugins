@@ -26,6 +26,7 @@
 // http://stackoverflow.com/questions/2161159/get-script-path
 var scriptPath = $("script[src]").last().attr("src").split('?')[0].split('/').slice(0, -1).join('/')+'/';
 var iframePath = (scriptPath + '~').replace('js/~', 'html/iframe.html');
+console.log(iframePath);
 
 $.fn.oxItems = function() {
   // get settings from a particular feed div
