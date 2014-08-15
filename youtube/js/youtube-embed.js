@@ -69,7 +69,7 @@
       * This gets a full youtube-embed url
       */
     var getUrl = function($element) {
-      var url = 'http://www.youtube.com/embed/';
+      var url = '//www.youtube.com/embed/';
 
       url += getParam($element, 'src') || settings.src;
       url += '?t=';
