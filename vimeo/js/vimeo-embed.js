@@ -69,7 +69,7 @@
       * This gets a full vimeo-embed url
       */
     var getUrl = function($element) {
-      var url = 'https://player.vimeo.com/video/';
+      var url = '//player.vimeo.com/video/';
 
       url += getParam($element, 'src') || settings.src;
 
