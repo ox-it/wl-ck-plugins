@@ -21,7 +21,7 @@ CKEDITOR.plugins.add('researcher-training-tool', {
   init: function(editor) {
     editor.addCommand('researcher-training-tool', new CKEDITOR.dialogCommand('researcherTrainingToolDialog'));
     editor.ui.addButton('researcher-training-tool', {
-      label: 'Insert Researcher Training Tool Listing',
+      label: 'Embed List of Researcher Training',
       command: 'researcher-training-tool',
       toolbar: 'insert'
     });
