@@ -11,6 +11,7 @@ CKEDITOR.document.appendStyleSheet(CKEDITOR.getUrl('https://ajax.googleapis.com/
 CKEDITOR.scriptLoader.load('https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js');
 CKEDITOR.scriptLoader.load(path + 'lib/chosen/chosen.js');
 CKEDITOR.scriptLoader.load(path + 'js/commit-setup-select-multiple-methods.js');
+CKEDITOR.scriptLoader.load(path + 'js/bind-oxitems-autocomplete.js');
 
 // register dialog
 CKEDITOR.dialog.add('oxItemsDialog', function(editor) {
@@ -28,12 +29,15 @@ CKEDITOR.dialog.add('oxItemsDialog', function(editor) {
           {
             type: 'text',
             id: 'channel-name',
-            label: 'Channel',
+            label: 'Channel *',
             className: 'channel_name',
             validate: CKEDITOR.dialog.validate.notEmpty('Channel name must be provided'),
             onLoad: function() {
               // add placeholder text
-              $('#oxItemsDialog .channel_name input').attr('placeholder', 'e.g. oucs/services');
+              var $input = $('#oxItemsDialog .channel_name input');
+
+              $input.attr('placeholder', 'e.g. oucs/services');
+              bindOxItemsAutoCompleteToInput($input);
             },
             setup: function(element) {
               this.setValue(element.getAttribute('data-channel_name'));
