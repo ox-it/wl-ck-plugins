@@ -5,6 +5,28 @@
 .chosen-container input {
   width: 100% !important;
 }
+
+/* autocomplete ui */
+ul.oxitems-autocomplete {
+  z-index: 11000;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+ul.oxitems-autocomplete .ui-menu-item {
+  margin: 2px;
+}
+ul.oxitems-autocomplete .ui-menu-item a {
+  display: block;
+  padding: 4px;
+  width: 100%;
+  box-sizing: border-box;
+}
+ul.oxitems-autocomplete .ui-menu-item a:hover {
+  padding: 3px;
+}
+
+/* multiple-select fields */
 .chosen-container-multi .chosen-choices {
   border-radius: 3px;
 }
