@@ -169,7 +169,7 @@ CKEDITOR.dialog.add('oxItemsDialog', function(editor) {
           },
           {
             type: 'hbox',
-            widths: ['30%', '30%', '40%'],
+            widths: ['50%', '50%'],
             children: [
               {
                 type: 'select',
@@ -184,37 +184,6 @@ CKEDITOR.dialog.add('oxItemsDialog', function(editor) {
                 },
                 commit: function(element) {
                   element.setAttribute('data-encoding', this.getValue());
-                }
-              },
-              {
-                type: 'text',
-                id: 'startdate-range',
-                label: 'Date Range <span class="info">(?)</span>',
-                className: 'startdate_range',
-                onLoad: function() {
-                  var $dialog = $('#oxItemsDialog');
-                  $dialog.find('.startdate_range input').attr('placeholder', 'start,end');
-
-                  // extra information on what the field is meant to do
-                  $('#oxItemsDialog .startdate_range').on('click', '.info', function() {
-                    var messages = [
-                      'Start and end date to search within, separated by commas (e.g. start,end).\n',
-                      'Options include:\n',
-                      'today, thisweek, thismonth, thisterm,',
-                      'tomorrow, nextweek, nextmonth, nextterm, nextyear,',
-                      'yesterday, lastweek, lastterm, lastmonth, lastyear,',
-                      'futureevents, pastevents,',
-                      'YYYY, YYYYMM, YYYYMMDD, YYYYtermname (e.g. 2013trinity)',
-                    ];
-
-                    alert(messages.join('\n'));
-                  });
-                },
-                setup: function(element) {
-                  this.setValue(element.getAttribute('data-startdate_range'));
-                },
-                commit: function(element) {
-                  element.setAttribute('data-startdate_range', this.getValue());
                 }
               },
               {
