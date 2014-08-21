@@ -98,4 +98,8 @@
       $item.replaceWith(embedVideo(getParams($item)));
     });
   };
+
+  $(document).ready(function() {
+    $('[data-youtube-embed]').youtubeEmbed();
+  });
 }(jQuery));
