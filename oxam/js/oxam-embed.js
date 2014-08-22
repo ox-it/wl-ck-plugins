@@ -181,4 +181,9 @@ $.fn.oxamEmbed = function(options) {
     displayResultsFromOxam($div, params);
   });
 };
+
+// automatically bind to data-oxam-embed divs
+$(document).ready(function() {
+  $('[data-oxam-embed]').oxamEmbed();
+});
 })(jQuery);

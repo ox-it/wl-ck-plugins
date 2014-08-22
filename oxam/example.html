@@ -4,51 +4,13 @@
     <title>CKEditor Oxam Search Plugin Example</title>
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
     <script src="../lib/ckeditor/ckeditor.js"></script>
-    <script src="js/oxam-embed.js"></script>
+    <script src="../lib/ckeditor/create-remove-editor.js"></script>
     <link rel="stylesheet" href="../lib/ckeditor/samples/sample.css">
-    <link rel="stylesheet" href="css/results.css">
-    <script>
-      var editor, html = '';
-      var scripts = document.getElementsByTagName("script");
-
-      // getting absolute url of current file
-      var src = scripts[scripts.length-1].baseURI.split('/');
-          src.pop(); // remove example.html
-          src.pop(); // remove oxam
-          src = src.join('/');
-
-      function createEditor() {
-        if (editor) {
-          return;
-        }
-
-        var config = {};
-        editor = CKEDITOR.appendTo( 'editor', config, html );
-        editor.config.allowedContent = true;
-
-        CKEDITOR.plugins.addExternal('oxam', src + '/oxam/', 'plugin.js');
-        editor.config.extraPlugins += 'oxam,';
-      }
-
-      function removeEditor() {
-        if (!editor) {
-          return;
-        }
-
-        document.getElementById('editorcontents').innerHTML = html = editor.getData();
-        document.getElementById('contents').style.display = '';
-
-        editor.destroy();
-        editor = null;
-
-        $('[data-oxam-embed]').oxamEmbed();
-      }
-    </script>
   </head>
   <body>
     <h1 class="samples">CKEditor Oxam Search Plugin Example</h1>
     <p>
-      <input onclick="createEditor();" type="button" value="Create Editor">
+      <input onclick="createEditor('editor', [ { id: 'oxam', dir: getCurrentDirectory() } ]);" type="button" value="Create Editor">
       <input onclick="removeEditor();" type="button" value="Remove Editor">
     </p>
     <div id="oxam" />
