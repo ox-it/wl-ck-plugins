@@ -10,6 +10,7 @@ var pathCommon = (path + '~').replace('vimeo/~', 'common/');
 CKEDITOR.document.appendStyleSheet(CKEDITOR.getUrl(path + 'css/dialog.css'));
 
 CKEDITOR.scriptLoader.load(pathCommon + 'js/itemsearch.js');
+CKEDITOR.scriptLoader.load(pathCommon + 'js/embed-assets-in-editor.js');
 CKEDITOR.scriptLoader.load(path + 'js/service.js');
 CKEDITOR.scriptLoader.load(path + 'js/result.js');
 CKEDITOR.scriptLoader.load(path + 'js/bind-itemsearch-to-container.js');
@@ -44,7 +45,7 @@ CKEDITOR.dialog.add('vimeoDialog', function(editor) {
               var $frame = $('#vimeoSearchIframe');
               var setUpElement = function() {
                 var contents = $frame.contents();
-                var value = element.getAttribute('data-title') || $('#searchResultId').val();
+                var value = element.getAttribute('data-title') || $('#vimeoDialog .searchResultId').val();
                 contents.find('input').val(value);
                 contents.find('form').submit();
               };
@@ -54,7 +55,7 @@ CKEDITOR.dialog.add('vimeoDialog', function(editor) {
             },
             commit: function (element) {
               // use the search result id if it has been set
-              var value = $('#searchResultId').val();
+              var value = $('#vimeoDialog .searchResultId').val();
 
               if (!value) {
                 value = $('#vimeoSearchIframe').contents().find('input').val();
@@ -106,6 +107,18 @@ CKEDITOR.dialog.add('vimeoDialog', function(editor) {
       } else {
         editor.insertElement(newFakeImage);
       }
+
+      // embed the assets
+      embedAssetsInCKEditor({
+        editor: editor,
+        id: 'ckeditor-vimeo-assets',
+        scripts: [
+          path + 'js/vimeo-embed.js',
+        ],
+        stylesheets: [
+          path + 'css/vimeo-embed.css',
+        ],
+      });
     }
   };
 });

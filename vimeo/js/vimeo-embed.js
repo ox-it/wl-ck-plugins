@@ -7,24 +7,24 @@
   
   * BASIC USE
       1. Create a div with a class (e.g. 'vimeo-embed') and give it the pseudo
-         data attribute src (e.g. 'data-src="vidID"'), where its value is the id 
-         of the YouTube video
-      2. Call ytembed on the div (e.g. $('.vimeo-embed').ytembed())
-      
+         data attribute src (e.g. 'data-src="vidID"'), where its value is the id
+         of the Vimeo video
+      2. Call vimeoEmbed on the div (e.g. $('.vimeo-embed').vimeoEmbed())
+
   * ADVANCED USE
-      ytembed takes an object literal as a parameter for the options. Set the
+      vimeoEmbed takes an object literal as a parameter for the options. Set the
       defaults for the videos on the page with them. For example, if you want
       all the videos on the page to be large and allow for full screen, use:
-      
-        $('.vimeo-embed').ytembed({
+
+        $('.vimeo-embed').vimeoEmbed({
           width: 1280,
           height: 720,
           allowfullscreen: true
         });
-        
+
       Available parameters are src, height, width, frameborder, allowfullscreen,
       startfrom and autoplay.
-  
+
   * @param {object} options are the page-wide defaults for any given video
   */
 (function($) {
@@ -69,7 +69,7 @@
       * This gets a full vimeo-embed url
       */
     var getUrl = function($element) {
-      var url = '//player.vimeo.com/video/';
+      var url = 'https://player.vimeo.com/video/';
 
       url += getParam($element, 'src') || settings.src;
 
@@ -77,7 +77,7 @@
     }
 
     /**
-      * Build the correct Youtube Embed markup
+      * Build the correct Vimeo Embed markup
       * @param {object} params is a literal of all of the parameter keys and values
       */
     var embedVideo = function(params) {
@@ -96,5 +96,9 @@
       $item.replaceWith(embedVideo(getParams($item)));
     });
   };
-}(jQuery));
 
+  // automatically bind to data-vimeo-embed divs
+  $(document).ready(function() {
+    $('[data-vimeo-embed]').vimeoEmbed();
+  });
+}(jQuery));
