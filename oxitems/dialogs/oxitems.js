@@ -2,12 +2,14 @@
 // get plugin paths
 var h = CKEDITOR.plugins.get('oxitems');
 var path = h.path;
+var pathCommon   = (path + '~').replace('oxitems/~', 'common/');
 
 // load css and javascript files
 CKEDITOR.document.appendStyleSheet(CKEDITOR.getUrl(path + 'css/dialog.css'));
 CKEDITOR.document.appendStyleSheet(CKEDITOR.getUrl(path + 'lib/chosen/chosen.css'));
 CKEDITOR.document.appendStyleSheet(CKEDITOR.getUrl('https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/themes/smoothness/jquery-ui.css'));
 
+CKEDITOR.scriptLoader.load(pathCommon + 'js/embed-assets-in-editor.js');
 CKEDITOR.scriptLoader.load('https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js');
 CKEDITOR.scriptLoader.load(path + 'lib/chosen/chosen.js');
 CKEDITOR.scriptLoader.load(path + 'js/commit-setup-select-multiple-methods.js');
@@ -255,6 +257,15 @@ CKEDITOR.dialog.add('oxItemsDialog', function(editor) {
       } else {
         editor.insertElement(newFakeImage);
       }
+
+      // embed the assets
+      embedAssetsInCKEditor({
+        editor: editor,
+        id: 'ckeditor-oxitems-assets',
+        scripts: [
+          path + 'js/oxitems.js',
+        ],
+      });
     }
   };
 });

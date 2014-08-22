@@ -91,4 +91,9 @@ $.fn.oxItems = function() {
     outputNewsFeed($(div));
   });
 };
+
+// automatically bind to data-oxitem divs
+$(document).ready(function() {
+  $('[data-oxitem]').oxItems();
+});
 })(jQuery);
