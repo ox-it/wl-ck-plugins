@@ -132,4 +132,9 @@ $.fn.wlImageGallery = function(options) {
     displayGallery(i, $this, $this.data('directory'));
   });
 };
+
+// automatically bind to data-image-gallery divs
+$(document).ready(function() {
+  $('[data-image-gallery]').wlImageGallery();
+});
 })(jQuery);

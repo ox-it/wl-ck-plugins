@@ -10,6 +10,7 @@ CKEDITOR.document.appendStyleSheet(CKEDITOR.getUrl(path + 'css/dialog.css'));
 CKEDITOR.document.appendStyleSheet(CKEDITOR.getUrl(pathCommonWl + 'css/file-tree.css'));
 
 CKEDITOR.scriptLoader.load(pathCommon + 'js/get-plugin-dialog-html.js');
+CKEDITOR.scriptLoader.load(pathCommon + 'js/embed-assets-in-editor.js');
 CKEDITOR.scriptLoader.load(pathCommonWl + 'js/file-tree.js');
 CKEDITOR.scriptLoader.load(pathCommonWl + 'js/folder-listing.js');
 CKEDITOR.scriptLoader.load(pathCommonWl + 'js/get-user-data.js');
@@ -198,6 +199,19 @@ CKEDITOR.dialog.add('imageGalleryDialog', function(editor) {
       } else {
         editor.insertElement(newFakeImage);
       }
+
+      // embed the assets
+      embedAssetsInCKEditor({
+        editor: editor,
+        id: 'ckeditor-image-gallery-assets',
+        scripts: [
+          path + 'lib/colorbox.js',
+          path + 'js/image-gallery.js',
+        ],
+        stylesheets: [
+          path + 'lib/colorbox.css',
+        ],
+      });
     }
   }
 });
