@@ -7,7 +7,7 @@
   */
 
 var SOLOSearchService = function(params) {
-  var url = '//api.m.ox.ac.uk/library/search';
+  var url = 'https://api.m.ox.ac.uk/library/search';
 
   // fills in default settings for search query parameters
   var prepareQueryParams = function(settings) {
@@ -40,7 +40,7 @@ var SOLOSearchService = function(params) {
     var ajaxUrl = url;
 
     if (params.id) {
-      ajaxUrl = '//api.m.ox.ac.uk/library/item:' + params.id + '/';
+      ajaxUrl = 'https://api.m.ox.ac.uk/library/item:' + params.id + '/';
       params = {};
     }
 
