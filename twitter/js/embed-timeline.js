@@ -35,4 +35,9 @@ $.fn.twitterTimeline = function() {
     $element.append(embed);
   });
 };
+
+// automatically bind to data-twitter-timeline divs
+$(document).ready(function() {
+  $('[data-twitter-timeline]').twitterTimeline();
+});
 })(jQuery);
