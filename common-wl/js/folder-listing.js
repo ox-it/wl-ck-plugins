@@ -145,4 +145,9 @@ $.fn.folderListing = function(options) {
     });
   });
 };
+
+// automatically bind to data-folder-listing divs
+$(document).ready(function() {
+  $('[data-folder-listing]').folderListing();
+});
 })(jQuery);
