@@ -4,6 +4,7 @@ var h = CKEDITOR.plugins.get('researcher-training-tool');
 var path = h.path;
 
 // find /common path, replacing last instance of the plugin name with 'common'
+var pathCommon = (path + '~').replace('researcher-training-tool/~', 'common/');
 var pathCommonWl = (path + '~').replace('researcher-training-tool/~', 'common-wl/');
 
 // load css and javascript files
@@ -20,6 +21,7 @@ if (!$.fn.autocomplete) {
   CKEDITOR.scriptLoader.load('https://code.jquery.com/ui/1.8.22/jquery-ui.js');
 }
 
+CKEDITOR.scriptLoader.load(pathCommon + 'js/embed-assets-in-editor.js');
 CKEDITOR.scriptLoader.load('https://rawgit.com/lokothodida/courses-js-widget/dev/oxford-courses-widget.js');
 CKEDITOR.scriptLoader.load(pathCommonWl + 'js/oxpoints-autocomplete.js');
 CKEDITOR.scriptLoader.load(path + 'js/skills.js');
@@ -358,6 +360,15 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
       } else {
         editor.insertElement(newFakeImage);
       }
+
+      // embed the assets
+      embedAssetsInCKEditor({
+        editor: editor,
+        id: 'ckeditor-researcher-training-tool-assets',
+        scripts: [
+          path + 'lib/courses-js-widget/oxford-courses-widget.js',
+        ],
+      });
     }
   }
 });
