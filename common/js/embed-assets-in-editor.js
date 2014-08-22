@@ -16,7 +16,7 @@ embedAssetsInCKEditor =  function(params) {
   var scripts = [];
   var stylesheets = [];
   var assets = $data.find('#' + params.id);
-  var container = (assets.length) ? assets.empty() : $('<div/>').attr({ id: params.id }).hide();
+  var container = (assets.length) ? assets.detach().empty() : $('<div/>').attr({ id: params.id }).hide();
 
   // load scripts
   for (i in params.scripts) {
@@ -46,9 +46,7 @@ embedAssetsInCKEditor =  function(params) {
     );
   }
 
-  if (assets.length < 1) {
-    $data.prepend(container);
-  }
+  $data.prepend(container);
 
   // add to the current ckeditor instance
   var instance = editor.name;
