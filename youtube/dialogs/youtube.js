@@ -48,7 +48,7 @@ CKEDITOR.dialog.add('youtubeDialog', function(editor) {
               var $frame = $('#youTubeSearchIframe');
               var setUpElement = function() {
                 var contents = $frame.contents();
-                var value = element.getAttribute('data-src') || $('#searchResultId').val();
+                var value = element.getAttribute('data-src') || $('#youTubeDialog .searchResultId').val();
                 contents.find('input').val(value);
                 contents.find('form').submit();
               };
@@ -58,7 +58,7 @@ CKEDITOR.dialog.add('youtubeDialog', function(editor) {
             },
             commit: function (element) {
               // use the search result id if it has been set
-              var value = $('#searchResultId').val();
+              var value = $('#youTubeDialog .searchResultId').val();
 
               if (!value) {
                 value = $('#youTubeSearchIframe').contents().find('input').val();

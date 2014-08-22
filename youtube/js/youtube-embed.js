@@ -69,7 +69,7 @@
       * This gets a full youtube-embed url
       */
     var getUrl = function($element) {
-      var url = '//www.youtube.com/embed/';
+      var url = 'https://www.youtube.com/embed/';
 
       url += getParam($element, 'src') || settings.src;
       url += '?t=';
@@ -99,6 +99,7 @@
     });
   };
 
+  // automatically bind to data-youtube-embed divs
   $(document).ready(function() {
     $('[data-youtube-embed]').youtubeEmbed();
   });
