@@ -37,7 +37,7 @@ var BindYouTubeSearchToContainer = function(container, searchResults, result) {
 
   var closeDialogOnResultClick = function() {
     searchResults.on('click', '.result', function(e) {
-      $('#searchResultId').val($(this).data('src'));
+      $('#youTubeDialog .searchResultId').val($(this).data('src'));
       clickDialogOK();
       e.preventDefault();
     });

@@ -37,7 +37,7 @@ var BindVimeoSearchToContainer = function(container, searchResults, result) {
 
   var closeDialogOnResultClick = function() {
     searchResults.on('click', '.result', function(e) {
-      $('#vimeoDialog #searchResultId').val($(this).data('src'));
+      $('#vimeoDialog .searchResultId').val($(this).data('src'));
       $('#vimeoDialog .videoTitle').val($(this).find('.title').html());
       clickDialogOK();
       e.preventDefault();
