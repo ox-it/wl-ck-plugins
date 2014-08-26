@@ -1,90 +1,11 @@
 /**
-  * Title:        ItemSearch
-  * Description:  Provides a form with item-searching functionality for
-                  correctly configured APIs
-  * Author:       Lawrence Okoth-Odida
-  * Version:      0.1
-  * Date:         04/08/2014
-
-  * BASIC USAGE
-      1. Create an empty div as a placeholder for your search form, and a div
-         for your search results:
-
-          <div class="searchForm" />
-          <div class="searchResults" />
-
-      2. With JavaScript, create a class for getting the results data. This
-         class needs only one public method, performQuery(), which should take
-         a search term and return an array of objects (your search results).
-
-         var YourSearchService = function() {
-           // ...
-           this.performQuery = function(searchTerm) {
-             var results = [];
-             // do procedure to get results, e.g. an ajax request
-             return results;
-           }
-         }
-
-      3. Call $.itemSearch() on your div with the following parameters:
-
-         $('.searchForm').itemSearch({
-           service: YourSearchService,
-           resultsContainer: $('.searchResults'),
-         });
-
-      4. You will now have a search form in your searchForm div, that when you
-         hit 'Search' or Enter, will run a search query and display the results
-         in your searchResults div.
-
-  * ADVANCED USAGE
-      @param service {object}
-        Your search service, which as described above should have a public
-        method that performs the search query named peformQuery.
-
-      @param resultsContainer {jQuery object}
-        A jQuery object that targets where your results should be displayed.
-
-      @param displayResults {function(object)}
-        A function that takes a search result item (an object) and returns the
-        html output for that result as a string. The object's properties are
-        dependent on how your format the results in your search service.
-
-        // example
-        return '<li><a href="' + result.url + '">' + result.title + '</li>';
-
-      @param waiting {string || html}
-        A message that's shown in the resultsContainer while the results are
-        loading
-
-      @param registerElements {array[jQuery object]}
-        An array of jQuery objects which are extra search fields that
-        parameterise the query. So for example, if your search query should also
-        be parameterised by a variable 'max' which the user should specify, you
-        could have:
-
-        [
-          $('<input type="text" name="max" placeholder="Maximum # of results"/>'),
-        ]
-
-      @param noResult {string}
-        Message for if there are no results (i.e. the search results array is
-        empty).
-
-      @param pagination {integer || boolean}
-        Maximum number of results per page before being split into multiple
-        pages. If set to false, pagination is disabled.
-
-      @param params {object}
-        Default parameters for your search query. If specified, then your
-        search service object should take those parameters as well:
-
-        var YourSearchService = function(params) {
-
-        Then you can access those parameters in the body of the search service
-        object.
-  */
-
+* Title          jQuery ItemSearch
+* Description    A jQuery plugin for adding generic item-searching functionality to a search form.
+* Author         Lawrence Okoth-Odida
+* Version        0.1.2
+* Date           19/08/2014
+* Documentation  https://github.com/lokothodida/jquery-itemsearch/wiki/
+*/
 (function($) {
 $.fn.itemSearch = function(options) {
   // initialze settings
@@ -143,7 +64,7 @@ $.fn.itemSearch = function(options) {
   var buildResultsPage = function(results) {
     var html = '';
 
-    if (results) {
+    if (results.length) {
       $.each(results, function(key, result)  { 
         html += settings.displayResult(result);
       });
@@ -151,7 +72,7 @@ $.fn.itemSearch = function(options) {
       html = $('<div/>').append($('<p/>').append(settings.noResult)).html();
     }
 
-    if (settings.pagination) {
+    if (settings.pagination && results.length) {
       html = buildPaginatedResults(html);
     }
 
@@ -210,36 +131,52 @@ $.fn.itemSearch = function(options) {
   return this.each(function() {
     var $form = buildSearchForm();
     
-    var bindToSubmit = function(e) {
+    var bindToSubmit = function(eventParams) {
       if (settings.waiting) {
         settings.resultsContainer.html(settings.waiting);
       }
 
-      var params = $.extend(getParamsFromRegisteredElements(), settings.params);
-      var service = new settings.service(params || {});
-      var query   = $form.find('.' + selectors.query).val();
-      var results = service.performQuery(query);
-      var html    = buildResultsPage(results);
+      if (eventParams && eventParams.results) {
+        // someone is triggering setResults()
+        var html    = buildResultsPage(eventParams.results);
+        settings.resultsContainer.html(html);
+      } else {
+        var params  = $.extend(getParamsFromRegisteredElements(), settings.params);
+        var service = new settings.service($.extend({ form: $form }, (params || {})));
+        var query   = $form.find('.' + selectors.query).val();
+        var results = service.performQuery(query);
+        var html    = buildResultsPage(results);
 
-      settings.resultsContainer.html(html);
+        if (results !== false) {
+          // if results is a boolean, we are waiting for asynchronous data
+          settings.resultsContainer.html(html);
+        }
+      }
 
-      e.preventDefault();
+      return false;
     };
 
     // now bind search functionality to the form elements
     $form.on('click', '.' + selectors.button, bindToSubmit);
 
+    // bind functionality to hitting ENTER (keyCode #13 is the ENTER button)
     $form.on('keydown', 'input', function(e) {
       if (e.keyCode === 13) {
         // done so that users can simply use on('submitItemSearchForm' ....) for
         // their elements defined in registeredElements literal
         $(this).trigger('submitItemSearchForm');
+
+        return false;
       }
     });
 
-    $form.on('submitItemSearchForm', 'input', function(e) {
-      bindToSubmit(e);
+    $form.on('submitItemSearchForm', 'input', function() {
+      bindToSubmit();
     });
+
+    $form.setResults = function(results) {
+      bindToSubmit({ results: results });
+    };
 
     $form.on('submit', bindToSubmit);
 

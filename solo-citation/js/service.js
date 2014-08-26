@@ -18,6 +18,7 @@ var SOLOSearchService = function(params) {
     query = $.extend(query, params);
 
     query.count = query.count || 5;
+    delete query.form; // form was added in ItemSearch 0.1.2 (not needed in ajax call)
 
     return query;
   }
