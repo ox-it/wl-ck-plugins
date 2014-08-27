@@ -1,0 +1,19 @@
+{"entityPrefix": "ckeditor-config", "ckeditor-config_collection": [
+{
+  "data": "youtube",
+  "displayTitle": "ckeditor-config : \/ckeditor-config",
+  "entityId": null,
+  "entityProperties": {
+  },
+  "entityReference": "\/ckeditor-config",
+  "entityURL": "http:\/\/ben.oucs.ox.ac.uk:8080\/direct\/ckeditor-config"
+},{
+  "data": "vimeo",
+  "displayTitle": "ckeditor-config : \/ckeditor-config",
+  "entityId": null,
+  "entityProperties": {
+  },
+  "entityReference": "\/ckeditor-config",
+  "entityURL": "http:\/\/ben.oucs.ox.ac.uk:8080\/direct\/ckeditor-config"
+}
+]}
