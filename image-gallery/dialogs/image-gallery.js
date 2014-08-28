@@ -205,11 +205,11 @@ CKEDITOR.dialog.add('imageGalleryDialog', function(editor) {
         editor: editor,
         id: 'ckeditor-image-gallery-assets',
         scripts: [
-          path + 'lib/colorbox.js',
+          path + 'lib/colorbox/colorbox.js',
           path + 'js/image-gallery.js',
         ],
         stylesheets: [
-          path + 'lib/colorbox.css',
+          path + 'lib/colorbox/colorbox.css',
         ],
       });
     }
