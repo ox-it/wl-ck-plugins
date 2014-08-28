@@ -89,6 +89,7 @@ var bindToContainers = function() {
     var $e = $(e);
 
     // transform to a widget only if it hasn't already been transformed before
+    console.log()
     if (!$e.find('table').length) {
       $e.oxfordCoursesWidget();
     }
@@ -96,6 +97,6 @@ var bindToContainers = function() {
 };
 
 $(document).ready(bindToContainers);
-bindToContainers();
+//bindToContainers();
 
 })(jQuery);
