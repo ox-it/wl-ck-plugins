@@ -210,6 +210,7 @@ CKEDITOR.dialog.add('imageGalleryDialog', function(editor) {
         ],
         stylesheets: [
           path + 'lib/colorbox/colorbox.css',
+          path + 'css/image-gallery.css',
         ],
       });
     }
