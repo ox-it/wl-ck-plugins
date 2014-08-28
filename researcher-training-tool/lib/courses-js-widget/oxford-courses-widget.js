@@ -87,10 +87,11 @@ $.fn.oxfordCoursesWidget = function(options) {
 var bindToContainers = function() {
   $('.courses-widget-container, [data-researcher-training-tool]').each(function(i, e) {
     var $e = $(e);
+    var checkTables = $e.find('table');
 
     // transform to a widget only if it hasn't already been transformed before
-    console.log()
-    if (!$e.find('table').length) {
+    console.log(checkTables);
+    if (checkTables.length == 0) {
       $e.oxfordCoursesWidget();
     }
   });
