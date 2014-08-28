@@ -84,7 +84,14 @@ $.fn.oxfordCoursesWidget = function(options) {
 
 // now bind the functionality to the containers
 var bindToContainers = function() {
-  $('.courses-widget-container, [data-researcher-training-tool]').oxfordCoursesWidget();
+  $('.courses-widget-container, [data-researcher-training-tool]').each(function(i, e) {
+    var $e = $(e);
+
+    // transform to a widget only if it hasn't already been transformed before
+    if (!$e.find('table').length) {
+      $e.oxfordCoursesWidget();
+    }
+  });
 };
 
 $(document).ready(bindToContainers);
