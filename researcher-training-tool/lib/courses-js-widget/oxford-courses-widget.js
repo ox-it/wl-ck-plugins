@@ -90,7 +90,6 @@ var bindToContainers = function() {
     var checkTables = $e.find('table');
 
     // transform to a widget only if it hasn't already been transformed before
-    console.log(checkTables);
     if (checkTables.length == 0) {
       $e.oxfordCoursesWidget();
     }
