@@ -30,6 +30,11 @@ var BindCreativeCommonsImageSearchToDialog = function(path, dialog) {
         type,
       ]
     });
+
+    container.find('input').addClass('searchQuery cke_dialog_ui_input_text');
+    container.find('select').addClass('cke_dialog_ui_input_select');
+    container.find('a').addClass('searchButton cke_dialog_ui_button cke_dialog_ui_button_ok');
+    container.find('input').first().attr('placeholder', 'Title');
   };
 
   // now initialize iframe which will isolate the search field (so we can submit
@@ -44,10 +49,6 @@ var BindCreativeCommonsImageSearchToDialog = function(path, dialog) {
       contents.find('head').append($('head script, head link').clone());
       contents.find('body').html(container);
       contents.find('body').css({ padding: 0, width: '100%' });
-      contents.find('input').addClass('searchQuery cke_dialog_ui_input_text');
-      contents.find('select').addClass('cke_dialog_ui_input_select');
-      contents.find('a').addClass('searchButton cke_dialog_ui_button cke_dialog_ui_button_ok');
-      contents.find('input').first().attr('placeholder', 'Title');
     });
   };
 

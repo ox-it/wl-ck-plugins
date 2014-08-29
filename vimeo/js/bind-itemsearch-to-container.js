@@ -14,6 +14,11 @@ var BindVimeoSearchToContainer = function(container, searchResults, result) {
       displayResult: result.display,
       pagination: false,
     });
+
+    container.find('input').addClass('searchQuery cke_dialog_ui_input_text')
+                          .attr('placeholder', 'Search here...');
+    container.find('a').addClass('searchButton cke_dialog_ui_button cke_dialog_ui_button_ok')
+                      .html('<span class="icon"></span>');
   };
 
   // now initialize iframe which will isolate the search field (so we can submit
@@ -28,10 +33,6 @@ var BindVimeoSearchToContainer = function(container, searchResults, result) {
       contents.find('head').append($('head script, head link').clone());
       contents.find('body').html(container);
       contents.find('body').css({ padding: 0, width: '100%' });
-      contents.find('input').addClass('searchQuery cke_dialog_ui_input_text')
-                            .attr('placeholder', 'Search here...');
-      contents.find('a').addClass('searchButton cke_dialog_ui_button cke_dialog_ui_button_ok')
-                        .html('<span class="icon"></span>');
     });
   };
 
