@@ -1,15 +1,17 @@
 (function() {
 /* methods */
+var jQueryPrefix = 'https://code.jquery.com/';
+
 var getEditorDataJQuery = function(editor) {
   return $('<div>').append(editor.getData());
 };
 
 var embedJQueryInEditor = function(editor, version) {
   var $data = getEditorDataJQuery(editor);
-  var scripts = $data.find("script[src*='https://code.jquery.com/" + version + "']").remove();
+  var scripts = $data.find("script[src*='" jQueryPrefix + version + "']").remove();
   var script = $('<script/>').attr({
     type : 'text/javascript',
-    src: 'https://code.jquery.com/' + version,
+    src: jQueryPrefix + version,
   });
 
   $data.prepend(script);
@@ -25,9 +27,8 @@ CKEDITOR.plugins.add('jquery', {
   init: function(editor) {
     editor.addCommand('jquery', {
       exec: function(editor) {
-        console.log(editor.config);
-        console.log(editor.config.jQueryVersion);
         var version = 'jquery-' + (editor.config.jQueryVersion || '1.11.1') + '.js';
+
         embedJQueryInEditor(editor, version);
       },
     });
