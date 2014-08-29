@@ -30,10 +30,16 @@ var scriptSource = (function(scripts) {
 
   // match the script by the name
   scripts = scripts.filter(function(i, script) {
-    var path = $(script).attr('src').split('/');
-    var filename = path[path.length-1];
+    var src = $(script).attr('src');
 
-    return filename == 'oxitems.js';
+    if (src) {
+      var path = src.split('/');
+      var filename = path[path.length-1];
+
+      return filename == 'oxitems.js';
+    } else {
+      return false;
+    }
   });
 
   script = $(scripts[0]);
