@@ -25,7 +25,7 @@ $.fn.folderListing = function(options) {
     afterBindTree: function(element) {},
   }, options);
 
-  var urlPrefix = 'https://weblearn.ox.ac.uk/direct/content/resources/';
+  var urlPrefix = '/direct/content/resources/';
 
   var getHtmlResults = function(json, $div) {
     var html = $('<ul/>').addClass('jqueryFileTree').hide();

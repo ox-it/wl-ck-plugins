@@ -8,8 +8,8 @@
 (function($){
 $.fn.oxamEmbed = function(options) {
   var ajaxUrls = [
-    'https://weblearn.ox.ac.uk/portal/hierarchytool/8a98905b-a664-4618-9200-4ceb2118b0d6/advanced',
-    'https://weblearn.ox.ac.uk/portal/hierarchytool/2e4b8eb6-8bfb-45bf-aae8-44d69a6f7880/search',
+    '/portal/hierarchytool/8a98905b-a664-4618-9200-4ceb2118b0d6/advanced',
+    '/portal/hierarchytool/2e4b8eb6-8bfb-45bf-aae8-44d69a6f7880/search',
   ];
 
   var getParams = function($div) {

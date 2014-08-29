@@ -63,7 +63,7 @@ ul.jqueryFileTree a:hover {
   float: left;
   height: 16px;
   width: 16px;
-  background: transparent url('https://weblearn.ox.ac.uk/library/image/silk/information.png') no-repeat left top;
+  background: transparent url('/library/image/silk/information.png') no-repeat left top;
 }
 
 .jqueryFileTree .tooltips div {

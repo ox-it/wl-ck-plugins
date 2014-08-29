@@ -33,7 +33,7 @@ $.fn.wlImageGallery = function(options) {
   }, options);
 
   var acceptedFileTypes = ['png', 'gif', 'jpg', 'jpeg'];
-  var urlPrefix = 'https://weblearn.ox.ac.uk/direct/content/resources/';
+  var urlPrefix = '/direct/content/resources/';
 
   var getSettingsFromContainer = function(i, $container) {
     var slideshowSpeed = $container.data('slideshowspeed') || settings.slideshowSpeed;
