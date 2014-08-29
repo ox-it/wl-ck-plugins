@@ -11,7 +11,7 @@ embedAssetsInCKEditor =  function(params) {
     scripts: [],
     stylesheets: [],
   }, params);
-  var data = editor.getData();
+  var data = params.editor.getData();
   var $data = $('<div>').append($(data));
   var scripts = [];
   var stylesheets = [];
@@ -49,6 +49,6 @@ embedAssetsInCKEditor =  function(params) {
   $data.prepend(container);
 
   // add to the current ckeditor instance
-  var instance = editor.name;
+  var instance = params.editor.name;
   CKEDITOR.instances[instance].setData($data.html());
 };
