@@ -42,19 +42,23 @@ $.fn.itemSearch = function(options) {
   };
 
   var addRegisteredElementsToForm = function(form) {
-    for (i in settings.registerElements) {
-      var element = settings.registerElements[i];
+    if (settings.registerElements.length) {
+      for (i in settings.registerElements) {
+        var element = settings.registerElements[i];
 
-      form.append(element);
+        form.append(element);
+      }
     }
   };
 
   var getParamsFromRegisteredElements = function() {
     var params = {};
 
-    for (i in settings.registerElements) {
-      var $element = settings.registerElements[i];
-      params[$element.attr('name')] = $element.val();
+    if (settings.registerElements.length) {
+      for (i in settings.registerElements) {
+        var $element = settings.registerElements[i];
+        params[$element.attr('name')] = $element.val();
+      }
     }
 
     return params;
