@@ -8,7 +8,7 @@ var getEditorDataJQuery = function(editor) {
 
 var embedJQueryInEditor = function(editor, version) {
   var $data = getEditorDataJQuery(editor);
-  var scripts = $data.find("script[src*='" jQueryPrefix + version + "']").remove();
+  var scripts = $data.find("script[src*='" + jQueryPrefix + version + "']").remove();
   var script = $('<script/>').attr({
     type : 'text/javascript',
     src: jQueryPrefix + version,
