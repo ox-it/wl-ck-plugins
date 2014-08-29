@@ -42,7 +42,7 @@ $.fn.itemSearch = function(options) {
   };
 
   var addRegisteredElementsToForm = function(form) {
-    for (i = 0; settings.registerElements.length; i++) {
+    for (i = 0; i < settings.registerElements.length; i++) {
       var element = settings.registerElements[i];
 
       form.append(element);
