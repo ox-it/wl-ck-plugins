@@ -3,7 +3,7 @@ var getCurrentUserData = function() {
   var data = {};
 
   $.ajax({
-    url: 'https://weblearn.ox.ac.uk/direct/user/current.json',
+    url: '/direct/user/current.json',
     dataType: 'json',
     async: false,
     success: function(json) {
@@ -24,7 +24,7 @@ var getAvailableSites = function() {
 
   // all other sites
   $.ajax({
-    url: 'https://weblearn.ox.ac.uk/direct/site.json',
+    url: '/direct/site.json',
     dataType: 'json',
     async: false,
     success: function(json) {

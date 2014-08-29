@@ -2,53 +2,15 @@
   <head>
     <meta charset="utf-8">
     <title>CKEditor OxItems Plugin Example</title>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="../lib/ckeditor/ckeditor.js"></script>
-    <script src="../lib/courses-js-widget/oxpoints-autocomplete.js"></script>
-    <script src="js/oxitems.js"></script>
+    <script src="../lib/ckeditor/create-remove-editor.js"></script>
     <link rel="stylesheet" href="../lib/ckeditor/samples/sample.css">
-    <script>
-      var editor, html = '';
-      var scripts = document.getElementsByTagName("script");
-
-      // getting absolute url of current file
-      var src = scripts[scripts.length-1].baseURI.split('/');
-          src.pop(); // remove example.html
-          src.pop(); // remove oxitems
-          src = src.join('/');
-
-      function createEditor() {
-        if (editor) {
-          return;
-        }
-
-        var config = {};
-        editor = CKEDITOR.appendTo( 'editor', config, html );
-        editor.config.allowedContent = true;
-
-        CKEDITOR.plugins.addExternal('oxitems', src + '/oxitems/', 'plugin.js');
-        editor.config.extraPlugins += 'oxitems,';
-      }
-
-      function removeEditor() {
-        if (!editor) {
-          return;
-        }
-
-        document.getElementById('editorcontents').innerHTML = html = editor.getData();
-        document.getElementById('contents').style.display = '';
-
-        editor.destroy();
-        editor = null;
-
-        $('[data-oxitem]').oxItems();
-      }
-    </script>
   </head>
   <body>
     <h1 class="samples">CKEditor OxItems Plugin Example</h1>
     <p>
-      <input onclick="createEditor();" type="button" value="Create Editor">
+      <input onclick="createEditor('editor', [ { id: 'oxitems', dir: getCurrentDirectory() } ]);" type="button" value="Create Editor">
       <input onclick="removeEditor();" type="button" value="Remove Editor">
     </p>
     <div id="editor">

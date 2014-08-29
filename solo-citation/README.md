@@ -18,25 +18,6 @@ Ensure that you have jQuery v1.11.1+ running on your pages.
    instruction 3 on `For your pages`.
 
 ## For your pages
-1. On the pages that display the citations, have the following scripts
-   and CSS loaded:
-
-        <script src="path/to/solo-citation/js/solo-citation.js"></script>
-        <link rel="stylesheet" href="path/to/solo-citation/css/solo-citation.css">
-
-2. Then invoke the `.soloCitation()` method on the correct divs to replace them with the embed code:
-
-        $('[data-solo-citation]').soloCitation();
-
-   The editor will create divs with a data attribute `solo-citation`, hence the method should target
-   those divs (as shown above).
-
-3. To push all of the citations into one block, pass the parameter `citationsContainer`
-   with the jQuery object of the container into soloCitation(), like so:
-
-        $('[data-solo-citation]').soloCitation({
-          citationsContainer: $('#citationsContainer'),
-        });
-
-   At the point in the page where the individual citation would be, a link in
-   square brackets will be placed that goes down the page to the citation block.
+The dependencies for displaying the citation will be loaded into the editor once you click `OK` on the dialog.
+If for some reason your dependencies get removed whilst editing inside of CKEditor,
+simply edit one of your citations and click `OK` on the dialog and the dependencies will be inserted again.

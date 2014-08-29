@@ -10,6 +10,7 @@ var pathCommon = (path + '~').replace('youtube/~', 'common/');
 CKEDITOR.document.appendStyleSheet(CKEDITOR.getUrl(path + 'css/dialog.css'));
 
 CKEDITOR.scriptLoader.load(pathCommon + 'js/itemsearch.js');
+CKEDITOR.scriptLoader.load(pathCommon + 'js/embed-assets-in-editor.js');
 CKEDITOR.scriptLoader.load(path + 'js/service.js');
 CKEDITOR.scriptLoader.load(path + 'js/key.js');
 CKEDITOR.scriptLoader.load(path + 'js/result.js');
@@ -47,7 +48,7 @@ CKEDITOR.dialog.add('youtubeDialog', function(editor) {
               var $frame = $('#youTubeSearchIframe');
               var setUpElement = function() {
                 var contents = $frame.contents();
-                var value = element.getAttribute('data-src') || $('#searchResultId').val();
+                var value = element.getAttribute('data-src') || $('#youTubeDialog .searchResultId').val();
                 contents.find('input').val(value);
                 contents.find('form').submit();
               };
@@ -57,7 +58,7 @@ CKEDITOR.dialog.add('youtubeDialog', function(editor) {
             },
             commit: function (element) {
               // use the search result id if it has been set
-              var value = $('#searchResultId').val();
+              var value = $('#youTubeDialog .searchResultId').val();
 
               if (!value) {
                 value = $('#youTubeSearchIframe').contents().find('input').val();
@@ -106,6 +107,18 @@ CKEDITOR.dialog.add('youtubeDialog', function(editor) {
       } else {
         editor.insertElement(newFakeImage);
       }
+
+      // embed the youtube-embed assets
+      embedAssetsInCKEditor({
+        editor: editor,
+        id: 'ckeditor-youtube-assets',
+        scripts: [
+          path + 'js/youtube-embed.js',
+        ],
+        stylesheets: [
+          path + 'css/youtube-embed.css',
+        ],
+      });
     }
   };
 });

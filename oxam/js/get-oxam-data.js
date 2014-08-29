@@ -1,4 +1,4 @@
-var oxamUrl = 'https://weblearn.ox.ac.uk/portal/hierarchytool/8a98905b-a664-4618-9200-4ceb2118b0d6/advanced';
+var oxamUrl = '/portal/hierarchytool/8a98905b-a664-4618-9200-4ceb2118b0d6/advanced';
 
 // load the select fields from oxam
 var getOxamData = function($div) {

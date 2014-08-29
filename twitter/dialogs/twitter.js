@@ -6,7 +6,11 @@ var path = h.path;
 // load css and javascript files
 CKEDITOR.document.appendStyleSheet(CKEDITOR.getUrl(path + 'css/dialog.css'));
 
+// find /common path, replacing last instance of the plugin name with 'common'
+var pathCommon = (path + '~').replace('twitter/~', 'common/');
+
 CKEDITOR.scriptLoader.load(path + 'js/get-dialog-html.js');
+CKEDITOR.scriptLoader.load(pathCommon + 'js/embed-assets-in-editor.js');
 
 // remove '#' from strings
 var validateHashTagForUrl = function(string) {
@@ -195,6 +199,15 @@ CKEDITOR.dialog.add('twitterDialog', function(editor) {
       } else {
         editor.insertElement(newFakeImage);
       }
+
+      // embed the assets
+      embedAssetsInCKEditor({
+        editor: editor,
+        id: 'ckeditor-twitter-assets',
+        scripts: [
+          path + 'js/embed-timeline.js',
+        ],
+      });
     }
   }
 });

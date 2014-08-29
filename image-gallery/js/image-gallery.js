@@ -33,7 +33,7 @@ $.fn.wlImageGallery = function(options) {
   }, options);
 
   var acceptedFileTypes = ['png', 'gif', 'jpg', 'jpeg'];
-  var urlPrefix = 'https://weblearn.ox.ac.uk/direct/content/resources/';
+  var urlPrefix = '/direct/content/resources/';
 
   var getSettingsFromContainer = function(i, $container) {
     var slideshowSpeed = $container.data('slideshowspeed') || settings.slideshowSpeed;
@@ -132,4 +132,9 @@ $.fn.wlImageGallery = function(options) {
     displayGallery(i, $this, $this.data('directory'));
   });
 };
+
+// automatically bind to data-image-gallery divs
+$(document).ready(function() {
+  $('[data-image-gallery]').wlImageGallery();
+});
 })(jQuery);

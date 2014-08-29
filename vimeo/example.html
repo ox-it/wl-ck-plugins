@@ -4,50 +4,13 @@
     <title>CKEditor Vimeo Search Plugin Example</title>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="../lib/ckeditor/ckeditor.js"></script>
-    <script src="js/vimeo-embed.js"></script>
+    <script src="../lib/ckeditor/create-remove-editor.js"></script>
     <link rel="stylesheet" href="../lib/ckeditor/samples/sample.css">
-    <script>
-      var editor, html = '';
-      var scripts = document.getElementsByTagName("script");
-
-      // getting absolute url of current file
-      var src = scripts[scripts.length-1].baseURI.split('/');
-          src.pop(); // remove example.html
-          src.pop(); // remove vimeo
-          src = src.join('/');
-
-      function createEditor() {
-        if (editor) {
-          return;
-        }
-
-        var config = {};
-        editor = CKEDITOR.appendTo( 'editor', config, html );
-        editor.config.allowedContent = true;
-
-        CKEDITOR.plugins.addExternal('vimeo', src + '/vimeo/', 'plugin.js');
-        editor.config.extraPlugins += 'vimeo,';
-      }
-
-      function removeEditor() {
-        if (!editor) {
-          return;
-        }
-
-        document.getElementById('editorcontents').innerHTML = html = editor.getData();
-        document.getElementById('contents').style.display = '';
-
-        editor.destroy();
-        editor = null;
-
-        $('[data-vimeo-embed]').vimeoEmbed();
-      }
-    </script>
   </head>
   <body>
     <h1 class="samples">CKEditor Vimeo Search Plugin Example</h1>
     <p>
-      <input onclick="createEditor();" type="button" value="Create Editor">
+      <input onclick="createEditor('editor', [ { id: 'vimeo', dir: getCurrentDirectory() } ]);" type="button" value="Create Editor">
       <input onclick="removeEditor();" type="button" value="Remove Editor">
     </p>
     <div id="editor">

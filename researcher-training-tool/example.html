@@ -2,52 +2,15 @@
   <head>
     <meta charset="utf-8">
     <title>CKEditor Researcher Training Tool Example</title>
-    <script type="text/javascript">window.baseUrl = "https://raw.githubusercontent.com/ox-it/wl-ck-plugins/reasearcher-training-tool/lib/courses-js-widget/";</script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="../lib/ckeditor/ckeditor.js"></script>
+    <script src="../lib/ckeditor/create-remove-editor.js"></script>
     <link rel="stylesheet" href="../lib/ckeditor/samples/sample.css">
-    <script>
-      var editor, html = '';
-      var scripts = document.getElementsByTagName("script");
-
-      // getting absolute url of current file
-      var src = scripts[scripts.length-1].baseURI.split('/');
-          src.pop(); // remove example.html
-          src.pop(); // remove researcher-training-tool
-          src = src.join('/');
-
-      function createEditor() {
-        if (editor) {
-          return;
-        }
-
-        var config = {};
-        editor = CKEDITOR.appendTo( 'editor', config, html );
-        editor.config.allowedContent = true;
-
-        CKEDITOR.plugins.addExternal('researcher-training-tool', src + '/researcher-training-tool/', 'plugin.js');
-        editor.config.extraPlugins += 'researcher-training-tool,';
-      }
-
-      function removeEditor() {
-        if (!editor) {
-          return;
-        }
-
-        document.getElementById('editorcontents').innerHTML = html = editor.getData();
-        document.getElementById('contents').style.display = '';
-
-        editor.destroy();
-        editor = null;
-
-        $('[data-researcher-training-tool]').oxfordCoursesWidget();
-      }
-    </script>
   </head>
   <body>
     <h1 class="samples">CKEditor Researcher Training Tool Example</h1>
     <p>
-      <input onclick="createEditor();" type="button" value="Create Editor">
+      <input onclick="createEditor('editor', [ { id: 'researcher-training-tool', dir: getCurrentDirectory() } ]);" type="button" value="Create Editor">
       <input onclick="removeEditor();" type="button" value="Remove Editor">
     </p>
     <div id="editor">

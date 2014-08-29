@@ -2,15 +2,18 @@
 // get plugin paths
 var h = CKEDITOR.plugins.get('oxitems');
 var path = h.path;
+var pathCommon   = (path + '~').replace('oxitems/~', 'common/');
 
 // load css and javascript files
 CKEDITOR.document.appendStyleSheet(CKEDITOR.getUrl(path + 'css/dialog.css'));
 CKEDITOR.document.appendStyleSheet(CKEDITOR.getUrl(path + 'lib/chosen/chosen.css'));
 CKEDITOR.document.appendStyleSheet(CKEDITOR.getUrl('https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/themes/smoothness/jquery-ui.css'));
 
+CKEDITOR.scriptLoader.load(pathCommon + 'js/embed-assets-in-editor.js');
 CKEDITOR.scriptLoader.load('https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js');
 CKEDITOR.scriptLoader.load(path + 'lib/chosen/chosen.js');
 CKEDITOR.scriptLoader.load(path + 'js/commit-setup-select-multiple-methods.js');
+CKEDITOR.scriptLoader.load(path + 'js/bind-oxitems-autocomplete.js');
 
 // register dialog
 CKEDITOR.dialog.add('oxItemsDialog', function(editor) {
@@ -28,12 +31,15 @@ CKEDITOR.dialog.add('oxItemsDialog', function(editor) {
           {
             type: 'text',
             id: 'channel-name',
-            label: 'Channel',
+            label: 'Channel *',
             className: 'channel_name',
             validate: CKEDITOR.dialog.validate.notEmpty('Channel name must be provided'),
             onLoad: function() {
               // add placeholder text
-              $('#oxItemsDialog .channel_name input').attr('placeholder', 'e.g. oucs/services');
+              var $input = $('#oxItemsDialog .channel_name input');
+
+              $input.attr('placeholder', 'e.g. oucs/services');
+              bindOxItemsAutoCompleteToInput($input);
             },
             setup: function(element) {
               this.setValue(element.getAttribute('data-channel_name'));
@@ -165,7 +171,7 @@ CKEDITOR.dialog.add('oxItemsDialog', function(editor) {
           },
           {
             type: 'hbox',
-            widths: ['30%', '30%', '40%'],
+            widths: ['50%', '50%'],
             children: [
               {
                 type: 'select',
@@ -180,37 +186,6 @@ CKEDITOR.dialog.add('oxItemsDialog', function(editor) {
                 },
                 commit: function(element) {
                   element.setAttribute('data-encoding', this.getValue());
-                }
-              },
-              {
-                type: 'text',
-                id: 'startdate-range',
-                label: 'Date Range <span class="info">(?)</span>',
-                className: 'startdate_range',
-                onLoad: function() {
-                  var $dialog = $('#oxItemsDialog');
-                  $dialog.find('.startdate_range input').attr('placeholder', 'start,end');
-
-                  // extra information on what the field is meant to do
-                  $('#oxItemsDialog .startdate_range').on('click', '.info', function() {
-                    var messages = [
-                      'Start and end date to search within, separated by commas (e.g. start,end).\n',
-                      'Options include:\n',
-                      'today, thisweek, thismonth, thisterm,',
-                      'tomorrow, nextweek, nextmonth, nextterm, nextyear,',
-                      'yesterday, lastweek, lastterm, lastmonth, lastyear,',
-                      'futureevents, pastevents,',
-                      'YYYY, YYYYMM, YYYYMMDD, YYYYtermname (e.g. 2013trinity)',
-                    ];
-
-                    alert(messages.join('\n'));
-                  });
-                },
-                setup: function(element) {
-                  this.setValue(element.getAttribute('data-startdate_range'));
-                },
-                commit: function(element) {
-                  element.setAttribute('data-startdate_range', this.getValue());
                 }
               },
               {
@@ -282,6 +257,15 @@ CKEDITOR.dialog.add('oxItemsDialog', function(editor) {
       } else {
         editor.insertElement(newFakeImage);
       }
+
+      // embed the assets
+      embedAssetsInCKEditor({
+        editor: editor,
+        id: 'ckeditor-oxitems-assets',
+        scripts: [
+          path + 'js/oxitems.js',
+        ],
+      });
     }
   };
 });

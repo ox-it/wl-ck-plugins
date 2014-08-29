@@ -2,11 +2,13 @@
 // get absolute plugin path
 var h = CKEDITOR.plugins.get('oxam');
 var path = h.path;
+var pathCommon = (path + '~').replace('oxam/~', 'common/');
 
 // load css and javascript files
 CKEDITOR.document.appendStyleSheet(CKEDITOR.getUrl(path + 'css/dialog.css'));
 CKEDITOR.document.appendStyleSheet(CKEDITOR.getUrl(path + 'css/results.css'));
 
+CKEDITOR.scriptLoader.load(pathCommon + 'js/embed-assets-in-editor.js');
 CKEDITOR.scriptLoader.load(path + 'js/oxam-embed.js');
 CKEDITOR.scriptLoader.load(path + 'js/get-oxam-data.js');
 CKEDITOR.scriptLoader.load(path + 'js/get-html.js');
@@ -140,6 +142,18 @@ CKEDITOR.dialog.add('oxamDialog', function(editor) {
       } else {
         editor.insertElement(newFakeImage);
       }
+
+      // embed the assets
+      embedAssetsInCKEditor({
+        editor: editor,
+        id: 'ckeditor-oxam-assets',
+        scripts: [
+          path + 'js/oxam-embed.js',
+        ],
+        stylesheets: [
+          path + 'css/results.css',
+        ],
+      });
     }
   };
 });

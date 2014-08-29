@@ -36,7 +36,7 @@ $.fn.soloCitation = function(options) {
     citationsContainer: false,
   }, options);
 
-  var url = '//api.m.ox.ac.uk/library/item:';
+  var url = 'https://api.m.ox.ac.uk/library/item:';
   var citations = {};
   var citationsCounter = 1;
 
@@ -57,7 +57,6 @@ $.fn.soloCitation = function(options) {
   };
 
   var getSoloDataHtml = function(data) {
-    console.log(data);
     var html = $('<div/>').addClass('citation');
 
     var a = $('<a/>').html(data.title)
@@ -105,4 +104,15 @@ $.fn.soloCitation = function(options) {
     }
   });
 };
+
+// automatically bind to solo-citation divs
+$(document).ready(function() {
+  var citationsContainer = $('.citationsContainer');
+
+  // binds soloCitation to citations; if a citationsContainer exists,
+  // the citations will be pushed into it
+  $('[data-solo-citation]').soloCitation({
+    citationsContainer: citationsContainer.length? citationsContainer : false,
+  });
+});
 })(jQuery);

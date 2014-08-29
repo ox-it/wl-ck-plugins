@@ -7,7 +7,7 @@
   */
 
 var SOLOSearchService = function(params) {
-  var url = '//api.m.ox.ac.uk/library/search';
+  var url = 'https://api.m.ox.ac.uk/library/search';
 
   // fills in default settings for search query parameters
   var prepareQueryParams = function(settings) {
@@ -18,6 +18,7 @@ var SOLOSearchService = function(params) {
     query = $.extend(query, params);
 
     query.count = query.count || 5;
+    delete query.form; // form was added in ItemSearch 0.1.2 (not needed in ajax call)
 
     return query;
   }
@@ -40,7 +41,7 @@ var SOLOSearchService = function(params) {
     var ajaxUrl = url;
 
     if (params.id) {
-      ajaxUrl = '//api.m.ox.ac.uk/library/item:' + params.id + '/';
+      ajaxUrl = 'https://api.m.ox.ac.uk/library/item:' + params.id + '/';
       params = {};
     }
 

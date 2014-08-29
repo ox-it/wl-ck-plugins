@@ -1,0 +1,81 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Restrict plugins by JSON</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="../lib/ckeditor/ckeditor.js"></script>
+    <script src="../lib/ckeditor/create-remove-editor.js"></script>
+    <link rel="stylesheet" href="../lib/ckeditor/samples/sample.css">
+  </head>
+  <script>
+    var createEditorAjax = function() {
+      // plugins will be spread across multiple toolbars
+      var plugins = {};
+      var pluginsDirectory = getCurrentDirectory().replace('examples/', '/');
+
+      // each array represents a toolbar (labeled by the hash)
+      plugins.general = ['youtube', 'vimeo', 'twitter', 'creative-commons-images'];
+      plugins.weblearn1 = [];
+      plugins.weblearn2 = [];
+
+      $.ajax({
+        dataType: 'json',
+        url: 'listBlockedPlugins.json',
+        success: function(json) {
+          // function to remove a plugin from a toolbar
+          var removePlugins = function(pluginsList, plugin) {
+            pluginsList = $.grep(pluginsList, function(elem, index) {
+              return elem != plugin;
+            });
+
+            return pluginsList;
+          };
+
+          // loop through each restricted plugin and remove it from any of the
+          // toolbars defined above
+          $.each(json['ckeditor-config_collection'], function(i, plugin) {
+            $.each(plugins, function(toolbar, data) {
+              plugins[toolbar] = removePlugins(data, plugin.data);
+            });
+          });
+        },
+        error: function(a,b,c) {
+          console.log([a,b,c]);
+        },
+        complete: function() {
+          // format each plugin for being loaded by createEditor
+          var loadPlugins = [];
+
+          // go through each toolbar...
+          $.each(plugins, function(toolbar, data) {
+            // ... then the remaining plugins in that toolbar ...
+            $.each(data, function(i, plugin) {
+              // ... and add the plugin
+              loadPlugins.push({ id: plugin, dir: pluginsDirectory + plugin + '/'});
+            });
+          });
+
+          createEditor('editor', loadPlugins);
+        }
+      });
+    };
+  </script>
+  <body>
+    <h1 class="samples">Restrict plugins by JSON</h1>
+    <p>
+      <input onclick="createEditorAjax();" type="button" value="Create Editor">
+      <input onclick="removeEditor();" type="button" value="Remove Editor">
+    </p>
+    <div id="editor">
+    </div>
+    <div id="contents" style="display: none">
+      <p>Edited Contents:</p>
+      <div id="editorcontents"></div>
+    </div>
+    <div id="footer">
+      <hr>
+      <p> CKEditor - The text editor for the Internet - <a class="samples" href="http://ckeditor.com/">http://ckeditor.com</a></p>
+      <p id="copy">All rights reserved. File adapted from ajax.html example from CKEditor site.</p>
+    </div>
+  </body>
+</html>

@@ -25,7 +25,7 @@ $.fn.folderListing = function(options) {
     afterBindTree: function(element) {},
   }, options);
 
-  var urlPrefix = 'https://weblearn.ox.ac.uk/direct/content/resources/';
+  var urlPrefix = '/direct/content/resources/';
 
   var getHtmlResults = function(json, $div) {
     var html = $('<ul/>').addClass('jqueryFileTree').hide();
@@ -145,4 +145,9 @@ $.fn.folderListing = function(options) {
     });
   });
 };
+
+// automatically bind to data-folder-listing divs
+$(document).ready(function() {
+  $('[data-folder-listing]').folderListing();
+});
 })(jQuery);

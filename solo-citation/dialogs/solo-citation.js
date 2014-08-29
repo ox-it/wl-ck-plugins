@@ -10,6 +10,7 @@ var pathCommon = (path + '~').replace('solo-citation/~', 'common/');
 CKEDITOR.document.appendStyleSheet(CKEDITOR.getUrl(path + 'css/dialog.css'));
 
 CKEDITOR.scriptLoader.load(pathCommon + 'js/itemsearch.js');
+CKEDITOR.scriptLoader.load(pathCommon + 'js/embed-assets-in-editor.js');
 CKEDITOR.scriptLoader.load(path + 'js/service.js');
 CKEDITOR.scriptLoader.load(path + 'js/result.js');
 CKEDITOR.scriptLoader.load(path + 'js/get-html.js');
@@ -99,8 +100,19 @@ CKEDITOR.dialog.add('soloCitationDialog', function(editor) {
       } else {
         editor.insertElement(newFakeImage);
       }
+
+      // embed the assets
+      embedAssetsInCKEditor({
+        editor: editor,
+        id: 'ckeditor-solo-citation-assets',
+        scripts: [
+          path + 'js/solo-citation.js',
+        ],
+        stylesheets: [
+          path + 'css/solo-citation.css',
+        ],
+      });
     }
   }
 });
 })();
-

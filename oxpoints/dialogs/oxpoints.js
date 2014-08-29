@@ -4,6 +4,7 @@ var h = CKEDITOR.plugins.get('oxpoints');
 var path = h.path;
 
 // find /common path, replacing last instance of the plugin name with 'common'
+var pathCommon = (path + '~').replace('oxpoints/~', 'common/');
 var pathCommonWl = (path + '~').replace('oxpoints/~', 'common-wl/');
 
 // load css and javascript files
@@ -11,6 +12,7 @@ CKEDITOR.document.appendStyleSheet(CKEDITOR.getUrl(path + 'css/dialog.css'));
 CKEDITOR.document.appendStyleSheet(CKEDITOR.getUrl(path + 'css/oxpoints.css'));
 CKEDITOR.document.appendStyleSheet(CKEDITOR.getUrl('https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/themes/smoothness/jquery-ui.css'));
 
+CKEDITOR.scriptLoader.load(pathCommon + 'js/embed-assets-in-editor.js');
 CKEDITOR.scriptLoader.load('https://static.data.ox.ac.uk/lib/jquery-ui/jquery-ui.min.js');
 CKEDITOR.scriptLoader.load(pathCommonWl + 'js/oxpoints-autocomplete.js');
 CKEDITOR.scriptLoader.load(path + 'js/get-dialog-html.js');
@@ -192,6 +194,20 @@ CKEDITOR.dialog.add('oxpointsDialog', function(editor) {
       } else {
         editor.insertElement(newFakeImage);
       }
+
+      // embed the assets
+      embedAssetsInCKEditor({
+        editor: editor,
+        id: 'ckeditor-oxpoints-assets',
+        scripts: [
+          'http://maps.google.com/maps/api/js?sensor=false',
+          path + 'js/gomap.js',
+          path + 'js/oxpoint-map.js',
+        ],
+        stylesheets: [
+          path + 'css/oxpoints.css',
+        ]
+      });
     }
   }
 });
