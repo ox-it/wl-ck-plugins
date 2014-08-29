@@ -93,7 +93,7 @@ $.fn.fileTree = function(options) {
       },
       error: function() {
         $element.removeClass('wait');
-        alert('Folder "' + dir + '" not found');
+        console.log('Folder "' + dir + '" not found');
       }
     });
   };
