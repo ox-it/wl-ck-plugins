@@ -119,6 +119,8 @@ CKEDITOR.dialog.add('youtubeDialog', function(editor) {
           path + 'css/youtube-embed.css',
         ],
       });
+
+      
     }
   };
 });
