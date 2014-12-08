@@ -21,7 +21,7 @@ CKEDITOR.dialog.add('youtubeDialog', function(editor) {
   return {
     title:     'YouTube Video Search',
     minWidth:  500,
-    minHeight: 200,
+    minHeight: 150,
     resizable: CKEDITOR.DIALOG_RESIZE_NONE,
 
     contents: [
