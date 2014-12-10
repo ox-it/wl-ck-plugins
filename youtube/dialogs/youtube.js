@@ -98,6 +98,13 @@ CKEDITOR.dialog.add('youtubeDialog', function(editor) {
       var youTubeNode = (!this.fakeImage)? new CKEDITOR.dom.element('div') : this.youTubeNode;
       youTubeNode.setAttribute('data-youtube-embed', 'true');
 
+
+      embedAssetsInNode(youTubeNode, {
+        scripts: [path + 'js/youtube-embed.js'],
+        stylesheets: [path + 'css/youtube-embed.css']
+      });
+
+
       this.commitContent(youTubeNode);
       var newFakeImage = editor.createFakeElement(youTubeNode, 'cke_youtube', 'div', false);
 
@@ -108,19 +115,9 @@ CKEDITOR.dialog.add('youtubeDialog', function(editor) {
         editor.insertElement(newFakeImage);
       }
 
-      // embed the youtube-embed assets
-      embedAssetsInCKEditor({
-        editor: editor,
-        id: 'ckeditor-youtube-assets',
-        scripts: [
-          path + 'js/youtube-embed.js',
-        ],
-        stylesheets: [
-          path + 'css/youtube-embed.css',
-        ],
-      });
-
-      
+      var pathToJquery = false;
+      var pathToAssetPreloader = pathCommon + 'js/preload-ckeditor-assets.js';
+      embedExtraCkeditorAssets(editor, pathToJquery, pathToAssetPreloader);
     }
   };
 });
