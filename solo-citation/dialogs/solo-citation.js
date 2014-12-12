@@ -5,12 +5,14 @@ var path = h.path;
 
 // find /common path, replacing last instance of the plugin name with 'common'
 var pathCommon = (path + '~').replace('solo-citation/~', 'common/');
+var pathCommonWl = (path + '~').replace('solo-citation/~', 'common-wl/');
 
 // load css and javascript files
 CKEDITOR.document.appendStyleSheet(CKEDITOR.getUrl(path + 'css/dialog.css'));
 
 CKEDITOR.scriptLoader.load(pathCommon + 'js/itemsearch.js');
 CKEDITOR.scriptLoader.load(pathCommon + 'js/embed-assets-in-editor.js');
+CKEDITOR.scriptLoader.load(pathCommonWl + 'js/embed-jquery-assets-in-editor.js');
 CKEDITOR.scriptLoader.load(path + 'js/service.js');
 CKEDITOR.scriptLoader.load(path + 'js/result.js');
 CKEDITOR.scriptLoader.load(path + 'js/get-html.js');
@@ -90,8 +92,19 @@ CKEDITOR.dialog.add('soloCitationDialog', function(editor) {
     onOk: function() {
       var node = (!this.fakeImage)? new CKEDITOR.dom.element('div') : this.node;
       node.setAttribute('data-solo-citation', 'true');
+      node.setAttribute('data-ckeditor-extra-plugin', 'true');
 
+      // commit the content to the node
       this.commitContent(node);
+
+      // embed assets into the node
+      embedAssetsInCKEditorNode({
+        node: node,
+        js: [path + 'js/solo-citation.js'],
+        css: [path + 'css/solo-citation.css']
+      });
+
+      // create fake element instance
       var newFakeImage = editor.createFakeElement(node, 'cke_solo_citation', 'div', false);
 
       if (this.fakeImage) {
@@ -101,17 +114,10 @@ CKEDITOR.dialog.add('soloCitationDialog', function(editor) {
         editor.insertElement(newFakeImage);
       }
 
-      // embed the assets
-      embedAssetsInCKEditor({
-        editor: editor,
-        id: 'ckeditor-solo-citation-assets',
-        scripts: [
-          path + 'js/solo-citation.js',
-        ],
-        stylesheets: [
-          path + 'css/solo-citation.css',
-        ],
-      });
+      // embed jQuery
+      var jQueryPath = 'https://weblearn.ox.ac.uk/library/js/jquery/jquery-1.9.1.min.js';
+      var preloaderPath = pathCommon + 'js/preload-ckeditor-assets.js';
+      embedjQueryAssetsInEditor(editor, jQueryPath, preloaderPath);
     }
   }
 });
