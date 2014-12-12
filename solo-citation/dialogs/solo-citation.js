@@ -92,7 +92,6 @@ CKEDITOR.dialog.add('soloCitationDialog', function(editor) {
     onOk: function() {
       var node = (!this.fakeImage)? new CKEDITOR.dom.element('div') : this.node;
       node.setAttribute('data-solo-citation', 'true');
-      node.setAttribute('data-ckeditor-extra-plugin', 'true');
 
       // commit the content to the node
       this.commitContent(node);
