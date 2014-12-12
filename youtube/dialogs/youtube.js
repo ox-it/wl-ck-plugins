@@ -10,7 +10,6 @@ var pathCommon = (path + '~').replace('youtube/~', 'common/');
 CKEDITOR.document.appendStyleSheet(CKEDITOR.getUrl(path + 'css/dialog.css'));
 
 CKEDITOR.scriptLoader.load(pathCommon + 'js/itemsearch.js');
-CKEDITOR.scriptLoader.load(pathCommon + 'js/embed-assets-in-editor.js');
 CKEDITOR.scriptLoader.load(path + 'js/service.js');
 CKEDITOR.scriptLoader.load(path + 'js/key.js');
 CKEDITOR.scriptLoader.load(path + 'js/result.js');
@@ -103,7 +102,7 @@ CKEDITOR.dialog.add('youtubeDialog', function(editor) {
       // commit the content to the div
       this.commitContent(youTubeNode);
 
-      // embed the firame contents into the div
+      // embed the iframe contents into the div
       embedYouTubeIframe(youTubeNode);
 
       // create fake image for the editor
