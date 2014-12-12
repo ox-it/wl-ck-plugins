@@ -37,9 +37,6 @@ var BindYouTubeSearchToContainer = function(container, searchResults, result) {
       contents.find('head').append($('head script, head link').clone());
       contents.find('body').html(container);
       contents.find('body').css({ padding: 0, width: '100%' });
-
-      // fix iframe height
-      iframe.height(contents.find('body').outerHeight() + 20);
     });
   };
 
