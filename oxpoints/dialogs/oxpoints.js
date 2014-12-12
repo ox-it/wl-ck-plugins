@@ -13,6 +13,7 @@ CKEDITOR.document.appendStyleSheet(CKEDITOR.getUrl(path + 'css/oxpoints.css'));
 CKEDITOR.document.appendStyleSheet(CKEDITOR.getUrl('https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/themes/smoothness/jquery-ui.css'));
 
 CKEDITOR.scriptLoader.load(pathCommon + 'js/embed-assets-in-editor.js');
+CKEDITOR.scriptLoader.load(pathCommonWl + 'js/embed-jquery-assets-in-editor.js');
 CKEDITOR.scriptLoader.load('https://static.data.ox.ac.uk/lib/jquery-ui/jquery-ui.min.js');
 CKEDITOR.scriptLoader.load(pathCommonWl + 'js/oxpoints-autocomplete.js');
 CKEDITOR.scriptLoader.load(path + 'js/get-dialog-html.js');
@@ -191,7 +192,7 @@ CKEDITOR.dialog.add('oxpointsDialog', function(editor) {
       // embed assets into the node
       embedAssetsInCKEditorNode({
         node: node,
-        js: ['http://maps.google.com/maps/api/js?sensor=false', path + 'js/gomap.js', path + 'js/oxpoint-map.js'],
+        js: [path + 'js/init-oxpoint-map.js', 'http://maps.google.com/maps/api/js?sensor=false&callback=initOxPointMap'],
         css: [path + 'css/oxpoints.css']
       });
 
