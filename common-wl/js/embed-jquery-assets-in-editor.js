@@ -1,5 +1,7 @@
 // embed jquery and asset preloader into the editor
-var embedjQueryAssetsInEditor = function(editor, jQueryPath, preloaderPath) {
+var embedjQueryAssetsInEditor = function(editor, pathCommon) {
+  var jQueryPath = 'https://weblearn.ox.ac.uk/library/js/jquery/jquery-1.9.1.min.js';
+  var preloaderPath = pathCommon + 'js/preload-ckeditor-assets.js';
   var data = editor.getData();
   var $data = $('<div>').append($(data));
   var jQ = jQueryPath ? jQueryPath : 'https://code.jquery.com/jquery-1.11.1.js';

@@ -115,9 +115,7 @@ CKEDITOR.dialog.add('soloCitationDialog', function(editor) {
       }
 
       // embed jQuery
-      var jQueryPath = 'https://weblearn.ox.ac.uk/library/js/jquery/jquery-1.9.1.min.js';
-      var preloaderPath = pathCommon + 'js/preload-ckeditor-assets.js';
-      embedjQueryAssetsInEditor(editor, jQueryPath, preloaderPath);
+      embedjQueryAssetsInEditor(editor, pathCommon);
     }
   }
 });
