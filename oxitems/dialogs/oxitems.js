@@ -3,7 +3,7 @@
 var h = CKEDITOR.plugins.get('oxitems');
 var path = h.path;
 var pathCommon   = (path + '~').replace('oxitems/~', 'common/');
-var pathCommonWl = (path + '~').replace('solo-citation/~', 'common-wl/');
+var pathCommonWl = (path + '~').replace('oxitems/~', 'common-wl/');
 
 // load css and javascript files
 CKEDITOR.document.appendStyleSheet(CKEDITOR.getUrl(path + 'css/dialog.css'));
