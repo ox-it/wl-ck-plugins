@@ -10,6 +10,7 @@ CKEDITOR.document.appendStyleSheet(CKEDITOR.getUrl(path + 'css/dialog.css'));
 CKEDITOR.document.appendStyleSheet(CKEDITOR.getUrl(path + 'css/results.css'));
 
 CKEDITOR.scriptLoader.load(pathCommon + 'js/embed-assets-in-editor.js');
+CKEDITOR.scriptLoader.load(pathCommonWl + 'js/embed-jquery-assets-in-editor.js');
 CKEDITOR.scriptLoader.load(path + 'js/oxam-embed.js');
 CKEDITOR.scriptLoader.load(path + 'js/get-oxam-data.js');
 CKEDITOR.scriptLoader.load(path + 'js/get-html.js');
