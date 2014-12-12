@@ -351,7 +351,16 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
       var node = (!this.fakeImage)? new CKEDITOR.dom.element('div') : this.node;
       node.setAttribute('data-researcher-training-tool', 'true');
 
+      // commit the content to the node
       this.commitContent(node);
+
+      // embed assets into the node
+      embedAssetsInCKEditorNode({
+        node: node,
+        js: [path + 'lib/courses-js-widget/oxford-courses-widget.js'],
+      });
+
+      // create fake image instance
       var newFakeImage = editor.createFakeElement(node, 'cke_researcher_training_tool', 'div', false);
 
       if (this.fakeImage) {
@@ -361,14 +370,8 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
         editor.insertElement(newFakeImage);
       }
 
-      // embed the assets
-      embedAssetsInCKEditor({
-        editor: editor,
-        id: 'ckeditor-researcher-training-tool-assets',
-        scripts: [
-          path + 'lib/courses-js-widget/oxford-courses-widget.js',
-        ],
-      });
+      // embed jQuery
+      embedjQueryAssetsInEditor(editor, pathCommon);
     }
   }
 });
