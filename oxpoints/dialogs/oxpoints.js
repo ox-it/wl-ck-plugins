@@ -185,7 +185,17 @@ CKEDITOR.dialog.add('oxpointsDialog', function(editor) {
       var node = (!this.fakeImage)? new CKEDITOR.dom.element('div') : this.node;
       node.setAttribute('data-oxpoint', 'true');
 
+      // commit the content to the node
       this.commitContent(node);
+
+      // embed assets into the node
+      embedAssetsInCKEditorNode({
+        node: node,
+        js: ['http://maps.google.com/maps/api/js?sensor=false', path + 'js/gomap.js', path + 'js/oxpoint-map.js'],
+        css: [path + 'css/oxpoints.css']
+      });
+
+      // create fake image instance
       var newFakeImage = editor.createFakeElement(node, 'cke_oxpoint', 'div', false);
 
       if (this.fakeImage) {
@@ -195,19 +205,10 @@ CKEDITOR.dialog.add('oxpointsDialog', function(editor) {
         editor.insertElement(newFakeImage);
       }
 
-      // embed the assets
-      embedAssetsInCKEditor({
-        editor: editor,
-        id: 'ckeditor-oxpoints-assets',
-        scripts: [
-          'http://maps.google.com/maps/api/js?sensor=false',
-          path + 'js/gomap.js',
-          path + 'js/oxpoint-map.js',
-        ],
-        stylesheets: [
-          path + 'css/oxpoints.css',
-        ]
-      });
+      // embed jQuery
+      var jQueryPath = 'https://weblearn.ox.ac.uk/library/js/jquery/jquery-1.9.1.min.js';
+      var preloaderPath = pathCommon + 'js/preload-ckeditor-assets.js';
+      embedjQueryAssetsInEditor(editor, jQueryPath, preloaderPath);
     }
   }
 });

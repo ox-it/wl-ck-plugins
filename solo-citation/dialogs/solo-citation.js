@@ -104,7 +104,7 @@ CKEDITOR.dialog.add('soloCitationDialog', function(editor) {
         css: [path + 'css/solo-citation.css']
       });
 
-      // create fake element instance
+      // create fake image instance
       var newFakeImage = editor.createFakeElement(node, 'cke_solo_citation', 'div', false);
 
       if (this.fakeImage) {
