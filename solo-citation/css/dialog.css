@@ -20,7 +20,7 @@
   margin: 0 0 3px 0 !important;
 }
 #soloSearchForm .searchquery,
-#soloSearchForm input[type="text"],
+#soloSearchForm input,
 #soloSearchForm .searchbutton,
 #soloSearchForm a {
   font-size: 130%;
