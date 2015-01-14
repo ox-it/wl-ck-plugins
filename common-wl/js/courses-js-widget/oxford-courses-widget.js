@@ -84,7 +84,13 @@ $.fn.oxfordCoursesWidget = function(options) {
 
 // now bind the functionality to the containers
 var bindToContainers = function() {
-  $('.courses-widget-container').oxfordCoursesWidget();
+  $('.courses-widget-container').each(function() {
+    var $this = $(this);
+    if (typeof(this.isWidget) == "undefined" || !this.isWidget) {
+      $this.oxfordCoursesWidget();
+      this.isWidget = true;
+    }
+  });
 };
 
 $(document).ready(bindToContainers);

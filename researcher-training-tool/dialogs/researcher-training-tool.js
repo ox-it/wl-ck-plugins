@@ -351,6 +351,7 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
     onOk: function() {
       var node = (!this.fakeImage)? new CKEDITOR.dom.element('div') : this.node;
       node.setAttribute('data-researcher-training-tool', 'true');
+      node.setAttribute('class', 'courses-widget-container');
 
       // commit the content to the node
       this.commitContent(node);
