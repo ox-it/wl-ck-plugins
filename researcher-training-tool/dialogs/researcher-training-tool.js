@@ -9,16 +9,16 @@ var pathCommonWl = (path + '~').replace('researcher-training-tool/~', 'common-wl
 
 // load css and javascript files
 CKEDITOR.document.appendStyleSheet(CKEDITOR.getUrl(path + 'css/dialog.css'));
-CKEDITOR.document.appendStyleSheet(CKEDITOR.getUrl('https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/themes/smoothness/jquery-ui.css'));
+CKEDITOR.document.appendStyleSheet(CKEDITOR.getUrl(pathCommon + 'css/jquery-ui.css'));
 
 // fix for $.browser being undefined in jQuery 1.9+ for datepicker
 if (!$.browser) {
-  CKEDITOR.scriptLoader.load('https://code.jquery.com/jquery-migrate-1.2.1.js');
+  CKEDITOR.scriptLoader.load(pathCommon + 'js/jquery-migrate-1.2.1.js');
 }
 
 // fix in case the ui library hasn't loaded yet
 if (!$.fn.autocomplete) {
-  CKEDITOR.scriptLoader.load('https://code.jquery.com/ui/1.8.22/jquery-ui.js');
+  CKEDITOR.scriptLoader.load(pathCommon + 'js/jquery-ui.js');
 }
 
 CKEDITOR.scriptLoader.load(pathCommon + 'js/embed-assets-in-editor.js');
