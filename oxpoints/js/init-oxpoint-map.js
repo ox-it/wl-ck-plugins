@@ -7,7 +7,6 @@ var initOxPointMapPath = (function(){
     var href = $(this).attr('href');
     if (href.indexof('init-oxpoint-map.js') > -1) {
       path = href.replace('init-oxpoint-map.js', '');
-      break
     }
   });
 
