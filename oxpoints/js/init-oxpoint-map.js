@@ -18,7 +18,7 @@ var initOxPointMapPath = (function(){
 function initOxPointMap() {
   var path = '/library/editor/ckextraplugins/oxpoints/js/';
   var gomap = path + 'gomap.js';
-  var oxpoints = path + 'oxpoints-map.js';
+  var oxpoints = path + 'oxpoint-map.js';
 
   // load gomap, then oxpoints
   $.getScript(gomap).done(function() {
