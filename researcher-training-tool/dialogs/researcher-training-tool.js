@@ -358,7 +358,7 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
       // embed assets into the node
       embedAssetsInCKEditorNode({
         node: node,
-        js: [path + 'lib/courses-js-widget/oxford-courses-widget.js'],
+        js: [pathCommonWl + 'js/courses-js-widget/oxford-courses-widget.js'],
       });
 
       // create fake image instance
