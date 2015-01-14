@@ -4,9 +4,9 @@ var initOxPointMapPath = (function(){
 
   // find current scripts and copy the url (without the current filename)
   $('script').each(function(){
-    var href = $(this).attr('href');
-    if (href.indexof('init-oxpoint-map.js') > -1) {
-      path = href.replace('init-oxpoint-map.js', '');
+    var src = $(this).attr('src');
+    if (src.indexof('init-oxpoint-map.js') > -1) {
+      path = src.replace('init-oxpoint-map.js', '');
     }
   });
 
