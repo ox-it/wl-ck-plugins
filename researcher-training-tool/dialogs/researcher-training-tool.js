@@ -326,7 +326,7 @@ CKEDITOR.dialog.add('researcherTrainingToolDialog', function(editor) {
 
       // load datepicker dependencies
       if (!$.browser) {
-        CKEDITOR.scriptLoader.load('https://code.jquery.com/jquery-migrate-1.2.1.js', function() {
+        CKEDITOR.scriptLoader.load(pathCommon + 'js/jquery-migrate-1.2.1.js', function() {
           bindDatePickerToFields();
         });
       } else {
