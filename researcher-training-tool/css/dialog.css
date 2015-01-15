@@ -48,6 +48,10 @@ ul.researcher-training-tool-autocomplete.ui-autocomplete .ui-menu-item a:hover {
   overflow: auto;
   padding: 5px;
   box-sizing: border-box;
+  margin: 0;
+}
+#researcherTrainingToolDialog .rttpreview {
+  overflow: hidden;
 }
 #researcherTrainingToolDialog .courses-widget-container-preview * {
   white-space: normal !important;
