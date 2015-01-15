@@ -23,7 +23,7 @@ if (!$.fn.autocomplete) {
 
 CKEDITOR.scriptLoader.load(pathCommon + 'js/embed-assets-in-editor.js');
 CKEDITOR.scriptLoader.load(pathCommonWl + 'js/embed-jquery-assets-in-editor.js');
-CKEDITOR.scriptLoader.load('https://rawgit.com/lokothodida/courses-js-widget/dev/oxford-courses-widget.js');
+CKEDITOR.scriptLoader.load(pathCommonWl + '/js/courses-js-widget/oxford-courses-widget.js');
 CKEDITOR.scriptLoader.load(pathCommonWl + 'js/oxpoints-autocomplete.js');
 CKEDITOR.scriptLoader.load(path + 'js/skills.js');
 CKEDITOR.scriptLoader.load(path + 'js/select-multiple-values.js');

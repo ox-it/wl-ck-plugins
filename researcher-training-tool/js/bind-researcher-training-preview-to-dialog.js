@@ -3,7 +3,7 @@ var BindResearcherTrainingPreviewToDialog = function($dialog, dialog, previewAtt
   $dialog.on('click', "[id*='cke_preview_']", function() {
 
     var previewWindow = $('.rttpreview');
-    var div = $('<div class="courses-widget-container-preview"/>');
+    var div = $('<div class="courses-widget-container-preview courses-widget-container"/>');
     var dateSuffix = 'T00:00:00';
 
     // get data from the fields
