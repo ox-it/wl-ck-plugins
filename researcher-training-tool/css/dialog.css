@@ -16,6 +16,9 @@
 }
 
 /* results in 'Provided By' auto-complete field */
+.ui-autocomplete {
+  z-index: 20000000000 !important;
+}
 ul.researcher-training-tool-autocomplete.ui-autocomplete {
   width: 350px;
   margin: 0;
