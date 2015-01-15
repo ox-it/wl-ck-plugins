@@ -18,7 +18,7 @@ if (!$.browser) {
 
 // fix in case the ui library hasn't loaded yet
 if (!$.fn.autocomplete) {
-  CKEDITOR.scriptLoader.load(pathCommon + 'js/jquery-ui.js');
+  CKEDITOR.scriptLoader.load(pathCommon + 'js/jquery-ui.min.js');
 }
 
 CKEDITOR.scriptLoader.load(pathCommon + 'js/embed-assets-in-editor.js');
